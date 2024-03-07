@@ -11,5 +11,9 @@ local colonyData = colonyExtractor.ExtractTasks(peripherals, monitorWriter)
 jsonHelper.WriteJson("requests.json", colonyData)
 
 
-local aeData = aeInterface.ExtractItems(peripherals, monitorWriter)
+local aeItems = aeInterface.ExtractItems(peripherals, monitorWriter)
+local aeCraftable = aeInterface.ExtractPatterns(peripherals, monitorWriter)
+local aeData = {}
+aeData["items"] = aeItems
+aeData["patterns"] = aeCraftable
 jsonHelper.WriteJson("aeData.json", aeData)

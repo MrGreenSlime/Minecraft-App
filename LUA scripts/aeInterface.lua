@@ -9,4 +9,10 @@ local function ExtractItems(peripherals, monitorWriter)
     return aeData
 end
 
-return {ExtractItems = ExtractItems}
+local function ExtractPatterns(peripherals, monitorWriter)
+    monitorWriter.WriteLine("Extracting Pattern List from playerside AE system", peripherals.GetMonitor())
+    local patterns = peripherals.GetPlayerMeBridge().listCraftableItems()
+    return patterns
+end
+
+return {ExtractItems = ExtractItems, ExtractPatterns = ExtractPatterns}
