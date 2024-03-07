@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataImplementation\DataImplementation.csproj" />
+    <ProjectReference Include="..\DataInterface\DataInterface.csproj" />
+    <ProjectReference Include="..\Globals\Globals.csproj" />
+    <ProjectReference Include="..\LogicImplementation\LogicImplementation.csproj" />
+    <ProjectReference Include="..\LogicInterface\LogicInterface.csproj" />
+  </ItemGroup>
+
+</Project>
