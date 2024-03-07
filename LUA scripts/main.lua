@@ -1,3 +1,4 @@
+local jsonHelper = require("JsonFileHelper")
 local monitorWriter = require("monitorWriter")
 
 local peripherals = require("wrapPeripherals")
@@ -6,3 +7,4 @@ monitorWriter.Init(peripherals.GetMonitor())
 
 local colonyExtractor = require("extractTasks")
 local colonyData = colonyExtractor.ExtractTasks(peripherals, monitorWriter)
+jsonHelper.WriteJson("requests.json", colonyData)

@@ -3,9 +3,12 @@ local maxSize = 0
 
 local function Init(monitor)
     monitor.clear()
+    monitor.setTextScale(0.5)
     y = 1
     monitor.setCursorPos(1,y)
-    maxSize = monitor.getSize()[2]
+    local x,y1 = monitor.getSize()
+    maxSize = y1
+    print(maxSize)
 end
 
 local function Reset(monitor)
