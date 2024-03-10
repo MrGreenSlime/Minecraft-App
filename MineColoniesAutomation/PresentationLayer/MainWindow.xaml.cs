@@ -16,9 +16,17 @@ namespace PresentationLayer
     /// </summary>
     public partial class MainWindow : Window
     {
+        public LogicInterface.LogicInterface Logic {  get; set; }
         public MainWindow()
         {
+            DataInterface.DataInterface Data = new DataImplementation.DataImplement();
+            Logic = new LogicImplementation.LogicImplementation(Data);
             InitializeComponent();
+        }
+
+        private void Test_Click(object sender, RoutedEventArgs e)
+        {
+            Logic.setColonie();
         }
     }
 }
