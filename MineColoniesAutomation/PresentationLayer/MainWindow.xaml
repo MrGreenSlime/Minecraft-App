@@ -5,9 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="632" Width="800">
     <Grid>
-        <Button Content="Test" Name="Test" HorizontalAlignment="Center" VerticalAlignment="Center" Height="105" Width="200" Click="Test_Click"/>
+        <Button Content="Test" Name="Test" HorizontalAlignment="Center" VerticalAlignment="Top" Height="33" Width="156" Click="Test_Click" Margin="0,14,0,0"/>
+        <ListBox HorizontalAlignment="Left" Name="builderTasks" Height="316" Margin="24,91,0,0" VerticalAlignment="Top" Width="367" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="builderTasks_SelectionChanged"/>
+        <ListBox HorizontalAlignment="Left" Name="regularTasks" Height="316" Margin="411,91,0,0" VerticalAlignment="Top" Width="367" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="regularTasks_SelectionChanged"/>
+        <Label Content="builder tasks" HorizontalAlignment="Left" Height="34" Margin="24,52,0,0" VerticalAlignment="Top" Width="123"/>
+        <Label Content="regular tasks" HorizontalAlignment="Left" Height="34" Margin="411,52,0,0" VerticalAlignment="Top" Width="123"/>
+        <ListBox HorizontalAlignment="Center" Name="itemsOfRequest" Height="142" Margin="0,464,0,0" VerticalAlignment="Top" Width="754" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <Label Content="items" Name="itemLabel" HorizontalAlignment="Left" Height="34" Margin="23,425,0,0" VerticalAlignment="Top" Width="164"/>
 
     </Grid>
 </Window>

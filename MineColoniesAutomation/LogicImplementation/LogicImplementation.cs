@@ -22,6 +22,7 @@ namespace LogicImplementation
         public void setColonie()
         {
             Data.setColonie();
+            Colonie = Data.world.SteamBotBrosColony;
         }
     }
 }

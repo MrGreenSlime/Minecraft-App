@@ -9,7 +9,7 @@ namespace DataInterface
 {
     public interface DataInterface
     {
-        public Colonie Colonie { get; set; }
+        public World world { get; set; }
         public void setColonie();
     }
 }

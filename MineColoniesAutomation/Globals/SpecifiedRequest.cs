@@ -8,11 +8,15 @@ namespace Globals
 {
     public class SpecifiedRequest
     {
-        public int Available { get; set; }
-        public int Delivering { get; set; }
-        public string Displayname { get; set; }
-        public Item Item {  get; set; } 
-        public int Needed { get; set; }
-        public string Status { get; set; }
+        public int available { get; set; }
+        public int delivering { get; set; }
+        public string displayname { get; set; }
+        public Item item {  get; set; } 
+        public int needed { get; set; }
+        public string status { get; set; }
+        public override string ToString()
+        {
+            return item.ToString();
+        }
     }
 }

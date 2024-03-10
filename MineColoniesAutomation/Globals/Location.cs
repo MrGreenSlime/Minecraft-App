@@ -8,8 +8,8 @@ namespace Globals
 {
     public class Location
     {
-        public int X {  get; set; } 
-        public int Y { get; set; }
-        public int Z { get; set; }
+        public int x {  get; set; } 
+        public int y { get; set; }
+        public int z { get; set; }
     }
 }

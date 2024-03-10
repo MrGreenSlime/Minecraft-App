@@ -8,7 +8,7 @@ namespace Globals
 {
     public class Colonie
     {
-        public List<BuilderRequests> BuilderRequests { get; set; }
+        public List<BuilderRequests> builderRequests { get; set; }
         public List<Requests> Requests { get; set; }
     }
 }

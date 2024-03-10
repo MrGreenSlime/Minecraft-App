@@ -11,30 +11,45 @@ namespace DataImplementation
 {
     public class DataImplement : DataInterface.DataInterface
     {
-        public Colonie Colonie { get; set; }
+        public World world { get; set; }
 
         public DataImplement()
         {
-            Colonie = new Colonie();
+            world = new World();
         }
+        
         public void setColonie()
         {
             string path = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/test.json" ;
             string jsonString = File.ReadAllText(path);
-            
-            Console.WriteLine(jsonString);
-            World World = new World();
             try
             {
-                World = JsonSerializer.Deserialize<World>(jsonString);
+                world = JsonSerializer.Deserialize<World>(jsonString);
+                foreach (BuilderRequests item in world.SteamBotBrosColony.builderRequests)
+                {
+                    if (item.Requests != null)
+                    {
+                        using (JsonDocument document = JsonDocument.Parse(item.Requests.ToString()))
+                        {
+                            JsonElement root = document.RootElement;
+                            if (root.ValueKind == JsonValueKind.Array)
+                            {
+                                List<SpecifiedRequest> requests = new List<SpecifiedRequest>();
+                                foreach (JsonElement requestElement in root.EnumerateArray())
+                                {
+                                    SpecifiedRequest request = JsonSerializer.Deserialize<SpecifiedRequest>(requestElement.GetRawText());
+                                    requests.Add(request);
+                                }
+                                item.requests = requests;
+                            }
+                        }
+                    }
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            
-
-            
         }
     }
 }

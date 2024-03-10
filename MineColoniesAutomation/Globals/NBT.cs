@@ -8,6 +8,6 @@ namespace Globals
 {
     public class NBT
     {
-        public int Damage {  get; set; }
+        public int damage {  get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Globals;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -26,7 +27,49 @@ namespace PresentationLayer
 
         private void Test_Click(object sender, RoutedEventArgs e)
         {
+            Test.IsEnabled = false;
+            builderTasks.Items.Clear();
+            regularTasks.Items.Clear();
             Logic.setColonie();
+            if (Logic.Colonie != null)
+            {
+                foreach (Requests item in Logic.Colonie.Requests)
+                {
+                    regularTasks.Items.Add(item);
+                }
+                foreach (BuilderRequests item in Logic.Colonie.builderRequests)
+                {
+                    builderTasks.Items.Add(item);
+                }
+                
+                
+            }
+        }
+
+        private void builderTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            itemLabel.Content = "items in builder request";
+            itemsOfRequest.Items.Clear();
+            var test = builderTasks.SelectedItem;
+            
+            if (((BuilderRequests)builderTasks.SelectedItem).requests != null)
+            {
+                foreach (SpecifiedRequest item in ((BuilderRequests)builderTasks.SelectedItem).requests)
+                {
+                    itemsOfRequest.Items.Add(item);
+                }
+            }
+            
+        }
+
+        private void regularTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            itemLabel.Content = "items possible in request";
+            itemsOfRequest.Items.Clear();
+            foreach (Item item in ((Requests)regularTasks.SelectedItem).items)
+            {
+                itemsOfRequest.Items.Add(item);
+            }
         }
     }
 }

@@ -8,12 +8,16 @@ namespace Globals
 {
     public class Item
     {
-        public int Count { get; set; }
-        public string DisplayName { get; set; }
-        public string FingerPrint { get; set; }
-        public int MaxStackSize { get; set; }
-        public string Name { get; set; }
-        public Dictionary<string, object> NBT { get; set; }
-        public List<string> Tags { get; set; }
+        public int count { get; set; }
+        public string displayName { get; set; }
+        public string fingerPrint { get; set; }
+        public int maxStackSize { get; set; }
+        public string name { get; set; }
+        public Dictionary<string, object> nbt { get; set; }
+        public Object tags { get; set; }
+        public override string ToString()
+        {
+            return "" + count + " " + displayName;
+        }
     }
 }
