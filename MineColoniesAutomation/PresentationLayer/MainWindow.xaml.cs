@@ -28,6 +28,8 @@ namespace PresentationLayer
         }
         private void builderTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (builderTasks.SelectedIndex == -1)
+                return;
             itemLabel.Content = "items in builder request";
             itemsOfRequest.Items.Clear();
             var test = builderTasks.SelectedItem;
@@ -44,6 +46,8 @@ namespace PresentationLayer
 
         private void regularTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (regularTasks.SelectedIndex == -1)
+                return;
             itemLabel.Content = "items possible in request";
             itemsOfRequest.Items.Clear();
             foreach (Item item in ((Requests)regularTasks.SelectedItem).items)
