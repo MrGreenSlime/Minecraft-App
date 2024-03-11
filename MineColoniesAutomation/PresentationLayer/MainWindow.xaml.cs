@@ -71,5 +71,34 @@ namespace PresentationLayer
                 itemsOfRequest.Items.Add(item);
             }
         }
+
+        private void builderTasks_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (builderTasks.SelectedIndex == -1)
+                return;
+            itemLabel.Content = "items in builder request";
+            itemsOfRequest.Items.Clear();
+            var test = builderTasks.SelectedItem;
+
+            if (((BuilderRequests)builderTasks.SelectedItem).requests != null)
+            {
+                foreach (SpecifiedRequest item in ((BuilderRequests)builderTasks.SelectedItem).requests)
+                {
+                    itemsOfRequest.Items.Add(item);
+                }
+            }
+        }
+
+        private void regularTasks_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (regularTasks.SelectedIndex == -1)
+                return;
+            itemLabel.Content = "items possible in request";
+            itemsOfRequest.Items.Clear();
+            foreach (Item item in ((Requests)regularTasks.SelectedItem).items)
+            {
+                itemsOfRequest.Items.Add(item);
+            }
+        }
     }
 }
