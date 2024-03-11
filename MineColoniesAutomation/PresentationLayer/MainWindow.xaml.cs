@@ -12,9 +12,6 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public LogicInterface.LogicInterface Logic {  get; set; }
@@ -23,29 +20,12 @@ namespace PresentationLayer
             DataInterface.DataInterface Data = new DataImplementation.DataImplement();
             Logic = new LogicImplementation.LogicImplementation(Data);
             InitializeComponent();
-        }
-
-        private void Test_Click(object sender, RoutedEventArgs e)
-        {
-            Test.IsEnabled = false;
-            builderTasks.Items.Clear();
-            regularTasks.Items.Clear();
             Logic.setColonie();
-            if (Logic.Colonie != null)
+            foreach (Colonie item in Logic.World.colonies)
             {
-                foreach (Requests item in Logic.Colonie.Requests)
-                {
-                    regularTasks.Items.Add(item);
-                }
-                foreach (BuilderRequests item in Logic.Colonie.builderRequests)
-                {
-                    builderTasks.Items.Add(item);
-                }
-                
-                
+                colonySelection.Items.Add(item);
             }
         }
-
         private void builderTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             itemLabel.Content = "items in builder request";
@@ -98,6 +78,20 @@ namespace PresentationLayer
             foreach (Item item in ((Requests)regularTasks.SelectedItem).items)
             {
                 itemsOfRequest.Items.Add(item);
+            }
+        }
+
+        private void colonySelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            builderTasks.Items.Clear();
+            regularTasks.Items.Clear();
+            foreach (BuilderRequests item in ((Colonie)colonySelection.SelectedItem).BuilderRequests)
+            {
+                builderTasks.Items.Add(item);
+            }
+            foreach (Requests item in ((Colonie)colonySelection.SelectedItem).Requests)
+            {
+                regularTasks.Items.Add(item);
             }
         }
     }
