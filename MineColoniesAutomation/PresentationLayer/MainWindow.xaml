@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="632" Width="800">
+        Title="MainWindow" Height="652" Width="800">
     <Grid>
         <ListBox HorizontalAlignment="Left" Name="builderTasks" Height="316" Margin="24,91,0,0" VerticalAlignment="Top" Width="367" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="builderTasks_SelectionChanged" GotFocus="builderTasks_GotFocus"/>
         <ListBox HorizontalAlignment="Left" Name="regularTasks" Height="316" Margin="411,91,0,0" VerticalAlignment="Top" Width="367" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="regularTasks_SelectionChanged" GotFocus="regularTasks_GotFocus"/>
