@@ -1,6 +1,7 @@
 local function ExtractTasks(peripherals, monitorWriter)
     monitorWriter.WriteLine("Extracting non builder requests from " .. peripherals.GetColonyIntegrator().getColonyName(), peripherals.GetMonitor())
     local requestData = {}
+    requestData["Name"] = peripherals.GetColonyIntegrator().getColonyName()
     requestData["Requests"] = peripherals.GetColonyIntegrator().getRequests()
     for i=#requestData["Requests"],1,-1 do
         if not (string.find(requestData["Requests"][i]["target"], "Builder") == nil) then
@@ -23,9 +24,10 @@ local function ExtractTasks(peripherals, monitorWriter)
             table.insert(builderRequests, builder)
         end
     end
-    requestData["builderRequests"] = builderRequests
+    requestData["BuilderRequests"] = builderRequests
     local colonyData = {}
-    colonyData[peripherals.GetColonyIntegrator().getColonyName()] = requestData
+    --colonyData[peripherals.GetColonyIntegrator().getColonyName()] = requestData
+    table.insert(colonyData, requestData)
     return colonyData
 end
 
