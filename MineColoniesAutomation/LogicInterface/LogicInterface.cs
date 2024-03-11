@@ -9,7 +9,7 @@ namespace LogicInterface
 {
     public interface LogicInterface
     {
-        public Colonie Colonie { get; set; }
+        public World World { get; set; }
         public void setColonie();
     }
 }

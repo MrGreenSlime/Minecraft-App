@@ -11,18 +11,19 @@ namespace LogicImplementation
     public class LogicImplementation : LogicInterface.LogicInterface
     {
         public DataInterface.DataInterface Data;
-        public Colonie Colonie { get; set; }
+        public World World { get; set; }
 
         public LogicImplementation(DataInterface.DataInterface data)
         {
             Data = data;
+            World = Data.world;
         }
 
 
         public void setColonie()
         {
             Data.setColonie();
-            Colonie = Data.world.SteamBotBrosColony;
+            World = Data.world;
         }
     }
 }

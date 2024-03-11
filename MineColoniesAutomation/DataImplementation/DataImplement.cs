@@ -16,35 +16,41 @@ namespace DataImplementation
         public DataImplement()
         {
             world = new World();
+            world.colonies = new List<Colonie>();
+            setColonie();
         }
         
         public void setColonie()
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/test.json" ;
+            string path = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/requests.json" ;
             string jsonString = File.ReadAllText(path);
             try
             {
-                world = JsonSerializer.Deserialize<World>(jsonString);
-                foreach (BuilderRequests item in world.SteamBotBrosColony.builderRequests)
+                List<Colonie> colonies = JsonSerializer.Deserialize<List<Colonie>>(jsonString);
+                foreach (Colonie colo in colonies)
                 {
-                    if (item.Requests != null)
+                    foreach (BuilderRequests item in colo.BuilderRequests)
                     {
-                        using (JsonDocument document = JsonDocument.Parse(item.Requests.ToString()))
+                        if (item.Requests != null)
                         {
-                            JsonElement root = document.RootElement;
-                            if (root.ValueKind == JsonValueKind.Array)
+                            using (JsonDocument document = JsonDocument.Parse(item.Requests.ToString()))
                             {
-                                List<SpecifiedRequest> requests = new List<SpecifiedRequest>();
-                                foreach (JsonElement requestElement in root.EnumerateArray())
+                                JsonElement root = document.RootElement;
+                                if (root.ValueKind == JsonValueKind.Array)
                                 {
-                                    SpecifiedRequest request = JsonSerializer.Deserialize<SpecifiedRequest>(requestElement.GetRawText());
-                                    requests.Add(request);
+                                    List<SpecifiedRequest> requests = new List<SpecifiedRequest>();
+                                    foreach (JsonElement requestElement in root.EnumerateArray())
+                                    {
+                                        SpecifiedRequest request = JsonSerializer.Deserialize<SpecifiedRequest>(requestElement.GetRawText());
+                                        requests.Add(request);
+                                    }
+                                    item.requests = requests;
                                 }
-                                item.requests = requests;
                             }
                         }
                     }
                 }
+                world.colonies = colonies;
             }
             catch (Exception ex)
             {

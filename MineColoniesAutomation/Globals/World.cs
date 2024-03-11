@@ -8,6 +8,6 @@ namespace Globals
 {
     public class World
     {
-        public Colonie SteamBotBrosColony {  get; set; }
+        public List<Colonie> colonies {  get; set; }
     }
 }
