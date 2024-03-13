@@ -89,6 +89,7 @@ namespace PresentationLayer
         {
             builderTasks.Items.Clear();
             regularTasks.Items.Clear();
+            itemsOfRequest.Items.Clear();
             foreach (BuilderRequests item in ((Colonie)colonySelection.SelectedItem).BuilderRequests)
             {
                 builderTasks.Items.Add(item);
@@ -96,6 +97,15 @@ namespace PresentationLayer
             foreach (Requests item in ((Colonie)colonySelection.SelectedItem).Requests)
             {
                 regularTasks.Items.Add(item);
+            }
+        }
+        private void update()
+        {
+            Logic.setColonie();
+            colonySelection.Items.Clear();
+            foreach (Colonie item in Logic.World.colonies)
+            {
+                colonySelection.Items.Add(item);
             }
         }
     }
