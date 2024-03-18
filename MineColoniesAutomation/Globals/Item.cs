@@ -14,7 +14,7 @@ namespace Globals
         public int maxStackSize { get; set; }
         public string name { get; set; }
         public Dictionary<string, object> nbt { get; set; }
-        public Object tags { get; set; }
+        public string[] tags { get; set; }
         public override string ToString()
         {
             return "" + count + " " + displayName;

@@ -24,32 +24,11 @@ namespace DataImplementation
         {
             string path = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/requests.json" ;
             string jsonString = File.ReadAllText(path);
+            jsonString = jsonString.Replace("\"tags\":{}", "\"tags\":[]");
+            jsonString = jsonString.Replace("\"Requests\":{}", "\"Requests\":[]");
             try
             {
                 List<Colonie> colonies = JsonSerializer.Deserialize<List<Colonie>>(jsonString);
-                foreach (Colonie colo in colonies)
-                {
-                    foreach (BuilderRequests item in colo.BuilderRequests)
-                    {
-                        if (item.Requests != null)
-                        {
-                            using (JsonDocument document = JsonDocument.Parse(item.Requests.ToString()))
-                            {
-                                JsonElement root = document.RootElement;
-                                if (root.ValueKind == JsonValueKind.Array)
-                                {
-                                    List<SpecifiedRequest> requests = new List<SpecifiedRequest>();
-                                    foreach (JsonElement requestElement in root.EnumerateArray())
-                                    {
-                                        SpecifiedRequest request = JsonSerializer.Deserialize<SpecifiedRequest>(requestElement.GetRawText());
-                                        requests.Add(request);
-                                    }
-                                    item.requests = requests;
-                                }
-                            }
-                        }
-                    }
-                }
                 world.colonies = colonies;
             }
             catch (Exception ex)

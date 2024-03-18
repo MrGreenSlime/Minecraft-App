@@ -34,9 +34,9 @@ namespace PresentationLayer
             itemsOfRequest.Items.Clear();
             var test = builderTasks.SelectedItem;
             
-            if (((BuilderRequests)builderTasks.SelectedItem).requests != null)
+            if (((BuilderRequests)builderTasks.SelectedItem).Requests != null)
             {
-                foreach (SpecifiedRequest item in ((BuilderRequests)builderTasks.SelectedItem).requests)
+                foreach (SpecifiedRequest item in ((BuilderRequests)builderTasks.SelectedItem).Requests)
                 {
                     itemsOfRequest.Items.Add(item);
                 }
@@ -64,9 +64,9 @@ namespace PresentationLayer
             itemsOfRequest.Items.Clear();
             var test = builderTasks.SelectedItem;
 
-            if (((BuilderRequests)builderTasks.SelectedItem).requests != null)
+            if (((BuilderRequests)builderTasks.SelectedItem).Requests != null)
             {
-                foreach (SpecifiedRequest item in ((BuilderRequests)builderTasks.SelectedItem).requests)
+                foreach (SpecifiedRequest item in ((BuilderRequests)builderTasks.SelectedItem).Requests)
                 {
                     itemsOfRequest.Items.Add(item);
                 }

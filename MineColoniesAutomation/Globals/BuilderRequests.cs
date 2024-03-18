@@ -11,8 +11,7 @@ namespace Globals
     {
         public Location location { get; set; }
         public string name { get; set; }
-        public object Requests { get; set; }
-        public List<SpecifiedRequest> requests { get; set; }
+        public List<SpecifiedRequest> Requests { get; set; }
         public override string ToString()
         {
             if (name == null)
