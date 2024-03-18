@@ -50,7 +50,7 @@ namespace PresentationLayer
                 return;
             itemLabel.Content = "items possible in request";
             itemsOfRequest.Items.Clear();
-            foreach (Item item in ((Requests)regularTasks.SelectedItem).items)
+            foreach (RequestItem item in ((Requests)regularTasks.SelectedItem).items)
             {
                 itemsOfRequest.Items.Add(item);
             }
@@ -79,7 +79,7 @@ namespace PresentationLayer
                 return;
             itemLabel.Content = "items possible in request";
             itemsOfRequest.Items.Clear();
-            foreach (Item item in ((Requests)regularTasks.SelectedItem).items)
+            foreach (RequestItem item in ((Requests)regularTasks.SelectedItem).items)
             {
                 itemsOfRequest.Items.Add(item);
             }
