@@ -60,7 +60,17 @@ namespace DataImplementation
                         item1.amount -= 32;
                     }
                 }
-                world.items = Storage;
+                for (int i = 0; i < Storage.Count ; i++)
+                {
+                    for (int j = 0; j < world.colonies.Count ; j++)
+                    {
+                        if (Storage[i].colone.colony.Equals(world.colonies[j].Name))
+                        {
+                            world.colonies[j].items = Storage[i].colone;
+                        }
+                    }
+                }
+                //world.items = Storage;
                 
             }
             catch (Exception ex)

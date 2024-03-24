@@ -1,7 +1,7 @@
 [
   {
     "colone": {
-      "colony": "steamy",
+      "colony": "SteamBotBro's Colony",
       "items": {
         "playerSide": [
           {
@@ -1383,15 +1383,67 @@
   },
   {
     "colone": {
-      "colony": "thibe",
+      "colony": "Thibe's Colony",
       "items": {
         "playerSide": [
+          {
+            "tags": [
+              "minecraft:item/minecraft:logs_that_burn",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecraft:completes_find_tree_tutorial",
+              "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+              "minecraft:item/minecraft:logs",
+              "minecraft:item/minecraft:birch_logs"
+            ],
+            "name": "minecraft:birch_log",
+            "amount": 64,
+            "fingerprint": "451A63978FC37B40F5357A1B313A4C56",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:birch_log"
+            },
+            "displayName": "Birch Log"
+          }
         ],
         "colonySide": [
+          {
+            "tags": [
+              "minecraft:item/minecraft:tools",
+              "minecraft:item/minecraft:breaks_decorated_pots",
+              "minecraft:item/forge:tools",
+              "minecraft:item/minecraft:hoes"
+            ],
+            "name": "minecraft:diamond_hoe",
+            "amount": 7,
+            "fingerprint": "A5FA2BAB7D2A760F7682F79DCCBD1277",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:diamond_hoe",
+              "tag": {
+                "Damage": 0
+              }
+            },
+            "displayName": "Diamond Hoe"
+          }
         ]
       },
       "patterns": [
-
+        {
+          "tags": [
+            "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+            "minecraft:item/minecolonies:reduceable_ingredient",
+            "minecraft:item/forge:rods",
+            "minecraft:item/forge:rods/wooden"
+          ],
+          "name": "minecraft:stick",
+          "amount": 2,
+          "fingerprint": "D8A7A7111BBA151021AC46B769222D0C",
+          "isCraftable": true,
+          "nbt": {
+            "id": "minecraft:stick"
+          },
+          "displayName": "Stick"
+        }
       ]
     }
   }

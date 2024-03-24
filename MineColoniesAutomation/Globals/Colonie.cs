@@ -11,6 +11,7 @@ namespace Globals
         public string Name { get; set; }
         public List<BuilderRequests> BuilderRequests { get; set; }
         public List<Requests> Requests { get; set; }
+        public ItemsInStorage items { get; set; }
         public override string ToString()
         {
             return Name;

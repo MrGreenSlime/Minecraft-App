@@ -25,9 +25,9 @@ namespace PresentationLayer
         {
             InitializeComponent();
             Logic = logic;
-            foreach (ColonieStorage item in Logic.World.items)
+            foreach (Colonie item in Logic.World.colonies)
             {
-                ColonySelection.Items.Add(item.colone);
+                ColonySelection.Items.Add(item);
             }
         }
 
@@ -36,21 +36,28 @@ namespace PresentationLayer
             colonyItems.Items.Clear();
             PlayerItems.Items.Clear();
             patterns.Items.Clear();
-            ItemsInStorage storage = (ItemsInStorage)ColonySelection.SelectedItem;
-            storage.patterns.Sort();
-            storage.items.playerSide.Sort();
-            storage.items.colonySide.Sort();
-            foreach (StorageItem item in storage.patterns)
+            Colonie storage = (Colonie)ColonySelection.SelectedItem;
+            if (storage.items != null)
             {
-                patterns.Items.Add(item.displayName);
+                storage.items.patterns.Sort();
+                foreach (StorageItem item in storage.items.patterns)
+                {
+                    patterns.Items.Add(item.displayName);
+                }
+                storage.items.items.playerSide.Sort();
+                foreach (StorageItem item in storage.items.items.playerSide)
+                {
+                    PlayerItems.Items.Add(item);
+                }
+                storage.items.items.colonySide.Sort();
+                foreach (StorageItem item in storage.items.items.colonySide)
+                {
+                    colonyItems.Items.Add(item);
+                }
             }
-            foreach (StorageItem item in storage.items.playerSide)
+            else
             {
-                PlayerItems.Items.Add(item);
-            }
-            foreach (StorageItem item in storage.items.colonySide)
-            {
-                colonyItems.Items.Add(item);
+                Console.WriteLine("rip");
             }
         }
 
