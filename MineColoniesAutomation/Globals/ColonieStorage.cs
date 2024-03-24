@@ -9,5 +9,6 @@ namespace Globals
     public class ColonieStorage
     {
         public ItemsInStorage colone {  get; set; }
+        
     }
 }
