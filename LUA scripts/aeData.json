@@ -1,5 +1,7 @@
 [
-{"colone":{
+{
+    "name": "name",
+    "colone":{
     "items": {
         "playerSide": [
             {

@@ -10,5 +10,10 @@ namespace Globals
     {
         public StorageItems items {  get; set; }
         public List<StorageItem> patterns { get; set; }
+        public string colony { get; set; }
+        public override string ToString()
+        {
+            return colony;
+        }
     }
 }

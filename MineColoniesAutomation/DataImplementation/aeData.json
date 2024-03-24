@@ -1,6 +1,7 @@
 [
   {
     "colone": {
+      "colony": "steamy",
       "items": {
         "playerSide": [
           {
@@ -1382,6 +1383,7 @@
   },
   {
     "colone": {
+      "colony": "thibe",
       "items": {
         "playerSide": [
         ],

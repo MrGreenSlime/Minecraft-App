@@ -27,7 +27,7 @@ namespace PresentationLayer
             Logic = logic;
             foreach (ColonieStorage item in Logic.World.items)
             {
-                ColonySelection.Items.Add(item);
+                ColonySelection.Items.Add(item.colone);
             }
         }
 
@@ -36,19 +36,19 @@ namespace PresentationLayer
             colonyItems.Items.Clear();
             PlayerItems.Items.Clear();
             patterns.Items.Clear();
-            ColonieStorage storage = (ColonieStorage)ColonySelection.SelectedItem;
-            storage.colone.patterns.Sort();
-            storage.colone.items.playerSide.Sort();
-            storage.colone.items.colonySide.Sort();
-            foreach (StorageItem item in storage.colone.patterns)
+            ItemsInStorage storage = (ItemsInStorage)ColonySelection.SelectedItem;
+            storage.patterns.Sort();
+            storage.items.playerSide.Sort();
+            storage.items.colonySide.Sort();
+            foreach (StorageItem item in storage.patterns)
             {
                 patterns.Items.Add(item.displayName);
             }
-            foreach (StorageItem item in storage.colone.items.playerSide)
+            foreach (StorageItem item in storage.items.playerSide)
             {
                 PlayerItems.Items.Add(item);
             }
-            foreach (StorageItem item in storage.colone.items.colonySide)
+            foreach (StorageItem item in storage.items.colonySide)
             {
                 colonyItems.Items.Add(item);
             }
