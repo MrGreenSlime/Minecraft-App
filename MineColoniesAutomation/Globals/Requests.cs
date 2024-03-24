@@ -15,7 +15,7 @@ namespace Globals
         public int minCount { get; set; }
         public string state { get; set; }
         public string target { get; set; }
-        public List<Item> items { get; set; }
+        public List<RequestItem> items { get; set; }
         public override string ToString()
         {
             return name + '|' + desc + '|' + count + "| for " + target;

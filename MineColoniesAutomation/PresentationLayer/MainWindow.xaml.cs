@@ -21,6 +21,17 @@ namespace PresentationLayer
             Logic = new LogicImplementation.LogicImplementation(Data);
             InitializeComponent();
             Logic.setColonie();
+            Logic.setStorage();
+            foreach (Colonie item in Logic.World.colonies)
+            {
+                colonySelection.Items.Add(item);
+            }
+        }
+        public MainWindow(LogicInterface.LogicInterface logic)
+        {
+            Logic = logic;
+            InitializeComponent();
+            Logic.setColonie();
             foreach (Colonie item in Logic.World.colonies)
             {
                 colonySelection.Items.Add(item);
@@ -50,7 +61,7 @@ namespace PresentationLayer
                 return;
             itemLabel.Content = "items possible in request";
             itemsOfRequest.Items.Clear();
-            foreach (Item item in ((Requests)regularTasks.SelectedItem).items)
+            foreach (RequestItem item in ((Requests)regularTasks.SelectedItem).items)
             {
                 itemsOfRequest.Items.Add(item);
             }
@@ -79,7 +90,7 @@ namespace PresentationLayer
                 return;
             itemLabel.Content = "items possible in request";
             itemsOfRequest.Items.Clear();
-            foreach (Item item in ((Requests)regularTasks.SelectedItem).items)
+            foreach (RequestItem item in ((Requests)regularTasks.SelectedItem).items)
             {
                 itemsOfRequest.Items.Add(item);
             }
@@ -107,6 +118,13 @@ namespace PresentationLayer
             {
                 colonySelection.Items.Add(item);
             }
+        }
+
+        private void GoToStorage_Click(object sender, RoutedEventArgs e)
+        {
+            Items window = new Items(Logic);
+            Close();
+            window.Show();
         }
     }
 }

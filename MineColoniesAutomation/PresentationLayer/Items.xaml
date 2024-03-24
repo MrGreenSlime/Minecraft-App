@@ -1,0 +1,19 @@
+﻿<Window x:Class="PresentationLayer.Items"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationLayer"
+        mc:Ignorable="d"
+        Title="Items" Height="467" Width="800">
+    <Grid Margin="0,0,0,-6">
+        <ComboBox HorizontalAlignment="Left" Name="ColonySelection" Height="38" Margin="34,37,0,0" VerticalAlignment="Top" Width="208" SelectionChanged="ColonySelection_SelectionChanged"/>
+        <ListBox HorizontalAlignment="Left" Name="PlayerItems" Height="257" Margin="26,157,0,0" VerticalAlignment="Top" Width="228" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <ListBox HorizontalAlignment="Left" Name="patterns" Height="257" Margin="547,157,0,0" VerticalAlignment="Top" Width="228" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <ListBox HorizontalAlignment="Center" Name="colonyItems" Height="257" Margin="0,157,0,0" VerticalAlignment="Top" Width="228" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <Label Content="Player Items" HorizontalAlignment="Left" Height="44" Margin="26,113,0,0" VerticalAlignment="Top" Width="228"/>
+        <Label Content="Colony Items" HorizontalAlignment="Center" Height="44" Margin="0,113,0,0" VerticalAlignment="Top" Width="228"/>
+        <Label Content="Patterns avaiable" HorizontalAlignment="Left" Height="44" Margin="547,108,0,0" VerticalAlignment="Top" Width="228"/>
+        <Button Content="back" Name="Back" HorizontalAlignment="Left" Height="42" Margin="638,33,0,0" VerticalAlignment="Top" Width="137" Click="Back_Click"/>
+    </Grid>
+</Window>

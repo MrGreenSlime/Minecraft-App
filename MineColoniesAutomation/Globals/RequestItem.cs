@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Globals
 {
-    public class Item
+    public class RequestItem
     {
         public int count { get; set; }
         public string displayName { get; set; }

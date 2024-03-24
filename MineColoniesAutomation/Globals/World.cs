@@ -8,6 +8,8 @@ namespace Globals
 {
     public class World
     {
+        public string Name { get; set; }
         public List<Colonie> colonies {  get; set; }
+        public List<ColonieStorage> items { get; set; }
     }
 }

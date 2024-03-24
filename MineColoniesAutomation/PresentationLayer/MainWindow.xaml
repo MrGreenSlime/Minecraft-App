@@ -14,6 +14,7 @@
         <ListBox HorizontalAlignment="Center" Name="itemsOfRequest" Height="142" Margin="0,464,0,0" VerticalAlignment="Top" Width="754" d:ItemsSource="{d:SampleData ItemCount=5}"/>
         <Label Content="items" Name="itemLabel" HorizontalAlignment="Left" Height="34" Margin="23,425,0,0" VerticalAlignment="Top" Width="164"/>
         <ComboBox HorizontalAlignment="Left" Name="colonySelection" Height="33" Margin="24,14,0,0" VerticalAlignment="Top" Width="154" SelectionChanged="colonySelection_SelectionChanged"/>
+        <Button Content="go to storage" Name="GoToStorage" HorizontalAlignment="Left" Height="39" Margin="595,14,0,0" VerticalAlignment="Top" Width="183" Click="GoToStorage_Click"/>
 
     </Grid>
 </Window>

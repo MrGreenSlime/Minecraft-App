@@ -11,5 +11,6 @@ namespace DataInterface
     {
         public World world { get; set; }
         public void setColonie();
+        public void setStorage();
     }
 }

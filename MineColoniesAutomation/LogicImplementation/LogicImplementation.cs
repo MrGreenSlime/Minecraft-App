@@ -25,5 +25,10 @@ namespace LogicImplementation
             Data.setColonie();
             World = Data.world;
         }
+        public void setStorage()
+        {
+            Data.setStorage();
+            World = Data.world;
+        }
     }
 }

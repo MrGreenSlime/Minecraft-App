@@ -18,6 +18,7 @@ namespace DataImplementation
             world = new World();
             world.colonies = new List<Colonie>();
             setColonie();
+            setStorage();
         }
         
         public void setColonie()
@@ -30,6 +31,37 @@ namespace DataImplementation
             {
                 List<Colonie> colonies = JsonSerializer.Deserialize<List<Colonie>>(jsonString);
                 world.colonies = colonies;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        public void setStorage()
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/aeData.json";
+            string jsonString = File.ReadAllText(path);
+            jsonString = jsonString.Replace("\"tags\": {}", "\"tags\": []");
+            try
+            {
+                List<ColonieStorage> Storage = JsonSerializer.Deserialize<List<ColonieStorage>>(jsonString);
+                foreach (ColonieStorage item in Storage)
+                {
+                    foreach (StorageItem item1 in item.colone.items.playerSide)
+                    {
+                        item1.amount -= 32;
+                    }
+                    foreach (StorageItem item1 in item.colone.items.colonySide)
+                    {
+                        item1.amount -= 32;
+                    }
+                    foreach (StorageItem item1 in item.colone.patterns)
+                    {
+                        item1.amount -= 32;
+                    }
+                }
+                world.items = Storage;
+                
             }
             catch (Exception ex)
             {
