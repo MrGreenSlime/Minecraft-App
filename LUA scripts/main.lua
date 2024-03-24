@@ -16,4 +16,7 @@ local aeCraftable = aeInterface.ExtractPatterns(peripherals, monitorWriter)
 local aeData = {}
 aeData["items"] = aeItems
 aeData["patterns"] = aeCraftable
-jsonHelper.WriteJson("aeData.json", aeData)
+aeData["colony"] = peripherals.GetColonyIntegrator().getColonyName()
+local colonyAeData = {}
+table.insert(colonyAeData, aeData)
+jsonHelper.WriteJson("aeData.json", colonyAeData)
