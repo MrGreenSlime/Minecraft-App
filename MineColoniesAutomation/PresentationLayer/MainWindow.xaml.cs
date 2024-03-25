@@ -1,4 +1,5 @@
 ﻿using Globals;
+using Ookii.Dialogs.Wpf;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +21,7 @@ namespace PresentationLayer
             DataInterface.DataInterface Data = new DataImplementation.DataImplement();
             Logic = new LogicImplementation.LogicImplementation(Data);
             InitializeComponent();
+            Logic.setInstance(ShowFolderBrowserDialog());
             Logic.setColonie();
             Logic.setStorage();
             foreach (Colonie item in Logic.World.colonies)
@@ -126,6 +128,25 @@ namespace PresentationLayer
             Items window = new Items(Logic);
             Close();
             window.Show();
+        }
+
+        private string ShowFolderBrowserDialog()
+        {
+            VistaFolderBrowserDialog dialog = new VistaFolderBrowserDialog();
+            dialog.Description = "Please select your minecraft source folder.";
+            dialog.UseDescriptionForTitle = true;
+
+            if (!VistaFolderBrowserDialog.IsVistaFolderDialogSupported)
+            {
+                MessageBox.Show(this, "Because you are not using Windows Vista or later, the regular folder browser dialog will be used. Please use Windows Vista to see the new dialog.", "Sample folder browser dialog");
+            }
+
+            if (dialog.ShowDialog(this) ?? false)
+            {
+                //MessageBox.Show(this, $"The selected folder was: {Environment.NewLine}{dialog.SelectedPath}", "Sample folder browser dialog");
+                return dialog.SelectedPath;
+            }
+            return "";
         }
     }
 }

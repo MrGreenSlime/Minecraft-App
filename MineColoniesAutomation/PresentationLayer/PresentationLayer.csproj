@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DataImplementation\DataImplementation.csproj" />
     <ProjectReference Include="..\DataInterface\DataInterface.csproj" />
     <ProjectReference Include="..\Globals\Globals.csproj" />

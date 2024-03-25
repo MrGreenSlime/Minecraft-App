@@ -30,5 +30,10 @@ namespace LogicImplementation
             Data.setStorage();
             World = Data.world;
         }
+
+        public void setInstance(string v)
+        {
+            Data.setInstance(v);
+        }
     }
 }

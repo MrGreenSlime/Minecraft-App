@@ -12,11 +12,14 @@ namespace DataImplementation
     public class DataImplement : DataInterface.DataInterface
     {
         public World world { get; set; }
+        public string InstancePath { get; set; }
+        public List<string> WorldPaths { get; set; }
 
         public DataImplement()
         {
             world = new World();
             world.colonies = new List<Colonie>();
+            WorldPaths = new List<string>();
             setColonie();
             setStorage();
         }
@@ -60,6 +63,29 @@ namespace DataImplementation
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void setInstance(string v)
+        {
+            InstancePath = v;
+            //Check if correct mods are installed
+            if (Path.Exists(InstancePath + "\\mods"))
+            {
+                var mod = Directory.EnumerateFiles(InstancePath + "\\mods", "*AdvancedPeripherals*").ToList();
+                if (mod.Count() == 0) throw new Exception("Instance does not have AdvancedPeripherals installed");
+                mod = Directory.EnumerateFiles(InstancePath + "\\mods", "*appliedenergistics2*").ToList();
+                if (mod.Count() == 0) throw new Exception("Instance does not have Applied Energistics 2 installed");
+                mod = Directory.EnumerateFiles(InstancePath + "\\mods", "*cc-tweaked*").ToList();
+                if (mod.Count() == 0) throw new Exception("Instance does not have cc-tweaked installed");
+                mod = Directory.EnumerateFiles(InstancePath + "\\mods", "*minecolonies*").ToList();
+                if (mod.Count() == 0) throw new Exception("Instance does not have minecolonies installed");
+            }
+            else throw new ArgumentException("Instance does not have a mod folder");
+            //Extract different world paths
+            if (Path.Exists(InstancePath + "\\saves"))
+            {
+                WorldPaths = Directory.EnumerateDirectories(InstancePath + "\\saves").ToList();
             }
         }
     }

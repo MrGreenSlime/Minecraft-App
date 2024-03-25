@@ -11,6 +11,7 @@ namespace LogicInterface
     {
         public World World { get; set; }
         public void setColonie();
+        void setInstance(string v);
         public void setStorage();
     }
 }
