@@ -55,10 +55,6 @@ namespace PresentationLayer
                     colonyItems.Items.Add(item);
                 }
             }
-            else
-            {
-                Console.WriteLine("rip");
-            }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

@@ -32,6 +32,7 @@ namespace PresentationLayer
             Logic = logic;
             InitializeComponent();
             Logic.setColonie();
+            Logic.setStorage();
             foreach (Colonie item in Logic.World.colonies)
             {
                 colonySelection.Items.Add(item);
