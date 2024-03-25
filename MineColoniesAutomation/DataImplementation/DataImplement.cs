@@ -45,21 +45,6 @@ namespace DataImplementation
             try
             {
                 List<ColonieStorage> Storage = JsonSerializer.Deserialize<List<ColonieStorage>>(jsonString);
-                foreach (ColonieStorage item in Storage)
-                {
-                    foreach (StorageItem item1 in item.colone.items.playerSide)
-                    {
-                        item1.amount -= 32;
-                    }
-                    foreach (StorageItem item1 in item.colone.items.colonySide)
-                    {
-                        item1.amount -= 32;
-                    }
-                    foreach (StorageItem item1 in item.colone.patterns)
-                    {
-                        item1.amount -= 32;
-                    }
-                }
                 for (int i = 0; i < Storage.Count ; i++)
                 {
                     for (int j = 0; j < world.colonies.Count ; j++)
@@ -70,7 +55,6 @@ namespace DataImplementation
                         }
                     }
                 }
-                //world.items = Storage;
                 
             }
             catch (Exception ex)

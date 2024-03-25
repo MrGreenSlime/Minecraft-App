@@ -36,7 +36,7 @@ namespace Globals
 
         public override string ToString()
         {
-            return ' ' + amount + " " + displayName;
+            return amount + " " + displayName;
         }
         
     }
