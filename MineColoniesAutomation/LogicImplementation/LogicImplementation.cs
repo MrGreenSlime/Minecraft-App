@@ -35,5 +35,10 @@ namespace LogicImplementation
         {
             Data.setInstance(v);
         }
+
+        public void Close()
+        {
+            Data.Close();
+        }
     }
 }

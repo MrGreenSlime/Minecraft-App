@@ -1,5 +1,6 @@
 ﻿using Globals;
 using Ookii.Dialogs.Wpf;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -40,6 +41,13 @@ namespace PresentationLayer
                 colonySelection.Items.Add(item);
             }
         }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Logic.Close();
+        }
+
         private void builderTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (builderTasks.SelectedIndex == -1)
