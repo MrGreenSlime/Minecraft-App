@@ -45,7 +45,7 @@ namespace DataImplementation
                 try
                 {
                     List<Colonie> colonies = JsonSerializer.Deserialize<List<Colonie>>(jsonString);
-                    world.colonies = colonies;
+                    world.colonies.AddRange(colonies);
                 }
                 catch (Exception ex)
                 {
