@@ -12,8 +12,11 @@ namespace LogicInterface
         public World World { get; set; }
 
         void Close();
+        public List<string> paths { get; set; }
         public void setColonie();
         void setInstance(string v);
         public void setStorage();
+        public void setPath(string path);
+        public void setPaths();
     }
 }
