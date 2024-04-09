@@ -22,7 +22,7 @@ namespace PresentationLayer
             DataInterface.DataInterface Data = new DataImplementation.DataImplement();
             Logic = new LogicImplementation.LogicImplementation(Data);
             InitializeComponent();
-            Logic.setInstance(ShowFolderBrowserDialog());
+            //Logic.setInstance(ShowFolderBrowserDialog());
             Logic.setColonie();
             Logic.setStorage();
             foreach (Colonie item in Logic.World.colonies)
@@ -45,7 +45,6 @@ namespace PresentationLayer
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-            Logic.Close();
         }
 
         private void builderTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -135,6 +134,7 @@ namespace PresentationLayer
         {
             Items window = new Items(Logic);
             Close();
+            Logic.setInstance(ShowFolderBrowserDialog());
             window.Show();
         }
 

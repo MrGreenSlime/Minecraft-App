@@ -101,7 +101,6 @@ namespace DataImplementation
             {
                 ZipFile.ExtractToDirectory(modPath, tempPathString + modPath.Split('\\').Last());
             }
-
             //TODO find and extract recipes
         }
 
