@@ -10,13 +10,14 @@ namespace LogicInterface
     public interface LogicInterface
     {
         public World World { get; set; }
+        public bool instanceSelected { get; set; }
 
         void Close();
-        public List<string> paths { get; set; }
+        public List<WorldPath> paths { get; set; }
         public void setColonie();
         void setInstance(string v);
         public void setStorage();
-        public void setPath(string path);
+        public void setPath(WorldPath path);
         public void setPaths();
     }
 }

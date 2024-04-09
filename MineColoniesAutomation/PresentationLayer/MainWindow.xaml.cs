@@ -22,11 +22,11 @@ namespace PresentationLayer
             DataInterface.DataInterface Data = new DataImplementation.DataImplement();
             Logic = new LogicImplementation.LogicImplementation(Data);
             InitializeComponent();
-            //Logic.setInstance(ShowFolderBrowserDialog());
+            Logic.setInstance(ShowFolderBrowserDialog());
             Logic.setColonie();
             Logic.setStorage();
             Logic.setPaths();
-            foreach (string pa in Logic.paths)
+            foreach (WorldPath pa in Logic.paths)
             {
                 worldSelection.Items.Add(pa);
             }
@@ -35,10 +35,11 @@ namespace PresentationLayer
         {
             Logic = logic;
             InitializeComponent();
-            Logic.setColonie();
-            Logic.setStorage();
+            if (!Logic.instanceSelected) Logic.setInstance(ShowFolderBrowserDialog());
+            //Logic.setColonie();
+            //Logic.setStorage();
             Logic.setPaths();
-            foreach (string pa in Logic.paths)
+            foreach (WorldPath pa in Logic.paths)
             {
                 worldSelection.Items.Add(pa);
             }
@@ -58,6 +59,7 @@ namespace PresentationLayer
             if (dialog.ShowDialog(this) ?? false)
             {
                 //MessageBox.Show(this, $"The selected folder was: {Environment.NewLine}{dialog.SelectedPath}", "Sample folder browser dialog");
+                Logic.instanceSelected = true;
                 return dialog.SelectedPath;
             }
             return "";
@@ -67,7 +69,7 @@ namespace PresentationLayer
         {
             if (worldSelection.SelectedIndex == -1)
                 return;
-            Logic.setPath(worldSelection.SelectedItem.ToString());
+            Logic.setPath((WorldPath)worldSelection.SelectedItem);
             Items window = new Items(Logic);
             Close();
             window.Show();

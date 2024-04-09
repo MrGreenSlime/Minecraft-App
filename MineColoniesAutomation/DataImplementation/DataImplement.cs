@@ -2,6 +2,7 @@
 using Globals;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
@@ -14,63 +15,71 @@ namespace DataImplementation
     {
         public World world { get; set; }
         public string InstancePath { get; set; }
-        public List<string> WorldPaths { get; set; }
+        public List<WorldPath> WorldPaths { get; set; }
         public List<string> ModPaths { get; set; }
         private string tempPathString = Path.GetTempPath() + "\\MinecoloniesAutomation\\";
-        public string SelectedWorldPath { get; set; }
+        public WorldPath SelectedWorldPath { get; set; }
 
         public DataImplement()
         {
             Directory.CreateDirectory(tempPathString);
             world = new World();
             world.colonies = new List<Colonie>();
-            WorldPaths = new List<string>();
-            setColonie();
-            setStorage();
+            WorldPaths = new List<WorldPath>();
+            ModPaths = new List<string>();
+            //setColonie();
+            //setStorage();
         }
         
         public void setColonie()
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/requests.json" ;
-            string jsonString = File.ReadAllText(path);
-            jsonString = jsonString.Replace("\"tags\":{}", "\"tags\":[]");
-            jsonString = jsonString.Replace("\"tags\": {}", "\"tags\":[]");
-            jsonString = jsonString.Replace("\"Requests\":{}", "\"Requests\":[]");
-            jsonString = jsonString.Replace("\"Requests\": {}", "\"Requests\":[]");
-            try
+            world.colonies.Clear();
+            //string path = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/requests.json" ;
+            foreach (string colonyPath in SelectedWorldPath.ColonyPaths)
             {
-                List<Colonie> colonies = JsonSerializer.Deserialize<List<Colonie>>(jsonString);
-                world.colonies = colonies;
+                string jsonString = File.ReadAllText(colonyPath + "\\requests.json");
+                jsonString = jsonString.Replace("\"tags\":{}", "\"tags\":[]");
+                jsonString = jsonString.Replace("\"tags\": {}", "\"tags\":[]");
+                jsonString = jsonString.Replace("\"Requests\":{}", "\"Requests\":[]");
+                jsonString = jsonString.Replace("\"Requests\": {}", "\"Requests\":[]");
+                try
+                {
+                    List<Colonie> colonies = JsonSerializer.Deserialize<List<Colonie>>(jsonString);
+                    world.colonies = colonies;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            setStorage();
         }
         public void setStorage()
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/aeData.json";
-            string jsonString = File.ReadAllText(path);
-            jsonString = jsonString.Replace("\"tags\":{}", "\"tags\":[]");
-            jsonString = jsonString.Replace("\"tags\": {}", "\"tags\":[]");
-            try
+            foreach (string colonyPath in SelectedWorldPath.ColonyPaths)
             {
-                List<ColonieStorage> Storage = JsonSerializer.Deserialize<List<ColonieStorage>>(jsonString);
-                for (int i = 0; i < Storage.Count ; i++)
+                //string path = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/aeData.json";
+                string jsonString = File.ReadAllText(colonyPath + "\\aeData.json");
+                jsonString = jsonString.Replace("\"tags\":{}", "\"tags\":[]");
+                jsonString = jsonString.Replace("\"tags\": {}", "\"tags\":[]");
+                try
                 {
-                    for (int j = 0; j < world.colonies.Count ; j++)
+                    List<ItemsInStorage> Storage = JsonSerializer.Deserialize<List<ItemsInStorage>>(jsonString);
+                    for (int i = 0; i < Storage.Count; i++)
                     {
-                        if (Storage[i].colone.colony.Equals(world.colonies[j].Name))
+                        for (int j = 0; j < world.colonies.Count; j++)
                         {
-                            world.colonies[j].items = Storage[i].colone;
+                            if (Storage[i].colony.Equals(world.colonies[j].Name))
+                            {
+                                world.colonies[j].items = Storage[i];
+                            }
                         }
                     }
                 }
-                
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
 
@@ -94,7 +103,27 @@ namespace DataImplementation
             //Extract different world paths
             if (Path.Exists(InstancePath + "\\saves"))
             {
-                WorldPaths = Directory.EnumerateDirectories(InstancePath + "\\saves").ToList();
+                List<string> tempWorldPaths = Directory.EnumerateDirectories(InstancePath + "\\saves").ToList();
+                foreach (var dir in tempWorldPaths)
+                {
+                    WorldPath worldPath = new WorldPath { WorldPathString = dir, ColonyPaths = new List<string>(), ComputerPaths = new List<string>() };
+                    if (Path.Exists(dir + "\\computercraft\\computer"))
+                    {
+                        worldPath.ComputerPaths = Directory.EnumerateDirectories(dir + "\\computercraft\\computer").ToList();
+                        List<string> toKeep = new List<string>();
+                        toKeep = worldPath.ComputerPaths.ToList();
+                        foreach(var dir2 in worldPath.ComputerPaths)
+                        {
+                            if (File.Exists(dir2 + "\\aeInterface.lua") &&  File.Exists(dir2 + "\\extractTasks.lua") && File.Exists(dir2+ "\\JsonFileHelper.lua") && File.Exists(dir2+ "\\main.lua") && File.Exists(dir2 + "\\monitorWriter.lua")&& File.Exists(dir2+ "\\wrapPeripherals.lua"))
+                            {
+                                worldPath.ColonyPaths.Add(dir2);
+                                toKeep.Remove(dir2);
+                            }
+                        }
+                        worldPath.ComputerPaths = toKeep;                        
+                    }
+                    WorldPaths.Add(worldPath);
+                }
             }
             GetRecipes();
         }
@@ -103,7 +132,9 @@ namespace DataImplementation
         {
             foreach (string modPath in ModPaths)
             {
-                ZipFile.ExtractToDirectory(modPath, tempPathString + modPath.Split('\\').Last());
+                if (!Directory.Exists(tempPathString + modPath.Split('\\').Last()))
+                    await Task.Run(() => { ZipFile.ExtractToDirectory(modPath, tempPathString + modPath.Split('\\').Last()); });
+
             }
             //TODO find and extract recipes
         }
@@ -112,12 +143,13 @@ namespace DataImplementation
         {
             Directory.Delete(tempPathString, true);
         }
-        public void setWorldPath (string path)
+        public void setWorldPath (WorldPath path)
         {
             if (WorldPaths.Contains(path))
             {
                 SelectedWorldPath = path;
             }
+            setColonie();
         }
     }
 }

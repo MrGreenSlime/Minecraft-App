@@ -12,7 +12,8 @@ namespace LogicImplementation
     {
         public DataInterface.DataInterface Data;
         public World World { get; set; }
-        public List<string> paths { get; set; }
+        public List<WorldPath> paths { get; set; }
+        public bool instanceSelected { get; set; }
 
         public LogicImplementation(DataInterface.DataInterface data)
         {
@@ -41,7 +42,7 @@ namespace LogicImplementation
         {
             Data.Close();
         }
-        public void setPath(string path)
+        public void setPath(WorldPath path)
         {
             Data.setWorldPath(path);
         }
