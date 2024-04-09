@@ -1,5 +1,6 @@
 ﻿using Globals;
 using Ookii.Dialogs.Wpf;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;

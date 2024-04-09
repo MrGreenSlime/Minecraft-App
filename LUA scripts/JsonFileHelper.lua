@@ -1,3 +1,4 @@
+-- This function opens the file given in the path parameter and then writes the data serialized as JSON to said file
 local function WriteJson(path, data)
     local file = io.open(path, "w+")
     if file == nil then return end
@@ -5,4 +6,5 @@ local function WriteJson(path, data)
     io.close(file)
 end
 
+-- This returns the public functions so other scripts can use them
 return {WriteJson = WriteJson}

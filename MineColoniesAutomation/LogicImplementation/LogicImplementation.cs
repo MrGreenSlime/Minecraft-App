@@ -36,6 +36,11 @@ namespace LogicImplementation
         {
             Data.setInstance(v);
         }
+
+        public void Close()
+        {
+            Data.Close();
+        }
         public void setPath(string path)
         {
             Data.setWorldPath(path);

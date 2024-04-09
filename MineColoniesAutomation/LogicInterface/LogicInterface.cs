@@ -10,6 +10,8 @@ namespace LogicInterface
     public interface LogicInterface
     {
         public World World { get; set; }
+
+        void Close();
         public List<string> paths { get; set; }
         public void setColonie();
         void setInstance(string v);

@@ -2,6 +2,7 @@
 using Globals;
 using System;
 using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -14,10 +15,13 @@ namespace DataImplementation
         public World world { get; set; }
         public string InstancePath { get; set; }
         public List<string> WorldPaths { get; set; }
+        public List<string> ModPaths { get; set; }
+        private string tempPathString = Path.GetTempPath() + "\\MinecoloniesAutomation\\";
         public string SelectedWorldPath { get; set; }
 
         public DataImplement()
         {
+            Directory.CreateDirectory(tempPathString);
             world = new World();
             world.colonies = new List<Colonie>();
             WorldPaths = new List<string>();
@@ -76,6 +80,7 @@ namespace DataImplementation
             //Check if correct mods are installed
             if (Path.Exists(InstancePath + "\\mods"))
             {
+                ModPaths = Directory.EnumerateFiles(InstancePath + "\\mods").ToList();
                 var mod = Directory.EnumerateFiles(InstancePath + "\\mods", "*AdvancedPeripherals*").ToList();
                 if (mod.Count() == 0) throw new Exception("Instance does not have AdvancedPeripherals installed");
                 mod = Directory.EnumerateFiles(InstancePath + "\\mods", "*appliedenergistics2*").ToList();
@@ -91,6 +96,22 @@ namespace DataImplementation
             {
                 WorldPaths = Directory.EnumerateDirectories(InstancePath + "\\saves").ToList();
             }
+            GetRecipes();
+        }
+
+        async private void GetRecipes()
+        {
+            foreach (string modPath in ModPaths)
+            {
+                ZipFile.ExtractToDirectory(modPath, tempPathString + modPath.Split('\\').Last());
+            }
+
+            //TODO find and extract recipes
+        }
+
+        public void Close()
+        {
+            Directory.Delete(tempPathString, true);
         }
         public void setWorldPath (string path)
         {

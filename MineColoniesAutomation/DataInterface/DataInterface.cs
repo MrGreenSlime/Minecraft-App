@@ -10,6 +10,8 @@ namespace DataInterface
     public interface DataInterface
     {
         public World world { get; set; }
+
+        void Close();
         public List<string> WorldPaths { get; set; }
         public void setColonie();
         void setInstance(string v);
