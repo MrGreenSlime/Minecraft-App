@@ -14,6 +14,7 @@ namespace DataImplementation
         public World world { get; set; }
         public string InstancePath { get; set; }
         public List<string> WorldPaths { get; set; }
+        public string SelectedWorldPath { get; set; }
 
         public DataImplement()
         {
@@ -29,7 +30,9 @@ namespace DataImplementation
             string path = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/requests.json" ;
             string jsonString = File.ReadAllText(path);
             jsonString = jsonString.Replace("\"tags\":{}", "\"tags\":[]");
+            jsonString = jsonString.Replace("\"tags\": {}", "\"tags\":[]");
             jsonString = jsonString.Replace("\"Requests\":{}", "\"Requests\":[]");
+            jsonString = jsonString.Replace("\"Requests\": {}", "\"Requests\":[]");
             try
             {
                 List<Colonie> colonies = JsonSerializer.Deserialize<List<Colonie>>(jsonString);
@@ -44,7 +47,8 @@ namespace DataImplementation
         {
             string path = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/aeData.json";
             string jsonString = File.ReadAllText(path);
-            jsonString = jsonString.Replace("\"tags\": {}", "\"tags\": []");
+            jsonString = jsonString.Replace("\"tags\":{}", "\"tags\":[]");
+            jsonString = jsonString.Replace("\"tags\": {}", "\"tags\":[]");
             try
             {
                 List<ColonieStorage> Storage = JsonSerializer.Deserialize<List<ColonieStorage>>(jsonString);
@@ -86,6 +90,13 @@ namespace DataImplementation
             if (Path.Exists(InstancePath + "\\saves"))
             {
                 WorldPaths = Directory.EnumerateDirectories(InstancePath + "\\saves").ToList();
+            }
+        }
+        public void setWorldPath (string path)
+        {
+            if (WorldPaths.Contains(path))
+            {
+                SelectedWorldPath = path;
             }
         }
     }

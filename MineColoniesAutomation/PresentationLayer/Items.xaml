@@ -5,15 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Title="Items" Height="467" Width="800">
+        Title="Items" Height="1067" Width="800">
     <Grid Margin="0,0,0,-6">
         <ComboBox HorizontalAlignment="Left" Name="ColonySelection" Height="38" Margin="34,37,0,0" VerticalAlignment="Top" Width="208" SelectionChanged="ColonySelection_SelectionChanged"/>
         <ListBox HorizontalAlignment="Left" Name="PlayerItems" Height="257" Margin="26,157,0,0" VerticalAlignment="Top" Width="228" d:ItemsSource="{d:SampleData ItemCount=5}"/>
         <ListBox HorizontalAlignment="Left" Name="patterns" Height="257" Margin="547,157,0,0" VerticalAlignment="Top" Width="228" d:ItemsSource="{d:SampleData ItemCount=5}"/>
-        <ListBox HorizontalAlignment="Center" Name="colonyItems" Height="257" Margin="0,157,0,0" VerticalAlignment="Top" Width="228" d:ItemsSource="{d:SampleData ItemCount=5}"/>
-        <Label Content="Player Items" HorizontalAlignment="Left" Height="44" Margin="26,113,0,0" VerticalAlignment="Top" Width="228"/>
-        <Label Content="Colony Items" HorizontalAlignment="Center" Height="44" Margin="0,113,0,0" VerticalAlignment="Top" Width="228"/>
+        <ListBox HorizontalAlignment="Left" Name="colonyItems" Height="257" Margin="285,157,0,0" VerticalAlignment="Top" Width="228" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <Label Content="Player Items" HorizontalAlignment="Left" Height="44" Margin="24,108,0,0" VerticalAlignment="Top" Width="228"/>
+        <Label Content="Colony Items" HorizontalAlignment="Left" Height="44" Margin="285,108,0,0" VerticalAlignment="Top" Width="228"/>
         <Label Content="Patterns avaiable" HorizontalAlignment="Left" Height="44" Margin="547,108,0,0" VerticalAlignment="Top" Width="228"/>
         <Button Content="back" Name="Back" HorizontalAlignment="Left" Height="42" Margin="638,33,0,0" VerticalAlignment="Top" Width="137" Click="Back_Click"/>
+        <ListBox HorizontalAlignment="Left" Name="builderTasks" Height="316" Margin="27,487,0,0" VerticalAlignment="Top" Width="367" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="builderTasks_SelectionChanged" GotFocus="builderTasks_GotFocus"/>
+        <ListBox HorizontalAlignment="Left" Name="regularTasks" Height="316" Margin="414,487,0,0" VerticalAlignment="Top" Width="367" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="regularTasks_SelectionChanged" GotFocus="regularTasks_GotFocus"/>
+        <Label Content="builder tasks" HorizontalAlignment="Left" Height="34" Margin="27,448,0,0" VerticalAlignment="Top" Width="123"/>
+        <Label Content="regular tasks" HorizontalAlignment="Left" Height="34" Margin="414,448,0,0" VerticalAlignment="Top" Width="123"/>
+        <ListBox HorizontalAlignment="Left" Name="itemsOfRequest" Height="125" Margin="26,860,0,0" VerticalAlignment="Top" Width="754" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <Label Content="items" Name="itemLabel" HorizontalAlignment="Left" Height="34" Margin="26,821,0,0" VerticalAlignment="Top" Width="164"/>
     </Grid>
 </Window>
