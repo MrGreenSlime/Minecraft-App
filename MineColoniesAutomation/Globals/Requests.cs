@@ -18,6 +18,7 @@ namespace Globals
         public List<RequestItem> items { get; set; }
         public override string ToString()
         {
+            return name + " for " + target;
             return name + '|' + desc + '|' + count + "| for " + target;
         }
     }

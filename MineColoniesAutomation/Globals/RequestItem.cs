@@ -17,7 +17,7 @@ namespace Globals
         public string[] tags { get; set; }
         public override string ToString()
         {
-            return "" + count + " " + displayName;
+            return " " + displayName;
         }
     }
 }

@@ -1,0 +1,117 @@
+[
+  {
+    "Item": "minecraft:cobblestone",
+    "Amount": 11,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:cobblestone_slab",
+    "Amount": 16,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:crafting_table",
+    "Amount": 1,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:dirt",
+    "Amount": 81,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:furnace",
+    "Amount": 1,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:oak_fence",
+    "Amount": 54,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:oak_log",
+    "Amount": 3,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:oak_planks",
+    "Amount": 13,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:oak_slab",
+    "Amount": 16,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecolonies:blockminecoloniesrack",
+    "Amount": 2,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:torch",
+    "Amount": 7,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:shield",
+    "Amount": 1,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:wheat",
+    "Amount": 1,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:golden_chestplate",
+    "Amount": 1,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:golden_chestplate",
+    "Amount": 1,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:golden_boots",
+    "Amount": 1,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:golden_boots",
+    "Amount": 1,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:leather_leggings",
+    "Amount": 1,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecolonies:compost",
+    "Amount": 1,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:leather_helmet",
+    "Amount": 1,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:leather_leggings",
+    "Amount": 1,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:leather_helmet",
+    "Amount": 1,
+    "NeedsCrafting": false
+  },
+  {
+    "Item": "minecraft:deepslate_gold_ore",
+    "Amount": 1,
+    "NeedsCrafting": false
+  }
+]

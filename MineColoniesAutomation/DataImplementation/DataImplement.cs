@@ -1,5 +1,6 @@
 ﻿using DataInterface;
 using Globals;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -44,8 +45,14 @@ namespace DataImplementation
                 jsonString = jsonString.Replace("\"Requests\": {}", "\"Requests\":[]");
                 try
                 {
-                    List<Colonie> colonies = JsonSerializer.Deserialize<List<Colonie>>(jsonString);
+                    List<Colonie> colonies = System.Text.Json.JsonSerializer.Deserialize<List<Colonie>>(jsonString);
                     world.colonies.AddRange(colonies);
+                    List<SpecifiedRequest> requestList = new List<SpecifiedRequest>();
+                    foreach (BuilderRequests item1 in colonies[0].BuilderRequests)
+                    {
+                        requestList.AddRange(item1.Requests);
+                    }
+                    writeCommands(requestList, colonies[0].Requests, colonyPath + "\\commands.json");
                 }
                 catch (Exception ex)
                 {
@@ -53,6 +60,7 @@ namespace DataImplementation
                 }
             }
             setStorage();
+            
         }
         public void setStorage()
         {
@@ -64,7 +72,7 @@ namespace DataImplementation
                 jsonString = jsonString.Replace("\"tags\": {}", "\"tags\":[]");
                 try
                 {
-                    List<ItemsInStorage> Storage = JsonSerializer.Deserialize<List<ItemsInStorage>>(jsonString);
+                    List<ItemsInStorage> Storage = System.Text.Json.JsonSerializer.Deserialize<List<ItemsInStorage>>(jsonString);
                     for (int i = 0; i < Storage.Count; i++)
                     {
                         for (int j = 0; j < world.colonies.Count; j++)
@@ -95,7 +103,27 @@ namespace DataImplementation
                 }
             }
         }
+        public void writeCommands(List<SpecifiedRequest> requests, List<Requests> regularRequests, string path)
+        {
+            List<Commands> commands = new List<Commands>();
+            foreach (SpecifiedRequest item in requests)
+            {
+                commands.Add(new Commands { Amount = item.needed, Item = item.item.name, NeedsCrafting = false });
+            }
+            foreach (Requests request in regularRequests)
+            {
+                commands.Add(new Commands { Amount = 1, Item = request.items[0].name, NeedsCrafting = false });
+            }
+            try
+            {
+                string data = JsonConvert.SerializeObject(commands);
+                File.WriteAllText(path, data);
+            }
+            catch
+            {
 
+            }
+        }
         public void setInstance(string v)
         {
             InstancePath = v;
