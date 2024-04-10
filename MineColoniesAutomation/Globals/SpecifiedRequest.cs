@@ -16,7 +16,7 @@ namespace Globals
         public string status { get; set; }
         public override string ToString()
         {
-            return needed + item.ToString();
+            return needed + " " + item.displayName.Replace("[", "").Replace("]", "");
         }
     }
 }
