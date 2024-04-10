@@ -72,6 +72,19 @@ namespace DataImplementation
                             if (Storage[i].colony.Equals(world.colonies[j].Name))
                             {
                                 world.colonies[j].items = Storage[i];
+                                if (Storage[i].items.colonySide == null)
+                                {
+                                    world.colonies[j].items.items.colonySide = new List<StorageItem>();
+                                }
+                                if (Storage[i].items.playerSide == null)
+                                {
+                                    world.colonies[j].items.items.playerSide = new List<StorageItem>();
+                                }
+                                if (Storage[i].patterns == null)
+                                {
+                                    world.colonies[j].items.patterns = new List<StorageItem>();
+                                }
+                                
                             }
                         }
                     }
