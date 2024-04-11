@@ -19,7 +19,8 @@ namespace Globals
 
         public override string ToString()
         {
-            return WorldPathString;
+            
+            return WorldPathString.Split('\\').Last();
         }
     }
 }
