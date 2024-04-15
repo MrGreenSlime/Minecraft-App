@@ -1,753 +1,1450 @@
 [
   {
-    "items": {
-      "playerSide": [
+    "colone": {
+      "colony": "SteamBotBro's Colony",
+      "items": {
+        "playerSide": [
+          {
+            "tags": [
+              "minecraft:item/minecraft:logs_that_burn",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecraft:completes_find_tree_tutorial",
+              "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+              "minecraft:item/minecraft:logs",
+              "minecraft:item/minecraft:birch_logs"
+            ],
+            "name": "minecraft:birch_log",
+            "amount": 2147483647,
+            "fingerprint": "451A63978FC37B40F5357A1B313A4C56",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:birch_log"
+            },
+            "displayName": "Birch Log"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:logs_that_burn",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecraft:completes_find_tree_tutorial",
+              "minecraft:item/minecraft:cherry_logs",
+              "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+              "minecraft:item/minecraft:logs"
+            ],
+            "name": "minecraft:cherry_log",
+            "amount": 2147483647,
+            "fingerprint": "DB7694AAF78AF9F1C87A2FD701D3A13B",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:cherry_log"
+            },
+            "displayName": "Cherry Log"
+          },
+          {
+            "tags": {},
+            "name": "minecraft:clay_ball",
+            "amount": 2147483647,
+            "fingerprint": "90E6A881D372CD9B05856D6E446A4C4F",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:clay_ball"
+            },
+            "displayName": "Clay Ball"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:stonemason_product",
+              "minecraft:item/minecraft:stone_crafting_materials",
+              "minecraft:item/minecraft:stone_tool_materials",
+              "minecraft:item/forge:cobblestone",
+              "minecraft:item/minecolonies:blacksmith_product_excluded",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecolonies:reduceable_product_excluded",
+              "minecraft:item/minecolonies:stonesmeltery_ingredient",
+              "minecraft:item/minecolonies:stonemason_ingredient",
+              "minecraft:item/forge:cobblestone/normal"
+            ],
+            "name": "minecraft:cobblestone",
+            "amount": 2147483647,
+            "fingerprint": "34C0EF2C2CD360FB88A0AD2798E4354D",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:cobblestone"
+            },
+            "displayName": "Cobblestone"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:logs_that_burn",
+              "minecraft:item/minecraft:acacia_logs",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecraft:completes_find_tree_tutorial",
+              "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+              "minecraft:item/minecraft:logs"
+            ],
+            "name": "minecraft:acacia_log",
+            "amount": 2147483647,
+            "fingerprint": "6F003B1AB2AA33CD8FB159247F7829EC",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:acacia_log"
+            },
+            "displayName": "Acacia Log"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:logs_that_burn",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecraft:completes_find_tree_tutorial",
+              "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+              "minecraft:item/minecraft:spruce_logs",
+              "minecraft:item/minecraft:logs"
+            ],
+            "name": "minecraft:spruce_log",
+            "amount": 2147483647,
+            "fingerprint": "F77C0C4E2D0318CA94BF5A3BC25A1CF5",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:spruce_log"
+            },
+            "displayName": "Spruce Log"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:logs_that_burn",
+              "minecraft:item/minecraft:mangrove_logs",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecraft:completes_find_tree_tutorial",
+              "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+              "minecraft:item/minecraft:logs"
+            ],
+            "name": "minecraft:mangrove_log",
+            "amount": 2147483647,
+            "fingerprint": "A526F789921387A59BBCF49C5216A09D",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:mangrove_log"
+            },
+            "displayName": "Mangrove Log"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/forge:rods",
+              "minecraft:item/forge:rods/wooden"
+            ],
+            "name": "minecraft:stick",
+            "amount": 2,
+            "fingerprint": "D8A7A7111BBA151021AC46B769222D0C",
+            "isCraftable": true,
+            "nbt": {
+              "id": "minecraft:stick"
+            },
+            "displayName": "Stick"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:soul_fire_base_blocks"
+            ],
+            "name": "minecraft:soul_sand",
+            "amount": 2147483647,
+            "fingerprint": "826FB896103E9EEB2F262AFC3BF4E15E",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:soul_sand"
+            },
+            "displayName": "Soul Sand"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:logs_that_burn",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecraft:completes_find_tree_tutorial",
+              "minecraft:item/minecraft:oak_logs",
+              "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+              "minecraft:item/minecraft:logs"
+            ],
+            "name": "minecraft:oak_log",
+            "amount": 2147483647,
+            "fingerprint": "9740022BD0C8BAA6BE64DE7DB116204F",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:oak_log"
+            },
+            "displayName": "Oak Log"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecolonies:sawmill_product",
+              "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+              "minecraft:item/minecraft:planks",
+              "minecraft:item/minecolonies:blacksmith_product_excluded"
+            ],
+            "name": "minecraft:dark_oak_planks",
+            "amount": 2,
+            "fingerprint": "2851A5030E9EA25FE45E5DCE82214072",
+            "isCraftable": true,
+            "nbt": {
+              "id": "minecraft:dark_oak_planks"
+            },
+            "displayName": "Dark Oak Planks"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:logs_that_burn",
+              "minecraft:item/minecraft:dark_oak_logs",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecraft:completes_find_tree_tutorial",
+              "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+              "minecraft:item/minecraft:logs"
+            ],
+            "name": "minecraft:dark_oak_log",
+            "amount": 2147483647,
+            "fingerprint": "0C12704D2294A4263F8894E601FF454E",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:dark_oak_log"
+            },
+            "displayName": "Dark Oak Log"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:sand",
+              "minecraft:item/minecraft:smelts_to_glass",
+              "minecraft:item/minecolonies:reduceable_product_excluded",
+              "minecraft:item/forge:sand/colorless",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/forge:sand"
+            ],
+            "name": "minecraft:sand",
+            "amount": 2147483647,
+            "fingerprint": "696EF1223A8F7BAEDD822A6787EF6683",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:sand"
+            },
+            "displayName": "Sand"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:wooden_fences",
+              "minecraft:item/minecraft:fences",
+              "minecraft:item/forge:fences/wooden",
+              "minecraft:item/forge:fences"
+            ],
+            "name": "minecraft:jungle_fence",
+            "amount": 3,
+            "fingerprint": "5B4D2424268ED15D5A407BCFDB2570FE",
+            "isCraftable": true,
+            "nbt": {
+              "id": "minecraft:jungle_fence"
+            },
+            "displayName": "Jungle Fence"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:sand",
+              "minecraft:item/minecraft:smelts_to_glass",
+              "minecraft:item/minecolonies:reduceable_product_excluded",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/forge:sand/red",
+              "minecraft:item/forge:sand"
+            ],
+            "name": "minecraft:red_sand",
+            "amount": 2147483647,
+            "fingerprint": "B5EACBA95202144220FF53D8AECCB8B4",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:red_sand"
+            },
+            "displayName": "Red Sand"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:logs_that_burn",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecraft:completes_find_tree_tutorial",
+              "minecraft:item/minecraft:jungle_logs",
+              "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+              "minecraft:item/minecraft:logs"
+            ],
+            "name": "minecraft:jungle_log",
+            "amount": 2147483647,
+            "fingerprint": "6D7A5E93028622269D35A19AB12CAD84",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:jungle_log"
+            },
+            "displayName": "Jungle Log"
+          }
+        ],
+        "colonySide": [
+          {
+            "tags": [
+              "minecraft:item/minecraft:tools",
+              "minecraft:item/minecraft:breaks_decorated_pots",
+              "minecraft:item/forge:tools",
+              "minecraft:item/minecraft:hoes"
+            ],
+            "name": "minecraft:diamond_hoe",
+            "amount": 7,
+            "fingerprint": "A5FA2BAB7D2A760F7682F79DCCBD1277",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:diamond_hoe",
+              "tag": {
+                "Damage": 0
+              }
+            },
+            "displayName": "Diamond Hoe"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:stonemason_product",
+              "minecraft:item/forge:stone",
+              "minecraft:item/minecolonies:stonesmeltery_product",
+              "minecraft:item/minecolonies:sawmill_ingredient_excluded",
+              "minecraft:item/minecolonies:stonemason_ingredient",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecolonies:reduceable_product_excluded",
+              "minecraft:item/minecolonies:stonesmeltery_ingredient",
+              "minecraft:item/minecolonies:blacksmith_product_excluded"
+            ],
+            "name": "minecraft:andesite",
+            "amount": 562,
+            "fingerprint": "8A18571D096CFFDE79F9316C9D4EFF53",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:andesite"
+            },
+            "displayName": "Andesite"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:signs"
+            ],
+            "name": "minecraft:oak_sign",
+            "amount": 8,
+            "fingerprint": "3C929CACB3B815279B386F655C116C75",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:oak_sign"
+            },
+            "displayName": "Oak Sign"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecolonies:sawmill_product",
+              "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+              "minecraft:item/minecraft:planks",
+              "minecraft:item/minecolonies:blacksmith_product_excluded"
+            ],
+            "name": "minecraft:jungle_planks",
+            "amount": 1855,
+            "fingerprint": "7FBA2D4B8812D7E98A51E9CFB08A56E5",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:jungle_planks"
+            },
+            "displayName": "Jungle Planks"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:stairs",
+              "minecraft:item/minecolonies:stonemason_product_excluded",
+              "minecraft:item/minecolonies:blacksmith_product_excluded",
+              "minecraft:item/minecraft:wooden_stairs",
+              "minecraft:item/minecolonies:stonemason_ingredient",
+              "minecraft:item/minecolonies:stonesmeltery_ingredient",
+              "minecraft:item/minecolonies:stonemason_product"
+            ],
+            "name": "minecraft:jungle_stairs",
+            "amount": 1354,
+            "fingerprint": "62C1C33010AD9D845839804E1D256A3E",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:jungle_stairs"
+            },
+            "displayName": "Jungle Stairs"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:breaks_decorated_pots",
+              "minecraft:item/forge:tools",
+              "minecraft:item/minecraft:cluster_max_harvestables",
+              "minecraft:item/minecraft:pickaxes",
+              "minecraft:item/minecraft:tools"
+            ],
+            "name": "minecraft:diamond_pickaxe",
+            "amount": 5,
+            "fingerprint": "9865001FF6447823A5C46CE273F545D1",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:diamond_pickaxe",
+              "tag": {
+                "Damage": 0
+              }
+            },
+            "displayName": "Diamond Pickaxe"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:mechanic_product",
+              "minecraft:item/minecolonies:stonemason_product_excluded",
+              "minecraft:item/ae2:p2p_attunements/light_p2p_tunnel",
+              "minecraft:item/minecolonies:sawmill_product_excluded",
+              "minecraft:item/minecolonies:blacksmith_product_excluded"
+            ],
+            "name": "minecraft:torch",
+            "amount": 2887,
+            "fingerprint": "03C8ED839CC1BD97AE7D6A0B1AC582E8",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:torch"
+            },
+            "displayName": "Torch"
+          },
+          {
+            "tags": {},
+            "name": "minecraft:flint",
+            "amount": 6,
+            "fingerprint": "C89A70B4DE3D5AEDF57B0BFEB9F7595B",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:flint"
+            },
+            "displayName": "Flint"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:cook_ingredient",
+              "minecraft:item/minecolonies:reduceable_ingredient"
+            ],
+            "name": "minecraft:beef",
+            "amount": 132,
+            "fingerprint": "947DAC717C9C9D0DEC05CE50A7037807",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:beef"
+            },
+            "displayName": "Raw Beef"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:tools",
+              "minecraft:item/minecraft:breaks_decorated_pots",
+              "minecraft:item/forge:tools",
+              "minecraft:item/minecraft:axes"
+            ],
+            "name": "minecraft:diamond_axe",
+            "amount": 9,
+            "fingerprint": "BC8463BD11AA6B75C7AFEC1222EC4A47",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:diamond_axe",
+              "tag": {
+                "Damage": 0
+              }
+            },
+            "displayName": "Diamond Axe"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:wooden_fences",
+              "minecraft:item/minecraft:fences",
+              "minecraft:item/forge:fences/wooden",
+              "minecraft:item/forge:fences"
+            ],
+            "name": "minecraft:jungle_fence",
+            "amount": 2216,
+            "fingerprint": "5B4D2424268ED15D5A407BCFDB2570FE",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:jungle_fence"
+            },
+            "displayName": "Jungle Fence"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:cook_ingredient",
+              "minecraft:item/ae2:p2p_attunements/fluid_p2p_tunnel"
+            ],
+            "name": "minecraft:milk_bucket",
+            "amount": 4,
+            "fingerprint": "C06F32E53484447FA4B581F6F7237DB8",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:milk_bucket"
+            },
+            "displayName": "Milk Bucket"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:tools",
+              "minecraft:item/minecraft:breaks_decorated_pots",
+              "minecraft:item/forge:tools",
+              "minecraft:item/minecraft:shovels"
+            ],
+            "name": "minecraft:diamond_shovel",
+            "amount": 8,
+            "fingerprint": "71B61622858856AB2B6258BB998B3B71",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:diamond_shovel",
+              "tag": {
+                "Damage": 0
+              }
+            },
+            "displayName": "Diamond Shovel"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:stonemason_product",
+              "minecraft:item/forge:stone",
+              "minecraft:item/minecolonies:stonesmeltery_product",
+              "minecraft:item/minecolonies:sawmill_ingredient_excluded",
+              "minecraft:item/minecolonies:stonemason_ingredient",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecolonies:reduceable_product_excluded",
+              "minecraft:item/minecolonies:stonesmeltery_ingredient",
+              "minecraft:item/minecolonies:blacksmith_product_excluded"
+            ],
+            "name": "minecraft:granite",
+            "amount": 535,
+            "fingerprint": "900BD0159F8B55F932A0442525C1CB55",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:granite"
+            },
+            "displayName": "Granite"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:blacksmith_product",
+              "minecraft:item/forge:ingots",
+              "minecraft:item/minecraft:trim_materials",
+              "minecraft:item/minecolonies:blacksmith_ingredient",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecraft:beacon_payment_items",
+              "minecraft:item/minecolonies:reduceable_product_excluded",
+              "minecraft:item/forge:ingots/iron",
+              "minecraft:item/minecolonies:sawmill_ingredient_excluded",
+              "minecraft:item/ae2:metal_ingots"
+            ],
+            "name": "minecraft:iron_ingot",
+            "amount": 67,
+            "fingerprint": "D56B971D978149D8689911F264A55A7C",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:iron_ingot"
+            },
+            "displayName": "Iron Ingot"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:excluded_food"
+            ],
+            "name": "minecraft:poisonous_potato",
+            "amount": 8,
+            "fingerprint": "1DC7963E89271ACD91DDF396A0526372",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:poisonous_potato"
+            },
+            "displayName": "Poisonous Potato"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:breaks_decorated_pots",
+              "minecraft:item/forge:tools",
+              "minecraft:item/minecraft:cluster_max_harvestables",
+              "minecraft:item/minecraft:pickaxes",
+              "minecraft:item/minecraft:tools"
+            ],
+            "name": "minecraft:iron_pickaxe",
+            "amount": 5,
+            "fingerprint": "1A7D2CCEF3112A32E8E406F0AC47D807",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:iron_pickaxe",
+              "tag": {
+                "Damage": 0
+              }
+            },
+            "displayName": "Iron Pickaxe"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:breaks_decorated_pots",
+              "minecraft:item/forge:tools",
+              "minecraft:item/minecraft:cluster_max_harvestables",
+              "minecraft:item/minecraft:pickaxes",
+              "minecraft:item/minecraft:tools"
+            ],
+            "name": "minecraft:stone_pickaxe",
+            "amount": 2,
+            "fingerprint": "08D424034C65CF183699D68086038EEB",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:stone_pickaxe",
+              "tag": {
+                "Damage": 0
+              }
+            },
+            "displayName": "Stone Pickaxe"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:tools",
+              "minecraft:item/minecraft:breaks_decorated_pots",
+              "minecraft:item/forge:tools",
+              "minecraft:item/minecraft:hoes"
+            ],
+            "name": "minecraft:stone_hoe",
+            "amount": 1,
+            "fingerprint": "D174D89AE862D54E82CD23134375609D",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:stone_hoe",
+              "tag": {
+                "Damage": 39
+              }
+            },
+            "displayName": "Stone Hoe"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:saplings",
+              "minecraft:item/minecolonies:compostables_poor"
+            ],
+            "name": "minecraft:oak_sapling",
+            "amount": 38,
+            "fingerprint": "D45A0D6811604FBF3713B7C9635FE496",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:oak_sapling"
+            },
+            "displayName": "Oak Sapling"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:stonemason_product",
+              "minecraft:item/forge:stone",
+              "minecraft:item/minecolonies:stonesmeltery_product",
+              "minecraft:item/minecolonies:sawmill_ingredient_excluded",
+              "minecraft:item/minecolonies:stonemason_ingredient",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecolonies:reduceable_product_excluded",
+              "minecraft:item/minecolonies:stonesmeltery_ingredient",
+              "minecraft:item/minecolonies:blacksmith_product_excluded"
+            ],
+            "name": "minecraft:diorite",
+            "amount": 293,
+            "fingerprint": "947A5312208196A720A44C229BBC46B5",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:diorite"
+            },
+            "displayName": "Diorite"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:stonemason_product",
+              "minecraft:item/minecolonies:sawmill_ingredient_excluded",
+              "minecraft:item/minecolonies:reduceable_product_excluded",
+              "minecraft:item/minecolonies:stonesmeltery_ingredient",
+              "minecraft:item/minecolonies:blacksmith_product_excluded",
+              "minecraft:item/minecolonies:stonemason_do_ingredient",
+              "minecraft:item/forge:stone",
+              "minecraft:item/minecolonies:stonemason_ingredient",
+              "minecraft:item/forge:ore_bearing_ground/stone",
+              "minecraft:item/minecolonies:stonesmeltery_product",
+              "minecraft:item/minecolonies:reduceable_ingredient"
+            ],
+            "name": "minecraft:stone",
+            "amount": 1,
+            "fingerprint": "3F3C4B62E59766BBD956E742CB9F995E",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:stone"
+            },
+            "displayName": "Stone"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:blacksmith_ingredient",
+              "minecraft:item/forge:ingots",
+              "minecraft:item/minecolonies:sawmill_ingredient_excluded",
+              "minecraft:item/ae2:metal_ingots",
+              "minecraft:item/forge:ingots/copper",
+              "minecraft:item/minecolonies:blacksmith_product",
+              "minecraft:item/minecraft:trim_materials",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecolonies:reduceable_product_excluded"
+            ],
+            "name": "minecraft:copper_ingot",
+            "amount": 251,
+            "fingerprint": "21CAC17F931141DEB71B94D62CC43F0D",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:copper_ingot"
+            },
+            "displayName": "Copper Ingot"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:fletcher_ingredient",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/forge:leather",
+              "minecraft:item/minecraft:ignored_by_piglin_babies"
+            ],
+            "name": "minecraft:leather",
+            "amount": 138,
+            "fingerprint": "139BE13BF4AC8C747D9F56D0287CD7A9",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:leather"
+            },
+            "displayName": "Leather"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:stonemason_product",
+              "minecraft:item/minecraft:stairs",
+              "minecraft:item/minecolonies:stonemason_ingredient",
+              "minecraft:item/minecolonies:stonesmeltery_ingredient",
+              "minecraft:item/minecolonies:blacksmith_product_excluded"
+            ],
+            "name": "minecraft:cobblestone_stairs",
+            "amount": 734,
+            "fingerprint": "95614DECA62148A5CE986D6472350E5E",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:cobblestone_stairs"
+            },
+            "displayName": "Cobblestone Stairs"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:saplings",
+              "minecraft:item/minecolonies:compostables_poor"
+            ],
+            "name": "minecraft:jungle_sapling",
+            "amount": 516,
+            "fingerprint": "EDC033063F0851AE711DBBD4F9B484F9",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:jungle_sapling"
+            },
+            "displayName": "Jungle Sapling"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:stonemason_product",
+              "minecraft:item/minecraft:stone_crafting_materials",
+              "minecraft:item/minecraft:stone_tool_materials",
+              "minecraft:item/forge:cobblestone",
+              "minecraft:item/minecolonies:blacksmith_product_excluded",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/forge:cobblestone/deepslate",
+              "minecraft:item/minecolonies:reduceable_product_excluded",
+              "minecraft:item/minecolonies:stonemason_ingredient",
+              "minecraft:item/minecolonies:stonesmeltery_ingredient"
+            ],
+            "name": "minecraft:cobbled_deepslate",
+            "amount": 98,
+            "fingerprint": "2A04ACCD4E9270490A6D772FCFEDF3FB",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:cobbled_deepslate"
+            },
+            "displayName": "Cobbled Deepslate"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:logs_that_burn",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecraft:completes_find_tree_tutorial",
+              "minecraft:item/minecraft:jungle_logs",
+              "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+              "minecraft:item/minecraft:logs"
+            ],
+            "name": "minecraft:jungle_log",
+            "amount": 1729,
+            "fingerprint": "6D7A5E93028622269D35A19AB12CAD84",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:jungle_log"
+            },
+            "displayName": "Jungle Log"
+          },
+          {
+            "tags": [
+              "minecraft:item/forge:seeds/wheat",
+              "minecraft:item/minecolonies:compostables_poor",
+              "minecraft:item/minecolonies:farmer_product",
+              "minecraft:item/minecraft:villager_plantable_seeds",
+              "minecraft:item/forge:seeds"
+            ],
+            "name": "minecraft:wheat_seeds",
+            "amount": 1104,
+            "fingerprint": "6DCEC777032D531D25651069B72A32BD",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:wheat_seeds"
+            },
+            "displayName": "Wheat Seeds"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:blacksmith_product",
+              "minecraft:item/forge:shears"
+            ],
+            "name": "minecraft:shears",
+            "amount": 1,
+            "fingerprint": "E9B3847E0EBCA5CFD29349B873A59D3D",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:shears",
+              "tag": {
+                "Damage": 1
+              }
+            },
+            "displayName": "Shears"
+          },
+          {
+            "tags": {},
+            "name": "domum_ornamentum:double_crossed",
+            "amount": 14,
+            "fingerprint": "CA3C38561031CDB41D29272C4472AA2A",
+            "isCraftable": false,
+            "nbt": {
+              "id": "domum_ornamentum:double_crossed",
+              "tag": {
+                "textureData": {
+                  "minecraft:block/oak_planks": "minecraft:jungle_planks",
+                  "minecraft:block/dark_oak_planks": "minecraft:jungle_planks"
+                }
+              }
+            },
+            "displayName": "Framed Jungle Planks"
+          },
+          {
+            "tags": {},
+            "name": "domum_ornamentum:double_crossed",
+            "amount": 482,
+            "fingerprint": "67E325CE48DBC1A809720C19484A3FCF",
+            "isCraftable": false,
+            "nbt": {
+              "id": "domum_ornamentum:double_crossed",
+              "tag": {
+                "textureData": {
+                  "minecraft:block/oak_planks": "minecraft:jungle_planks",
+                  "minecraft:block/dark_oak_planks": "minecraft:cobblestone"
+                }
+              }
+            },
+            "displayName": "Framed Cobblestone"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:tools",
+              "minecraft:item/minecraft:breaks_decorated_pots",
+              "minecraft:item/forge:tools",
+              "minecraft:item/minecraft:shovels"
+            ],
+            "name": "minecraft:iron_shovel",
+            "amount": 5,
+            "fingerprint": "3399A9E892DE45A4D2249F2F517E2E8F",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:iron_shovel",
+              "tag": {
+                "Damage": 0
+              }
+            },
+            "displayName": "Iron Shovel"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:stonemason_product",
+              "minecraft:item/minecraft:stone_crafting_materials",
+              "minecraft:item/minecraft:stone_tool_materials",
+              "minecraft:item/forge:cobblestone",
+              "minecraft:item/minecolonies:blacksmith_product_excluded",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecolonies:reduceable_product_excluded",
+              "minecraft:item/minecolonies:stonesmeltery_ingredient",
+              "minecraft:item/minecolonies:stonemason_ingredient",
+              "minecraft:item/forge:cobblestone/normal"
+            ],
+            "name": "minecraft:cobblestone",
+            "amount": 3346,
+            "fingerprint": "34C0EF2C2CD360FB88A0AD2798E4354D",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:cobblestone"
+            },
+            "displayName": "Cobblestone"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:slabs",
+              "minecraft:item/minecolonies:stonemason_product_excluded",
+              "minecraft:item/minecolonies:blacksmith_product_excluded",
+              "minecraft:item/minecolonies:stonemason_ingredient",
+              "minecraft:item/minecolonies:stonesmeltery_ingredient",
+              "minecraft:item/minecolonies:stonemason_product",
+              "minecraft:item/minecraft:wooden_slabs"
+            ],
+            "name": "minecraft:jungle_slab",
+            "amount": 1786,
+            "fingerprint": "5BD00C466AA51C691D78861C0EC7D520",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:jungle_slab"
+            },
+            "displayName": "Jungle Slab"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:tools",
+              "minecraft:item/minecraft:breaks_decorated_pots",
+              "minecraft:item/forge:tools",
+              "minecraft:item/minecraft:axes"
+            ],
+            "name": "minecraft:stone_axe",
+            "amount": 4,
+            "fingerprint": "3F47A0FADEE943B92314D7E945D5458E",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:stone_axe",
+              "tag": {
+                "Damage": 0
+              }
+            },
+            "displayName": "Stone Axe"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:rails",
+              "minecraft:item/minecolonies:mechanic_product",
+              "minecraft:item/minecolonies:stonemason_product_excluded",
+              "minecraft:item/minecolonies:sawmill_product_excluded",
+              "minecraft:item/minecolonies:blacksmith_product_excluded"
+            ],
+            "name": "minecraft:rail",
+            "amount": 3217,
+            "fingerprint": "1C84CF6883DDCC4FC1027035BB195865",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:rail"
+            },
+            "displayName": "Rail"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:compostables",
+              "minecraft:item/minecolonies:cook_ingredient",
+              "minecraft:item/forge:eggs"
+            ],
+            "name": "minecraft:egg",
+            "amount": 2384,
+            "fingerprint": "6C1F6983B6D988DB201B2740DCCB9D9D",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:egg"
+            },
+            "displayName": "Egg"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/forge:gems/lapis",
+              "minecraft:item/minecraft:trim_materials",
+              "minecraft:item/forge:gems",
+              "minecraft:item/forge:enchanting_fuels"
+            ],
+            "name": "minecraft:lapis_lazuli",
+            "amount": 165,
+            "fingerprint": "AC4F3DA9840E1BD78772E92588438B9C",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:lapis_lazuli"
+            },
+            "displayName": "Lapis Lazuli"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:logs_that_burn",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecraft:completes_find_tree_tutorial",
+              "minecraft:item/minecraft:jungle_logs",
+              "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+              "minecraft:item/minecraft:logs"
+            ],
+            "name": "minecraft:jungle_wood",
+            "amount": 640,
+            "fingerprint": "FF0A64E8B6588A4D36AF1EA092A5E8A4",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:jungle_wood"
+            },
+            "displayName": "Jungle Wood"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecraft:beacon_payment_items",
+              "minecraft:item/forge:gems",
+              "minecraft:item/minecraft:trim_materials",
+              "minecraft:item/forge:gems/emerald"
+            ],
+            "name": "minecraft:emerald",
+            "amount": 1,
+            "fingerprint": "3947F0CBE47497719B71A1404D27798D",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:emerald"
+            },
+            "displayName": "Emerald"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:plantation_ingredient",
+              "minecraft:item/minecolonies:stonemason_product",
+              "minecraft:item/domum_ornamentum:brick_items",
+              "minecraft:item/minecolonies:stonemason_ingredient",
+              "minecraft:item/minecolonies:plantation_product",
+              "minecraft:item/minecolonies:stonesmeltery_ingredient",
+              "minecraft:item/domum_ornamentum:extra_block_items",
+              "minecraft:item/minecolonies:stonemason_product_excluded",
+              "minecraft:item/minecolonies:blacksmith_product_excluded"
+            ],
+            "name": "domum_ornamentum:white_paper_extra",
+            "amount": 60,
+            "fingerprint": "6913ABF8B274C04E29E6B953B4354464",
+            "isCraftable": false,
+            "nbt": {
+              "id": "domum_ornamentum:white_paper_extra"
+            },
+            "displayName": "White Paper Extra"
+          },
+          {
+            "tags": [
+              "minecraft:item/forge:dusts",
+              "minecraft:item/ae2:p2p_attunements/redstone_p2p_tunnel",
+              "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+              "minecraft:item/minecolonies:mechanic_ingredient",
+              "minecraft:item/minecolonies:blacksmith_ingredient_excluded",
+              "minecraft:item/minecolonies:sawmill_ingredient_excluded",
+              "minecraft:item/forge:dusts/redstone",
+              "minecraft:item/minecraft:trim_materials",
+              "minecraft:item/minecolonies:reduceable_ingredient"
+            ],
+            "name": "minecraft:redstone",
+            "amount": 8,
+            "fingerprint": "4C5FA7D238DC4BDB6E5A5B455F2C2A76",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:redstone"
+            },
+            "displayName": "Redstone Dust"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:tools",
+              "minecraft:item/minecraft:breaks_decorated_pots",
+              "minecraft:item/forge:tools",
+              "minecraft:item/minecraft:shovels"
+            ],
+            "name": "minecraft:stone_shovel",
+            "amount": 2,
+            "fingerprint": "D0B37E9E1D834D104FA738411BC00C0E",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:stone_shovel",
+              "tag": {
+                "Damage": 0
+              }
+            },
+            "displayName": "Stone Shovel"
+          },
+          {
+            "tags": [
+              "minecraft:item/forge:crops",
+              "minecraft:item/minecolonies:compostables",
+              "minecraft:item/minecraft:villager_plantable_seeds",
+              "minecraft:item/forge:crops/carrot",
+              "minecraft:item/minecolonies:blacksmith_ingredient_excluded"
+            ],
+            "name": "minecraft:carrot",
+            "amount": 1924,
+            "fingerprint": "9AD00BEFB6096EDE50DE0E0D72507C91",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:carrot"
+            },
+            "displayName": "Carrot"
+          },
+          {
+            "tags": [
+              "minecraft:item/forge:gravel",
+              "minecraft:item/minecolonies:reduceable_product_excluded",
+              "minecraft:item/minecolonies:reduceable_ingredient"
+            ],
+            "name": "minecraft:gravel",
+            "amount": 182,
+            "fingerprint": "8EB9647F119B082833D32953E87DBB1F",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:gravel"
+            },
+            "displayName": "Gravel"
+          },
+          {
+            "tags": {},
+            "name": "minecraft:baked_potato",
+            "amount": 1,
+            "fingerprint": "6B1DD5F0A7E8269B31D7204B7B2FE55B",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:baked_potato"
+            },
+            "displayName": "Baked Potato"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:compostables",
+              "minecraft:item/forge:crops",
+              "minecraft:item/minecolonies:blacksmith_ingredient_excluded",
+              "minecraft:item/minecraft:villager_plantable_seeds",
+              "minecraft:item/minecolonies:cook_ingredient",
+              "minecraft:item/forge:crops/potato",
+              "minecraft:item/minecolonies:reduceable_ingredient"
+            ],
+            "name": "minecraft:potato",
+            "amount": 1642,
+            "fingerprint": "45816F869B0D74D77CE4F4AF3D305DD1",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:potato"
+            },
+            "displayName": "Potato"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:tools",
+              "minecraft:item/minecraft:breaks_decorated_pots",
+              "minecraft:item/forge:tools",
+              "minecraft:item/minecraft:axes"
+            ],
+            "name": "minecraft:iron_axe",
+            "amount": 5,
+            "fingerprint": "D21CEA6E1956AAC80809271A8953632C",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:iron_axe",
+              "tag": {
+                "Damage": 0
+              }
+            },
+            "displayName": "Iron Axe"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/forge:rods",
+              "minecraft:item/forge:rods/wooden"
+            ],
+            "name": "minecraft:stick",
+            "amount": 375,
+            "fingerprint": "D8A7A7111BBA151021AC46B769222D0C",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:stick"
+            },
+            "displayName": "Stick"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:blacksmith_ingredient",
+              "minecraft:item/minecolonies:blacksmith_product",
+              "minecraft:item/minecraft:piglin_loved",
+              "minecraft:item/minecolonies:sawmill_ingredient_excluded",
+              "minecraft:item/minecolonies:reduceable_product_excluded",
+              "minecraft:item/forge:ingots",
+              "minecraft:item/forge:ingots/gold",
+              "minecraft:item/minecraft:beacon_payment_items",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecraft:trim_materials",
+              "minecraft:item/ae2:metal_ingots"
+            ],
+            "name": "minecraft:gold_ingot",
+            "amount": 12,
+            "fingerprint": "1B51DCC21F49E43282F7FA47551D4B5B",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:gold_ingot"
+            },
+            "displayName": "Gold Ingot"
+          },
+          {
+            "tags": [
+              "minecraft:item/domum_ornamentum:extra_block_items",
+              "minecraft:item/minecolonies:stonemason_product",
+              "minecraft:item/domum_ornamentum:brick_items",
+              "minecraft:item/minecolonies:stonemason_ingredient",
+              "minecraft:item/minecolonies:stonesmeltery_ingredient",
+              "minecraft:item/minecolonies:blacksmith_product_excluded"
+            ],
+            "name": "domum_ornamentum:brick_extra",
+            "amount": 3401,
+            "fingerprint": "2CC39C87A93E1EEF885595FB58B51890",
+            "isCraftable": false,
+            "nbt": {
+              "id": "domum_ornamentum:brick_extra"
+            },
+            "displayName": "Brick Extra"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:logs_that_burn",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecraft:completes_find_tree_tutorial",
+              "minecraft:item/minecraft:oak_logs",
+              "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+              "minecraft:item/minecraft:logs"
+            ],
+            "name": "minecraft:oak_log",
+            "amount": 740,
+            "fingerprint": "9740022BD0C8BAA6BE64DE7DB116204F",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:oak_log"
+            },
+            "displayName": "Oak Log"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecraft:dirt"
+            ],
+            "name": "minecraft:dirt",
+            "amount": 493,
+            "fingerprint": "93CD093102F41711D16B950BFA9CC82D",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:dirt"
+            },
+            "displayName": "Dirt"
+          },
+          {
+            "tags": [
+              "minecraft:item/forge:armors",
+              "minecraft:item/forge:armors/chestplates",
+              "minecraft:item/minecraft:trimmable_armor"
+            ],
+            "name": "minecraft:iron_chestplate",
+            "amount": 1,
+            "fingerprint": "4169D17E6B657E851BE986AF6E34431E",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:iron_chestplate",
+              "tag": {
+                "Damage": 0
+              }
+            },
+            "displayName": "Iron Chestplate"
+          },
+          {
+            "tags": [
+              "minecraft:item/minecolonies:mechanic_product_excluded"
+            ],
+            "name": "minecraft:lead",
+            "amount": 1,
+            "fingerprint": "31F41EC4B36716DBDE9EC92583DBC30F",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:lead"
+            },
+            "displayName": "Lead"
+          }
+        ]
+      },
+      "patterns": [
         {
-          "tags": [ "minecraft:item/forge:fences/wooden", "minecraft:item/minecraft:fences", "minecraft:item/minecraft:wooden_fences", "minecraft:item/forge:fences" ],
-          "name": "minecraft:jungle_fence",
-          "amount": 3,
-          "fingerprint": "5B4D2424268ED15D5A407BCFDB2570FE",
+          "tags": [
+            "minecraft:item/minecolonies:reduceable_ingredient",
+            "minecraft:item/minecolonies:sawmill_product",
+            "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+            "minecraft:item/minecraft:planks",
+            "minecraft:item/minecolonies:blacksmith_product_excluded"
+          ],
+          "name": "minecraft:jungle_planks",
+          "amount": 0,
+          "fingerprint": "7FBA2D4B8812D7E98A51E9CFB08A56E5",
           "isCraftable": true,
-          "nbt": { "id": "minecraft:jungle_fence" },
-          "displayName": "Jungle Fence"
+          "nbt": {
+            "id": "minecraft:jungle_planks"
+          },
+          "displayName": "Jungle Planks"
         },
         {
-          "tags": [ "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecraft:logs", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/minecraft:completes_find_tree_tutorial", "minecraft:item/minecraft:oak_logs", "minecraft:item/minecraft:logs_that_burn" ],
-          "name": "minecraft:oak_log",
-          "amount": 2147483647,
-          "fingerprint": "9740022BD0C8BAA6BE64DE7DB116204F",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:oak_log" },
-          "displayName": "Oak Log"
+          "tags": [
+            "minecraft:item/minecolonies:reduceable_ingredient",
+            "minecraft:item/minecolonies:sawmill_product",
+            "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+            "minecraft:item/minecraft:planks",
+            "minecraft:item/minecolonies:blacksmith_product_excluded"
+          ],
+          "name": "minecraft:oak_planks",
+          "amount": 0,
+          "fingerprint": "25BDFA1C403FCD54346FCCE86ABF6861",
+          "isCraftable": true,
+          "nbt": {
+            "id": "minecraft:oak_planks"
+          },
+          "displayName": "Oak Planks"
         },
         {
-          "tags": [ "minecraft:item/minecraft:spruce_logs", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecraft:logs", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/minecraft:completes_find_tree_tutorial", "minecraft:item/minecraft:logs_that_burn" ],
-          "name": "minecraft:spruce_log",
-          "amount": 2147483647,
-          "fingerprint": "F77C0C4E2D0318CA94BF5A3BC25A1CF5",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:spruce_log" },
-          "displayName": "Spruce Log"
+          "tags": [
+            "minecraft:item/minecraft:stone_bricks",
+            "minecraft:item/minecolonies:blacksmith_product_excluded",
+            "minecraft:item/minecolonies:stonemason_ingredient",
+            "minecraft:item/minecolonies:stonesmeltery_ingredient",
+            "minecraft:item/minecolonies:stonemason_product",
+            "minecraft:item/minecolonies:reduceable_ingredient",
+            "minecraft:item/minecolonies:stonesmeltery_product"
+          ],
+          "name": "minecraft:stone_bricks",
+          "amount": 0,
+          "fingerprint": "709450C2E3A2CFED8B464E6112F41D3C",
+          "isCraftable": true,
+          "nbt": {
+            "id": "minecraft:stone_bricks"
+          },
+          "displayName": "Stone Bricks"
         },
         {
-          "tags": [ "minecraft:item/minecraft:soul_fire_base_blocks" ],
-          "name": "minecraft:soul_sand",
-          "amount": 2147483647,
-          "fingerprint": "826FB896103E9EEB2F262AFC3BF4E15E",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:soul_sand" },
-          "displayName": "Soul Sand"
-        },
-        {
-          "tags": [ "minecraft:item/minecraft:birch_logs", "minecraft:item/minecraft:logs", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecraft:completes_find_tree_tutorial", "minecraft:item/minecraft:logs_that_burn" ],
-          "name": "minecraft:birch_log",
-          "amount": 2147483647,
-          "fingerprint": "451A63978FC37B40F5357A1B313A4C56",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:birch_log" },
-          "displayName": "Birch Log"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecraft:logs", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/minecraft:jungle_logs", "minecraft:item/minecraft:completes_find_tree_tutorial", "minecraft:item/minecraft:logs_that_burn" ],
-          "name": "minecraft:jungle_log",
-          "amount": 2147483647,
-          "fingerprint": "6D7A5E93028622269D35A19AB12CAD84",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:jungle_log" },
-          "displayName": "Jungle Log"
-        },
-        {
-          "tags": {},
-          "name": "minecraft:clay_ball",
-          "amount": 2147483647,
-          "fingerprint": "90E6A881D372CD9B05856D6E446A4C4F",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:clay_ball" },
-          "displayName": "Clay Ball"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecraft:logs", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/minecraft:completes_find_tree_tutorial", "minecraft:item/minecraft:acacia_logs", "minecraft:item/minecraft:logs_that_burn" ],
-          "name": "minecraft:acacia_log",
-          "amount": 2147483647,
-          "fingerprint": "6F003B1AB2AA33CD8FB159247F7829EC",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:acacia_log" },
-          "displayName": "Acacia Log"
-        },
-        {
-          "tags": [ "minecraft:item/minecraft:sand", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/forge:sand/colorless", "minecraft:item/forge:sand", "minecraft:item/minecolonies:reduceable_product_excluded", "minecraft:item/minecraft:smelts_to_glass" ],
-          "name": "minecraft:sand",
-          "amount": 2147483647,
-          "fingerprint": "696EF1223A8F7BAEDD822A6787EF6683",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:sand" },
-          "displayName": "Sand"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecraft:logs", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/minecraft:completes_find_tree_tutorial", "minecraft:item/minecraft:mangrove_logs", "minecraft:item/minecraft:logs_that_burn" ],
-          "name": "minecraft:mangrove_log",
-          "amount": 2147483647,
-          "fingerprint": "A526F789921387A59BBCF49C5216A09D",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:mangrove_log" },
-          "displayName": "Mangrove Log"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/forge:rods", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/forge:rods/wooden" ],
+          "tags": [
+            "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+            "minecraft:item/minecolonies:reduceable_ingredient",
+            "minecraft:item/forge:rods",
+            "minecraft:item/forge:rods/wooden"
+          ],
           "name": "minecraft:stick",
           "amount": 2,
           "fingerprint": "D8A7A7111BBA151021AC46B769222D0C",
           "isCraftable": true,
-          "nbt": { "id": "minecraft:stick" },
+          "nbt": {
+            "id": "minecraft:stick"
+          },
           "displayName": "Stick"
         },
         {
-          "tags": [ "minecraft:item/minecraft:sand", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/forge:sand", "minecraft:item/minecolonies:reduceable_product_excluded", "minecraft:item/forge:sand/red", "minecraft:item/minecraft:smelts_to_glass" ],
-          "name": "minecraft:red_sand",
-          "amount": 2147483647,
-          "fingerprint": "B5EACBA95202144220FF53D8AECCB8B4",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:red_sand" },
-          "displayName": "Red Sand"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/minecraft:planks", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/minecolonies:sawmill_product" ],
+          "tags": [
+            "minecraft:item/minecolonies:reduceable_ingredient",
+            "minecraft:item/minecolonies:sawmill_product",
+            "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+            "minecraft:item/minecraft:planks",
+            "minecraft:item/minecolonies:blacksmith_product_excluded"
+          ],
           "name": "minecraft:dark_oak_planks",
           "amount": 2,
           "fingerprint": "2851A5030E9EA25FE45E5DCE82214072",
           "isCraftable": true,
-          "nbt": { "id": "minecraft:dark_oak_planks" },
+          "nbt": {
+            "id": "minecraft:dark_oak_planks"
+          },
           "displayName": "Dark Oak Planks"
         },
         {
-          "tags": [ "minecraft:item/minecraft:stone_crafting_materials", "minecraft:item/minecolonies:stonemason_product", "minecraft:item/forge:cobblestone/normal", "minecraft:item/minecolonies:stonesmeltery_ingredient", "minecraft:item/minecolonies:stonemason_ingredient", "minecraft:item/forge:cobblestone", "minecraft:item/minecolonies:reduceable_product_excluded", "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecraft:stone_tool_materials" ],
-          "name": "minecraft:cobblestone",
-          "amount": 2147483647,
-          "fingerprint": "34C0EF2C2CD360FB88A0AD2798E4354D",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:cobblestone" },
-          "displayName": "Cobblestone"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecraft:logs", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/minecraft:completes_find_tree_tutorial", "minecraft:item/minecraft:dark_oak_logs", "minecraft:item/minecraft:logs_that_burn" ],
-          "name": "minecraft:dark_oak_log",
-          "amount": 2147483647,
-          "fingerprint": "0C12704D2294A4263F8894E601FF454E",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:dark_oak_log" },
-          "displayName": "Dark Oak Log"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecraft:logs", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/minecraft:cherry_logs", "minecraft:item/minecraft:completes_find_tree_tutorial", "minecraft:item/minecraft:logs_that_burn" ],
-          "name": "minecraft:cherry_log",
-          "amount": 2147483647,
-          "fingerprint": "DB7694AAF78AF9F1C87A2FD701D3A13B",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:cherry_log" },
-          "displayName": "Cherry Log"
-        }
-      ],
-      "colonySide": [
-        {
-          "tags": [ "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecraft:logs", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/minecraft:completes_find_tree_tutorial", "minecraft:item/minecraft:oak_logs", "minecraft:item/minecraft:logs_that_burn" ],
-          "name": "minecraft:oak_log",
-          "amount": 820,
-          "fingerprint": "9740022BD0C8BAA6BE64DE7DB116204F",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:oak_log" },
-          "displayName": "Oak Log"
-        },
-        {
-          "tags": [ "minecraft:item/forge:fences/wooden", "minecraft:item/minecraft:fences", "minecraft:item/minecraft:wooden_fences", "minecraft:item/forge:fences" ],
+          "tags": [
+            "minecraft:item/minecraft:wooden_fences",
+            "minecraft:item/minecraft:fences",
+            "minecraft:item/forge:fences/wooden",
+            "minecraft:item/forge:fences"
+          ],
           "name": "minecraft:jungle_fence",
-          "amount": 2200,
+          "amount": 3,
           "fingerprint": "5B4D2424268ED15D5A407BCFDB2570FE",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:jungle_fence" },
+          "isCraftable": true,
+          "nbt": {
+            "id": "minecraft:jungle_fence"
+          },
           "displayName": "Jungle Fence"
-        },
-        {
-          "tags": {},
-          "name": "minecraft:baked_potato",
-          "amount": 1,
-          "fingerprint": "6B1DD5F0A7E8269B31D7204B7B2FE55B",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:baked_potato" },
-          "displayName": "Baked Potato"
-        },
-        {
-          "tags": [ "minecraft:item/forge:seeds", "minecraft:item/forge:seeds/wheat", "minecraft:item/minecolonies:farmer_product", "minecraft:item/minecraft:villager_plantable_seeds", "minecraft:item/minecolonies:compostables_poor" ],
-          "name": "minecraft:wheat_seeds",
-          "amount": 1145,
-          "fingerprint": "6DCEC777032D531D25651069B72A32BD",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:wheat_seeds" },
-          "displayName": "Wheat Seeds"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:sawmill_ingredient_excluded", "minecraft:item/minecolonies:stonemason_product", "minecraft:item/minecolonies:stonesmeltery_product", "minecraft:item/minecolonies:stonesmeltery_ingredient", "minecraft:item/minecolonies:reduceable_product_excluded", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/forge:stone", "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/minecolonies:stonemason_ingredient" ],
-          "name": "minecraft:granite",
-          "amount": 538,
-          "fingerprint": "900BD0159F8B55F932A0442525C1CB55",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:granite" },
-          "displayName": "Granite"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:blacksmith_ingredient_excluded", "minecraft:item/forge:crops/carrot", "minecraft:item/minecraft:villager_plantable_seeds", "minecraft:item/minecolonies:compostables", "minecraft:item/forge:crops" ],
-          "name": "minecraft:carrot",
-          "amount": 2069,
-          "fingerprint": "9AD00BEFB6096EDE50DE0E0D72507C91",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:carrot" },
-          "displayName": "Carrot"
-        },
-        {
-          "tags": [ "minecraft:item/minecraft:beacon_payment_items", "minecraft:item/forge:gems/emerald", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecraft:trim_materials", "minecraft:item/forge:gems" ],
-          "name": "minecraft:emerald",
-          "amount": 1,
-          "fingerprint": "3947F0CBE47497719B71A1404D27798D",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:emerald" },
-          "displayName": "Emerald"
-        },
-        {
-          "tags": {},
-          "name": "domum_ornamentum:double_crossed",
-          "amount": 435,
-          "fingerprint": "67E325CE48DBC1A809720C19484A3FCF",
-          "isCraftable": false,
-          "nbt": {
-            "id": "domum_ornamentum:double_crossed",
-            "tag": {
-              "textureData": {
-                "minecraft:block/oak_planks": "minecraft:jungle_planks",
-                "minecraft:block/dark_oak_planks": "minecraft:cobblestone"
-              }
-            }
-          },
-          "displayName": "Framed Cobblestone"
-        },
-        {
-          "tags": [ "minecraft:item/minecraft:dirt" ],
-          "name": "minecraft:dirt",
-          "amount": 493,
-          "fingerprint": "93CD093102F41711D16B950BFA9CC82D",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:dirt" },
-          "displayName": "Dirt"
-        },
-        {
-          "tags": [ "minecraft:item/minecraft:breaks_decorated_pots", "minecraft:item/forge:tools", "minecraft:item/minecraft:tools", "minecraft:item/minecraft:shovels" ],
-          "name": "minecraft:iron_shovel",
-          "amount": 5,
-          "fingerprint": "3399A9E892DE45A4D2249F2F517E2E8F",
-          "isCraftable": false,
-          "nbt": {
-            "id": "minecraft:iron_shovel",
-            "tag": { "Damage": 0 }
-          },
-          "displayName": "Iron Shovel"
-        },
-        {
-          "tags": [ "minecraft:item/minecraft:stone_crafting_materials", "minecraft:item/minecolonies:stonemason_product", "minecraft:item/forge:cobblestone/normal", "minecraft:item/minecolonies:stonesmeltery_ingredient", "minecraft:item/minecolonies:stonemason_ingredient", "minecraft:item/forge:cobblestone", "minecraft:item/minecolonies:reduceable_product_excluded", "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecraft:stone_tool_materials" ],
-          "name": "minecraft:cobblestone",
-          "amount": 3484,
-          "fingerprint": "34C0EF2C2CD360FB88A0AD2798E4354D",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:cobblestone" },
-          "displayName": "Cobblestone"
-        },
-        {
-          "tags": [ "minecraft:item/minecraft:breaks_decorated_pots", "minecraft:item/forge:tools", "minecraft:item/minecraft:tools", "minecraft:item/minecraft:hoes" ],
-          "name": "minecraft:diamond_hoe",
-          "amount": 7,
-          "fingerprint": "A5FA2BAB7D2A760F7682F79DCCBD1277",
-          "isCraftable": false,
-          "nbt": {
-            "id": "minecraft:diamond_hoe",
-            "tag": { "Damage": 0 }
-          },
-          "displayName": "Diamond Hoe"
-        },
-        {
-          "tags": [ "minecraft:item/minecraft:breaks_decorated_pots", "minecraft:item/forge:tools", "minecraft:item/minecraft:tools", "minecraft:item/minecraft:shovels" ],
-          "name": "minecraft:diamond_shovel",
-          "amount": 8,
-          "fingerprint": "71B61622858856AB2B6258BB998B3B71",
-          "isCraftable": false,
-          "nbt": {
-            "id": "minecraft:diamond_shovel",
-            "tag": { "Damage": 0 }
-          },
-          "displayName": "Diamond Shovel"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/minecolonies:mechanic_product", "minecraft:item/minecolonies:sawmill_product_excluded", "minecraft:item/minecolonies:stonemason_product_excluded", "minecraft:item/minecraft:rails" ],
-          "name": "minecraft:rail",
-          "amount": 3217,
-          "fingerprint": "1C84CF6883DDCC4FC1027035BB195865",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:rail" },
-          "displayName": "Rail"
-        },
-        {
-          "tags": [ "minecraft:item/minecraft:stone_crafting_materials", "minecraft:item/minecolonies:stonemason_product", "minecraft:item/minecolonies:stonesmeltery_ingredient", "minecraft:item/minecolonies:stonemason_ingredient", "minecraft:item/forge:cobblestone", "minecraft:item/minecolonies:reduceable_product_excluded", "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/forge:cobblestone/deepslate", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecraft:stone_tool_materials" ],
-          "name": "minecraft:cobbled_deepslate",
-          "amount": 565,
-          "fingerprint": "2A04ACCD4E9270490A6D772FCFEDF3FB",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:cobbled_deepslate" },
-          "displayName": "Cobbled Deepslate"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:cook_ingredient", "minecraft:item/ae2:p2p_attunements/fluid_p2p_tunnel" ],
-          "name": "minecraft:milk_bucket",
-          "amount": 11,
-          "fingerprint": "C06F32E53484447FA4B581F6F7237DB8",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:milk_bucket" },
-          "displayName": "Milk Bucket"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:sawmill_ingredient_excluded", "minecraft:item/minecolonies:blacksmith_ingredient_excluded", "minecraft:item/minecolonies:mechanic_ingredient", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/ae2:p2p_attunements/redstone_p2p_tunnel", "minecraft:item/forge:dusts", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecraft:trim_materials", "minecraft:item/forge:dusts/redstone" ],
-          "name": "minecraft:redstone",
-          "amount": 48,
-          "fingerprint": "4C5FA7D238DC4BDB6E5A5B455F2C2A76",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:redstone" },
-          "displayName": "Redstone Dust"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecraft:logs", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/minecraft:jungle_logs", "minecraft:item/minecraft:completes_find_tree_tutorial", "minecraft:item/minecraft:logs_that_burn" ],
-          "name": "minecraft:jungle_log",
-          "amount": 1829,
-          "fingerprint": "6D7A5E93028622269D35A19AB12CAD84",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:jungle_log" },
-          "displayName": "Jungle Log"
-        },
-        {
-          "tags": [ "minecraft:item/minecraft:breaks_decorated_pots", "minecraft:item/forge:tools", "minecraft:item/minecraft:tools", "minecraft:item/minecraft:axes" ],
-          "name": "minecraft:stone_axe",
-          "amount": 4,
-          "fingerprint": "3F47A0FADEE943B92314D7E945D5458E",
-          "isCraftable": false,
-          "nbt": {
-            "id": "minecraft:stone_axe",
-            "tag": { "Damage": 0 }
-          },
-          "displayName": "Stone Axe"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:cook_ingredient", "minecraft:item/minecolonies:reduceable_ingredient" ],
-          "name": "minecraft:beef",
-          "amount": 145,
-          "fingerprint": "947DAC717C9C9D0DEC05CE50A7037807",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:beef" },
-          "displayName": "Raw Beef"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecolonies:stonesmeltery_product", "minecraft:item/minecolonies:stonemason_ingredient", "minecraft:item/forge:ore_bearing_ground/stone", "minecraft:item/minecolonies:stonesmeltery_ingredient", "minecraft:item/minecolonies:stonemason_do_ingredient", "minecraft:item/minecolonies:reduceable_product_excluded", "minecraft:item/minecolonies:stonemason_product", "minecraft:item/forge:stone", "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/minecolonies:sawmill_ingredient_excluded" ],
-          "name": "minecraft:stone",
-          "amount": 1,
-          "fingerprint": "3F3C4B62E59766BBD956E742CB9F995E",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:stone" },
-          "displayName": "Stone"
-        },
-        {
-          "tags": [ "minecraft:item/minecraft:breaks_decorated_pots", "minecraft:item/forge:tools", "minecraft:item/minecraft:tools", "minecraft:item/minecraft:shovels" ],
-          "name": "minecraft:stone_shovel",
-          "amount": 2,
-          "fingerprint": "D0B37E9E1D834D104FA738411BC00C0E",
-          "isCraftable": false,
-          "nbt": {
-            "id": "minecraft:stone_shovel",
-            "tag": { "Damage": 0 }
-          },
-          "displayName": "Stone Shovel"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/minecraft:planks", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/minecolonies:sawmill_product" ],
-          "name": "minecraft:jungle_planks",
-          "amount": 1637,
-          "fingerprint": "7FBA2D4B8812D7E98A51E9CFB08A56E5",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:jungle_planks" },
-          "displayName": "Jungle Planks"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:stonemason_product", "minecraft:item/minecolonies:stonesmeltery_ingredient", "minecraft:item/domum_ornamentum:extra_block_items", "minecraft:item/minecolonies:plantation_product", "minecraft:item/minecolonies:plantation_ingredient", "minecraft:item/minecolonies:stonemason_product_excluded", "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/minecolonies:stonemason_ingredient", "minecraft:item/domum_ornamentum:brick_items" ],
-          "name": "domum_ornamentum:white_paper_extra",
-          "amount": 60,
-          "fingerprint": "6913ABF8B274C04E29E6B953B4354464",
-          "isCraftable": false,
-          "nbt": { "id": "domum_ornamentum:white_paper_extra" },
-          "displayName": "White Paper Extra"
-        },
-        {
-          "tags": [ "minecraft:item/minecraft:saplings", "minecraft:item/minecolonies:compostables_poor" ],
-          "name": "minecraft:oak_sapling",
-          "amount": 69,
-          "fingerprint": "D45A0D6811604FBF3713B7C9635FE496",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:oak_sapling" },
-          "displayName": "Oak Sapling"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:blacksmith_ingredient", "minecraft:item/forge:ingots", "minecraft:item/minecolonies:sawmill_ingredient_excluded", "minecraft:item/minecolonies:blacksmith_product", "minecraft:item/ae2:metal_ingots", "minecraft:item/forge:ingots/iron", "minecraft:item/minecolonies:reduceable_product_excluded", "minecraft:item/minecraft:beacon_payment_items", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecraft:trim_materials" ],
-          "name": "minecraft:iron_ingot",
-          "amount": 81,
-          "fingerprint": "D56B971D978149D8689911F264A55A7C",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:iron_ingot" },
-          "displayName": "Iron Ingot"
-        },
-        {
-          "tags": [ "minecraft:item/minecraft:breaks_decorated_pots", "minecraft:item/forge:tools", "minecraft:item/minecraft:tools", "minecraft:item/minecraft:axes" ],
-          "name": "minecraft:diamond_axe",
-          "amount": 9,
-          "fingerprint": "BC8463BD11AA6B75C7AFEC1222EC4A47",
-          "isCraftable": false,
-          "nbt": {
-            "id": "minecraft:diamond_axe",
-            "tag": { "Damage": 0 }
-          },
-          "displayName": "Diamond Axe"
-        },
-        {
-          "tags": [ "minecraft:item/minecraft:saplings", "minecraft:item/minecolonies:compostables_poor" ],
-          "name": "minecraft:jungle_sapling",
-          "amount": 526,
-          "fingerprint": "EDC033063F0851AE711DBBD4F9B484F9",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:jungle_sapling" },
-          "displayName": "Jungle Sapling"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:blacksmith_product", "minecraft:item/forge:shears" ],
-          "name": "minecraft:shears",
-          "amount": 1,
-          "fingerprint": "E9B3847E0EBCA5CFD29349B873A59D3D",
-          "isCraftable": false,
-          "nbt": {
-            "id": "minecraft:shears",
-            "tag": { "Damage": 1 }
-          },
-          "displayName": "Shears"
-        },
-        {
-          "tags": [ "minecraft:item/forge:tools", "minecraft:item/minecraft:cluster_max_harvestables", "minecraft:item/minecraft:tools", "minecraft:item/minecraft:pickaxes", "minecraft:item/minecraft:breaks_decorated_pots" ],
-          "name": "minecraft:stone_pickaxe",
-          "amount": 2,
-          "fingerprint": "08D424034C65CF183699D68086038EEB",
-          "isCraftable": false,
-          "nbt": {
-            "id": "minecraft:stone_pickaxe",
-            "tag": { "Damage": 0 }
-          },
-          "displayName": "Stone Pickaxe"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecolonies:fletcher_ingredient", "minecraft:item/minecraft:ignored_by_piglin_babies", "minecraft:item/forge:leather" ],
-          "name": "minecraft:leather",
-          "amount": 143,
-          "fingerprint": "139BE13BF4AC8C747D9F56D0287CD7A9",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:leather" },
-          "displayName": "Leather"
-        },
-        {
-          "tags": [ "minecraft:item/minecraft:signs" ],
-          "name": "minecraft:oak_sign",
-          "amount": 7,
-          "fingerprint": "3C929CACB3B815279B386F655C116C75",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:oak_sign" },
-          "displayName": "Oak Sign"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/minecolonies:mechanic_product", "minecraft:item/minecolonies:sawmill_product_excluded", "minecraft:item/minecolonies:stonemason_product_excluded", "minecraft:item/ae2:p2p_attunements/light_p2p_tunnel" ],
-          "name": "minecraft:torch",
-          "amount": 2804,
-          "fingerprint": "03C8ED839CC1BD97AE7D6A0B1AC582E8",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:torch" },
-          "displayName": "Torch"
-        },
-        {
-          "tags": [ "minecraft:item/minecraft:breaks_decorated_pots", "minecraft:item/forge:tools", "minecraft:item/minecraft:tools", "minecraft:item/minecraft:hoes" ],
-          "name": "minecraft:stone_hoe",
-          "amount": 1,
-          "fingerprint": "D174D89AE862D54E82CD23134375609D",
-          "isCraftable": false,
-          "nbt": {
-            "id": "minecraft:stone_hoe",
-            "tag": { "Damage": 39 }
-          },
-          "displayName": "Stone Hoe"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:stonemason_ingredient", "minecraft:item/minecraft:slabs", "minecraft:item/minecolonies:stonemason_product_excluded", "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/minecraft:wooden_slabs", "minecraft:item/minecolonies:stonemason_product", "minecraft:item/minecolonies:stonesmeltery_ingredient" ],
-          "name": "minecraft:jungle_slab",
-          "amount": 1742,
-          "fingerprint": "5BD00C466AA51C691D78861C0EC7D520",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:jungle_slab" },
-          "displayName": "Jungle Slab"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/forge:gravel", "minecraft:item/minecolonies:reduceable_product_excluded" ],
-          "name": "minecraft:gravel",
-          "amount": 118,
-          "fingerprint": "8EB9647F119B082833D32953E87DBB1F",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:gravel" },
-          "displayName": "Gravel"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:stonesmeltery_ingredient", "minecraft:item/minecolonies:stonemason_ingredient", "minecraft:item/domum_ornamentum:brick_items", "minecraft:item/minecolonies:stonemason_product", "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/domum_ornamentum:extra_block_items" ],
-          "name": "domum_ornamentum:brick_extra",
-          "amount": 3401,
-          "fingerprint": "2CC39C87A93E1EEF885595FB58B51890",
-          "isCraftable": false,
-          "nbt": { "id": "domum_ornamentum:brick_extra" },
-          "displayName": "Brick Extra"
-        },
-        {
-          "tags": [ "minecraft:item/minecraft:breaks_decorated_pots", "minecraft:item/forge:tools", "minecraft:item/minecraft:tools", "minecraft:item/minecraft:axes" ],
-          "name": "minecraft:iron_axe",
-          "amount": 5,
-          "fingerprint": "D21CEA6E1956AAC80809271A8953632C",
-          "isCraftable": false,
-          "nbt": {
-            "id": "minecraft:iron_axe",
-            "tag": { "Damage": 0 }
-          },
-          "displayName": "Iron Axe"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:compostables", "minecraft:item/forge:crops/potato", "minecraft:item/minecolonies:cook_ingredient", "minecraft:item/minecolonies:blacksmith_ingredient_excluded", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/forge:crops", "minecraft:item/minecraft:villager_plantable_seeds" ],
-          "name": "minecraft:potato",
-          "amount": 1915,
-          "fingerprint": "45816F869B0D74D77CE4F4AF3D305DD1",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:potato" },
-          "displayName": "Potato"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:sawmill_ingredient_excluded", "minecraft:item/minecolonies:stonemason_product", "minecraft:item/minecolonies:stonesmeltery_product", "minecraft:item/minecolonies:stonesmeltery_ingredient", "minecraft:item/minecolonies:reduceable_product_excluded", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/forge:stone", "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/minecolonies:stonemason_ingredient" ],
-          "name": "minecraft:diorite",
-          "amount": 341,
-          "fingerprint": "947A5312208196A720A44C229BBC46B5",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:diorite" },
-          "displayName": "Diorite"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/forge:rods", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/forge:rods/wooden" ],
-          "name": "minecraft:stick",
-          "amount": 385,
-          "fingerprint": "D8A7A7111BBA151021AC46B769222D0C",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:stick" },
-          "displayName": "Stick"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecraft:trim_materials", "minecraft:item/minecraft:beacon_payment_items", "minecraft:item/forge:ingots/gold", "minecraft:item/forge:ingots", "minecraft:item/minecolonies:reduceable_product_excluded", "minecraft:item/minecraft:piglin_loved", "minecraft:item/ae2:metal_ingots", "minecraft:item/minecolonies:blacksmith_product", "minecraft:item/minecolonies:blacksmith_ingredient", "minecraft:item/minecolonies:sawmill_ingredient_excluded" ],
-          "name": "minecraft:gold_ingot",
-          "amount": 16,
-          "fingerprint": "1B51DCC21F49E43282F7FA47551D4B5B",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:gold_ingot" },
-          "displayName": "Gold Ingot"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:excluded_food" ],
-          "name": "minecraft:poisonous_potato",
-          "amount": 8,
-          "fingerprint": "1DC7963E89271ACD91DDF396A0526372",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:poisonous_potato" },
-          "displayName": "Poisonous Potato"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:stonemason_ingredient", "minecraft:item/minecraft:wooden_stairs", "minecraft:item/minecolonies:stonemason_product_excluded", "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/minecraft:stairs", "minecraft:item/minecolonies:stonemason_product", "minecraft:item/minecolonies:stonesmeltery_ingredient" ],
-          "name": "minecraft:jungle_stairs",
-          "amount": 1262,
-          "fingerprint": "62C1C33010AD9D845839804E1D256A3E",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:jungle_stairs" },
-          "displayName": "Jungle Stairs"
-        },
-        {
-          "tags": [ "minecraft:item/forge:armors", "minecraft:item/forge:armors/chestplates", "minecraft:item/minecraft:trimmable_armor" ],
-          "name": "minecraft:iron_chestplate",
-          "amount": 1,
-          "fingerprint": "4169D17E6B657E851BE986AF6E34431E",
-          "isCraftable": false,
-          "nbt": {
-            "id": "minecraft:iron_chestplate",
-            "tag": { "Damage": 0 }
-          },
-          "displayName": "Iron Chestplate"
-        },
-        {
-          "tags": [ "minecraft:item/forge:ingots", "minecraft:item/minecolonies:sawmill_ingredient_excluded", "minecraft:item/minecolonies:blacksmith_ingredient", "minecraft:item/minecolonies:reduceable_product_excluded", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecolonies:blacksmith_product", "minecraft:item/ae2:metal_ingots", "minecraft:item/forge:ingots/copper", "minecraft:item/minecraft:trim_materials" ],
-          "name": "minecraft:copper_ingot",
-          "amount": 326,
-          "fingerprint": "21CAC17F931141DEB71B94D62CC43F0D",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:copper_ingot" },
-          "displayName": "Copper Ingot"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:sawmill_ingredient_excluded", "minecraft:item/minecolonies:stonemason_product", "minecraft:item/minecolonies:stonesmeltery_product", "minecraft:item/minecolonies:stonesmeltery_ingredient", "minecraft:item/minecolonies:reduceable_product_excluded", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/forge:stone", "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/minecolonies:stonemason_ingredient" ],
-          "name": "minecraft:andesite",
-          "amount": 690,
-          "fingerprint": "8A18571D096CFFDE79F9316C9D4EFF53",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:andesite" },
-          "displayName": "Andesite"
-        },
-        {
-          "tags": {},
-          "name": "minecraft:flint",
-          "amount": 6,
-          "fingerprint": "C89A70B4DE3D5AEDF57B0BFEB9F7595B",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:flint" },
-          "displayName": "Flint"
-        },
-        {
-          "tags": [ "minecraft:item/forge:tools", "minecraft:item/minecraft:cluster_max_harvestables", "minecraft:item/minecraft:tools", "minecraft:item/minecraft:pickaxes", "minecraft:item/minecraft:breaks_decorated_pots" ],
-          "name": "minecraft:iron_pickaxe",
-          "amount": 5,
-          "fingerprint": "1A7D2CCEF3112A32E8E406F0AC47D807",
-          "isCraftable": false,
-          "nbt": {
-            "id": "minecraft:iron_pickaxe",
-            "tag": { "Damage": 0 }
-          },
-          "displayName": "Iron Pickaxe"
-        },
-        {
-          "tags": [ "minecraft:item/forge:eggs", "minecraft:item/minecolonies:compostables", "minecraft:item/minecolonies:cook_ingredient" ],
-          "name": "minecraft:egg",
-          "amount": 2546,
-          "fingerprint": "6C1F6983B6D988DB201B2740DCCB9D9D",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:egg" },
-          "displayName": "Egg"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:mechanic_product_excluded" ],
-          "name": "minecraft:lead",
-          "amount": 1,
-          "fingerprint": "31F41EC4B36716DBDE9EC92583DBC30F",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:lead" },
-          "displayName": "Lead"
-        },
-        {
-          "tags": [ "minecraft:item/forge:tools", "minecraft:item/minecraft:cluster_max_harvestables", "minecraft:item/minecraft:tools", "minecraft:item/minecraft:pickaxes", "minecraft:item/minecraft:breaks_decorated_pots" ],
-          "name": "minecraft:diamond_pickaxe",
-          "amount": 5,
-          "fingerprint": "9865001FF6447823A5C46CE273F545D1",
-          "isCraftable": false,
-          "nbt": {
-            "id": "minecraft:diamond_pickaxe",
-            "tag": { "Damage": 0 }
-          },
-          "displayName": "Diamond Pickaxe"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/forge:enchanting_fuels", "minecraft:item/minecraft:trim_materials", "minecraft:item/forge:gems", "minecraft:item/forge:gems/lapis" ],
-          "name": "minecraft:lapis_lazuli",
-          "amount": 174,
-          "fingerprint": "AC4F3DA9840E1BD78772E92588438B9C",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:lapis_lazuli" },
-          "displayName": "Lapis Lazuli"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/minecolonies:stonemason_product", "minecraft:item/minecraft:stairs", "minecraft:item/minecolonies:stonesmeltery_ingredient", "minecraft:item/minecolonies:stonemason_ingredient" ],
-          "name": "minecraft:cobblestone_stairs",
-          "amount": 734,
-          "fingerprint": "95614DECA62148A5CE986D6472350E5E",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:cobblestone_stairs" },
-          "displayName": "Cobblestone Stairs"
-        },
-        {
-          "tags": [ "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecraft:logs", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/minecraft:jungle_logs", "minecraft:item/minecraft:completes_find_tree_tutorial", "minecraft:item/minecraft:logs_that_burn" ],
-          "name": "minecraft:jungle_wood",
-          "amount": 640,
-          "fingerprint": "FF0A64E8B6588A4D36AF1EA092A5E8A4",
-          "isCraftable": false,
-          "nbt": { "id": "minecraft:jungle_wood" },
-          "displayName": "Jungle Wood"
         }
       ]
-    },
-    "patterns": [
-      {
-        "tags": [ "minecraft:item/forge:fences/wooden", "minecraft:item/minecraft:fences", "minecraft:item/minecraft:wooden_fences", "minecraft:item/forge:fences" ],
-        "name": "minecraft:jungle_fence",
-        "amount": 3,
-        "fingerprint": "5B4D2424268ED15D5A407BCFDB2570FE",
-        "isCraftable": true,
-        "nbt": { "id": "minecraft:jungle_fence" },
-        "displayName": "Jungle Fence"
+    }
+  },
+  {
+    "colone": {
+      "colony": "Thibe's Colony",
+      "items": {
+        "playerSide": [
+          {
+            "tags": [
+              "minecraft:item/minecraft:logs_that_burn",
+              "minecraft:item/minecolonies:reduceable_ingredient",
+              "minecraft:item/minecraft:completes_find_tree_tutorial",
+              "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+              "minecraft:item/minecraft:logs",
+              "minecraft:item/minecraft:birch_logs"
+            ],
+            "name": "minecraft:birch_log",
+            "amount": 64,
+            "fingerprint": "451A63978FC37B40F5357A1B313A4C56",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:birch_log"
+            },
+            "displayName": "Birch Log"
+          }
+        ],
+        "colonySide": [
+          {
+            "tags": [
+              "minecraft:item/minecraft:tools",
+              "minecraft:item/minecraft:breaks_decorated_pots",
+              "minecraft:item/forge:tools",
+              "minecraft:item/minecraft:hoes"
+            ],
+            "name": "minecraft:diamond_hoe",
+            "amount": 7,
+            "fingerprint": "A5FA2BAB7D2A760F7682F79DCCBD1277",
+            "isCraftable": false,
+            "nbt": {
+              "id": "minecraft:diamond_hoe",
+              "tag": {
+                "Damage": 0
+              }
+            },
+            "displayName": "Diamond Hoe"
+          }
+        ]
       },
-      {
-        "tags": [ "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/minecraft:planks", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/minecolonies:sawmill_product" ],
-        "name": "minecraft:jungle_planks",
-        "amount": 0,
-        "fingerprint": "7FBA2D4B8812D7E98A51E9CFB08A56E5",
-        "isCraftable": true,
-        "nbt": { "id": "minecraft:jungle_planks" },
-        "displayName": "Jungle Planks"
-      },
-      {
-        "tags": [ "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/minecraft:planks", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/minecolonies:sawmill_product" ],
-        "name": "minecraft:oak_planks",
-        "amount": 0,
-        "fingerprint": "25BDFA1C403FCD54346FCCE86ABF6861",
-        "isCraftable": true,
-        "nbt": { "id": "minecraft:oak_planks" },
-        "displayName": "Oak Planks"
-      },
-      {
-        "tags": [ "minecraft:item/minecraft:stone_bricks", "minecraft:item/minecolonies:stonesmeltery_product", "minecraft:item/minecolonies:stonemason_ingredient", "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecolonies:stonemason_product", "minecraft:item/minecolonies:stonesmeltery_ingredient" ],
-        "name": "minecraft:stone_bricks",
-        "amount": 0,
-        "fingerprint": "709450C2E3A2CFED8B464E6112F41D3C",
-        "isCraftable": true,
-        "nbt": { "id": "minecraft:stone_bricks" },
-        "displayName": "Stone Bricks"
-      },
-      {
-        "tags": [ "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/forge:rods", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/forge:rods/wooden" ],
-        "name": "minecraft:stick",
-        "amount": 2,
-        "fingerprint": "D8A7A7111BBA151021AC46B769222D0C",
-        "isCraftable": true,
-        "nbt": { "id": "minecraft:stick" },
-        "displayName": "Stick"
-      },
-      {
-        "tags": [ "minecraft:item/minecolonies:blacksmith_product_excluded", "minecraft:item/minecraft:planks", "minecraft:item/minecolonies:reduceable_ingredient", "minecraft:item/minecolonies:stonemason_ingredient_excluded", "minecraft:item/minecolonies:sawmill_product" ],
-        "name": "minecraft:dark_oak_planks",
-        "amount": 2,
-        "fingerprint": "2851A5030E9EA25FE45E5DCE82214072",
-        "isCraftable": true,
-        "nbt": { "id": "minecraft:dark_oak_planks" },
-        "displayName": "Dark Oak Planks"
-      }
-    ],
-    "colony": "SteamBotBro's Colony"
+      "patterns": [
+        {
+          "tags": [
+            "minecraft:item/minecolonies:stonemason_ingredient_excluded",
+            "minecraft:item/minecolonies:reduceable_ingredient",
+            "minecraft:item/forge:rods",
+            "minecraft:item/forge:rods/wooden"
+          ],
+          "name": "minecraft:stick",
+          "amount": 2,
+          "fingerprint": "D8A7A7111BBA151021AC46B769222D0C",
+          "isCraftable": true,
+          "nbt": {
+            "id": "minecraft:stick"
+          },
+          "displayName": "Stick"
+        }
+      ]
+    }
   }
 ]
