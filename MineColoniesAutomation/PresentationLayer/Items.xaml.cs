@@ -20,15 +20,49 @@ namespace PresentationLayer
     /// </summary>
     public partial class Items : Window
     {
+        private readonly SynchronizationContext synchronizationContext;
         public LogicInterface.LogicInterface Logic { get; set; }
+        
         public Items(LogicInterface.LogicInterface logic)
         {
+            synchronizationContext = SynchronizationContext.Current!;
             InitializeComponent();
             Logic = logic;
-            foreach (Colonie item in Logic.World.colonies)
+            
+            foreach (World item in Logic.World)
             {
-                ColonySelection.Items.Add(item);
+                foreach (Colonie item2 in item.colonies)
+                {
+                    ColonySelection.Items.Add(item2);
+                }
             }
+            Task task = Task.Run(() =>
+            {
+                while (true)
+                {
+                    Logic.setColonie();
+                    int storage = -1;
+                    synchronizationContext.Post((c) => storage = ColonySelection.SelectedIndex, null);
+                    synchronizationContext.Post((c) => ColonySelection.Items.Clear(), null);
+                    foreach (World item in Logic.World)
+                    {
+                        foreach (Colonie item2 in item.colonies)
+                        {
+                            synchronizationContext.Post((c) => ColonySelection.Items.Add(item2), null);
+                        }
+                    }
+                    synchronizationContext.Post((c) =>
+                    {
+                        if (storage != -1)
+                        {
+                            ColonySelection.SelectedIndex = storage;
+                        }
+                    }, null);
+                    Thread.Sleep(10000);
+                }
+                
+            });
+            
         }
 
         private void ColonySelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -40,6 +74,10 @@ namespace PresentationLayer
             builderTasks.Items.Clear();
             regularTasks.Items.Clear();
             itemsOfRequest.Items.Clear();
+            if ((Colonie)ColonySelection.SelectedItem == null)
+            {
+                return;
+            }
             foreach (BuilderRequests item in ((Colonie)ColonySelection.SelectedItem).BuilderRequests)
             {
                 builderTasks.Items.Add(item);

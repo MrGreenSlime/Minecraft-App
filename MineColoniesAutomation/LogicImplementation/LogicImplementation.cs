@@ -11,7 +11,7 @@ namespace LogicImplementation
     public class LogicImplementation : LogicInterface.LogicInterface
     {
         public DataInterface.DataInterface Data;
-        public World World { get; set; }
+        public List<World> World { get; set; }
         public List<WorldPath> paths { get; set; }
         public bool instanceSelected { get; set; }
 
@@ -27,11 +27,11 @@ namespace LogicImplementation
             Data.setColonie();
             World = Data.world;
         }
-        public void setStorage()
-        {
-            Data.setStorage();
-            World = Data.world;
-        }
+        //public void setStorage()
+        //{
+        //    Data.setStorage();
+        //    World = Data.world;
+        //}
 
         public void setInstance(string v)
         {

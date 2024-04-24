@@ -24,7 +24,6 @@ namespace PresentationLayer
             InitializeComponent();
             Logic.setInstance(ShowFolderBrowserDialog());
             Logic.setColonie();
-            Logic.setStorage();
             Logic.setPaths();
             foreach (WorldPath pa in Logic.paths)
             {

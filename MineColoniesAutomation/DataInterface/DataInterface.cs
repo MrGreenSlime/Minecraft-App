@@ -9,13 +9,13 @@ namespace DataInterface
 {
     public interface DataInterface
     {
-        public World world { get; set; }
+        public List<World> world { get; set; }
 
         public void Close();
         public List<WorldPath> WorldPaths { get; set; }
         public void setColonie();
         public void setInstance(string v);
-        public void setStorage();
+        public World setStorage(WorldPath path, World newWorld);
         public void setWorldPath(WorldPath path);
     }
 }
