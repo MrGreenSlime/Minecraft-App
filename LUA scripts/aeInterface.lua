@@ -1,3 +1,5 @@
+local pretty = require "cc.pretty"
+
 -- This function extract the items from both the playerside AE system and the colonyside AE system
 local function ExtractItems(peripherals, monitorWriter)
     --Extract Playerside Items
@@ -19,5 +21,42 @@ local function ExtractPatterns(peripherals, monitorWriter)
     return patterns
 end
 
+-- This function moves a given item to the colonySide me system
+local function MoveItemToColony(peripherals, monitorWriter, command)
+    local playerSide = peripherals.GetPlayerMeBridge()
+    local item = {}
+    item["name"] = command["Item"]
+    --pretty.pretty_print(item)
+    -- Check if item exists in me system
+    local response = playerSide.getItem(item)
+    --pretty.pretty_print(response)
+    if type(response) == "table" and response.amount > 0 then
+        -- If item exists and has atleast 1 in the me system, export that item to the colonyside interface
+        response.count = command["Amount"]
+        playerSide.exportItemToPeripheral(response, peripheral.getName(peripherals.GetColonyMeBridgeInventory()))
+        monitorWriter.WriteLine("Exported " .. response.name .. " to colony", peripherals.GetMonitor())
+    end
+end
+
+-- This function crafts an item on the playerside me system
+local function CraftItem(peripherals, monitorWriter, command)
+    local playerside = peripherals.GetPlayerMeBridge()
+    local item = {}
+    item["name"] = command["Item"]
+    item["count"] = command["Amount"]
+    return playerside.craftItem(item)
+end
+
+-- This function loops over all commands and makes them happen
+local function ProcessCommands(peripherals, monitorWriter, commands)
+    for index, command in ipairs(commands) do
+        if command["NeedsCrafting"] then
+            CraftItem(peripherals, monitorWriter, command)
+        else
+            MoveItemToColony(peripherals, monitorWriter, command)
+        end
+    end
+end
+
 -- This returns the public functions so other scripts can use them
-return {ExtractItems = ExtractItems, ExtractPatterns = ExtractPatterns}
+return {ExtractItems = ExtractItems, ExtractPatterns = ExtractPatterns, MoveItemToColony = MoveItemToColony, CraftItem = CraftItem, ProcessCommands = ProcessCommands}
