@@ -14,7 +14,7 @@ namespace DataImplementation
 {
     public class DataImplement : DataInterface.DataInterface
     {
-        public World world { get; set; }
+        public List<World> world { get; set; }
         public string InstancePath { get; set; }
         public List<WorldPath> WorldPaths { get; set; }
         public List<string> ModPaths { get; set; }
@@ -24,8 +24,12 @@ namespace DataImplementation
         public DataImplement()
         {
             Directory.CreateDirectory(tempPathString);
-            world = new World();
-            world.colonies = new List<Colonie>();
+            world = new List<World>();
+            foreach (World item in world)
+            {
+                item.colonies = new List<Colonie>();
+            }
+            //world.colonies = new List<Colonie>();
             WorldPaths = new List<WorldPath>();
             ModPaths = new List<string>();
             //setColonie();
@@ -34,35 +38,41 @@ namespace DataImplementation
         
         public void setColonie()
         {
-            world.colonies.Clear();
-            //string path = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/requests.json" ;
-            foreach (string colonyPath in SelectedWorldPath.ColonyPaths)
+            world.Clear();
+            foreach (WorldPath item in WorldPaths)
             {
-                string jsonString = File.ReadAllText(colonyPath + "\\requests.json");
-                jsonString = jsonString.Replace("\"tags\":{}", "\"tags\":[]");
-                jsonString = jsonString.Replace("\"tags\": {}", "\"tags\":[]");
-                jsonString = jsonString.Replace("\"Requests\":{}", "\"Requests\":[]");
-                jsonString = jsonString.Replace("\"Requests\": {}", "\"Requests\":[]");
-                try
+                World newWorld = new World();
+                newWorld.colonies = new List<Colonie>();
+                //string path = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/requests.json" ;
+                foreach (string colonyPath in item.ColonyPaths)
                 {
-                    List<Colonie> colonies = System.Text.Json.JsonSerializer.Deserialize<List<Colonie>>(jsonString);
-                    world.colonies.AddRange(colonies);
-                    List<SpecifiedRequest> requestList = new List<SpecifiedRequest>();
-                    foreach (BuilderRequests item1 in colonies[0].BuilderRequests)
+                    string jsonString = File.ReadAllText(colonyPath + "\\requests.json");
+                    jsonString = jsonString.Replace("\"tags\":{}", "\"tags\":[]");
+                    jsonString = jsonString.Replace("\"tags\": {}", "\"tags\":[]");
+                    jsonString = jsonString.Replace("\"Requests\":{}", "\"Requests\":[]");
+                    jsonString = jsonString.Replace("\"Requests\": {}", "\"Requests\":[]");
+                    try
                     {
-                        requestList.AddRange(item1.Requests);
+                        List<Colonie> colonies = System.Text.Json.JsonSerializer.Deserialize<List<Colonie>>(jsonString);
+                        newWorld.colonies.AddRange(colonies);
+                        List<SpecifiedRequest> requestList = new List<SpecifiedRequest>();
+                        foreach (BuilderRequests item1 in colonies[0].BuilderRequests)
+                        {
+                            requestList.AddRange(item1.Requests);
+                        }
+                        writeCommands(requestList, colonies[0].Requests, colonyPath + "\\commands.json");
                     }
-                    writeCommands(requestList, colonies[0].Requests, colonyPath + "\\commands.json");
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                newWorld = setStorage(item, newWorld);
+                world.Add(newWorld);
             }
-            setStorage();
             
         }
-        public void setStorage()
+        public World setStorage(WorldPath path, World newWorld)
         {
             foreach (string colonyPath in SelectedWorldPath.ColonyPaths)
             {
@@ -75,22 +85,22 @@ namespace DataImplementation
                     List<ItemsInStorage> Storage = System.Text.Json.JsonSerializer.Deserialize<List<ItemsInStorage>>(jsonString);
                     for (int i = 0; i < Storage.Count; i++)
                     {
-                        for (int j = 0; j < world.colonies.Count; j++)
+                        for (int j = 0; j < newWorld.colonies.Count; j++)
                         {
-                            if (Storage[i].colony.Equals(world.colonies[j].Name))
+                            if (Storage[i].colony.Equals(newWorld.colonies[j].Name))
                             {
-                                world.colonies[j].items = Storage[i];
+                                newWorld.colonies[j].items = Storage[i];
                                 if (Storage[i].items.colonySide == null)
                                 {
-                                    world.colonies[j].items.items.colonySide = new List<StorageItem>();
+                                    newWorld.colonies[j].items.items.colonySide = new List<StorageItem>();
                                 }
                                 if (Storage[i].items.playerSide == null)
                                 {
-                                    world.colonies[j].items.items.playerSide = new List<StorageItem>();
+                                    newWorld.colonies[j].items.items.playerSide = new List<StorageItem>();
                                 }
                                 if (Storage[i].patterns == null)
                                 {
-                                    world.colonies[j].items.patterns = new List<StorageItem>();
+                                    newWorld.colonies[j].items.patterns = new List<StorageItem>();
                                 }
                                 
                             }
@@ -102,6 +112,7 @@ namespace DataImplementation
                     Console.WriteLine(ex.Message);
                 }
             }
+            return newWorld;
         }
         public void writeCommands(List<SpecifiedRequest> requests, List<Requests> regularRequests, string path)
         {

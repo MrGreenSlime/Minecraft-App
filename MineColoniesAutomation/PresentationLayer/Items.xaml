@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Title="Items" Height="1067" Width="800" Background="Black" Foreground="White">
-    
+        Title="Items" Height="1067" Width="1904" Background="Black" Foreground="White">
+
     <Grid Margin="0,0,0,-6">
         <ComboBox HorizontalAlignment="Left" Background="Black" Foreground="Black" Name="ColonySelection" Height="38" Margin="34,37,0,0" VerticalAlignment="Top" Width="208" SelectionChanged="ColonySelection_SelectionChanged" BorderBrush="Red"/>
         <ListBox HorizontalAlignment="Left" Name="PlayerItems" Height="257" Margin="26,157,0,0" VerticalAlignment="Top" Width="228" d:ItemsSource="{d:SampleData ItemCount=5}" Background="Black" BorderThickness="2,2,2,2" BorderBrush="White" Foreground="White"/>
@@ -20,7 +20,7 @@
         <ListBox HorizontalAlignment="Left" Name="regularTasks" Height="316" Margin="414,487,0,0" VerticalAlignment="Top" Width="367" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="regularTasks_SelectionChanged" GotFocus="regularTasks_GotFocus" Background="Black" BorderBrush="White" Foreground="White" BorderThickness="2,2,2,2"/>
         <Label Content="builder tasks" HorizontalAlignment="Left" Height="34" Margin="27,448,0,0" VerticalAlignment="Top" Width="123" Foreground="White"/>
         <Label Content="regular tasks" HorizontalAlignment="Left" Height="34" Margin="414,448,0,0" VerticalAlignment="Top" Width="123" Foreground="White"/>
-        <ListBox HorizontalAlignment="Left" Name="itemsOfRequest" Height="125" Margin="26,860,0,0" VerticalAlignment="Top" Width="754" d:ItemsSource="{d:SampleData ItemCount=5}" Background="Black" BorderBrush="White" Foreground="White" BorderThickness="2,2,2,2"/>
-        <Label Content="items" Name="itemLabel" HorizontalAlignment="Left" Height="34" Margin="26,821,0,0" VerticalAlignment="Top" Width="164" Foreground="White"/>
+        <ListBox HorizontalAlignment="Left" Name="itemsOfRequest" Height="125" Margin="870,487,0,0" VerticalAlignment="Top" Width="754" d:ItemsSource="{d:SampleData ItemCount=5}" Background="Black" BorderBrush="White" Foreground="White" BorderThickness="2,2,2,2"/>
+        <Label Content="items" Name="itemLabel" HorizontalAlignment="Center" Height="34" Margin="0,448,0,0" VerticalAlignment="Top" Width="164" Foreground="White"/>
     </Grid>
 </Window>
