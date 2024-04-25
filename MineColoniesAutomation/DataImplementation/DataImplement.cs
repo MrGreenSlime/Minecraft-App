@@ -128,6 +128,18 @@ namespace DataImplementation
         {
             InstancePath = v;
             //Check if correct mods are installed
+
+            GetModPaths();
+
+            //Extract different world paths
+
+            GetWorldPaths();
+
+            GetRecipes();
+        }
+
+        private void GetModPaths()
+        {
             if (Path.Exists(InstancePath + "\\mods"))
             {
                 ModPaths = Directory.EnumerateFiles(InstancePath + "\\mods").ToList();
@@ -141,7 +153,10 @@ namespace DataImplementation
                 if (mod.Count() == 0) throw new Exception("Instance does not have minecolonies installed");
             }
             else throw new ArgumentException("Instance does not have a mod folder");
-            //Extract different world paths
+        }
+
+        private void GetWorldPaths()
+        {
             if (Path.Exists(InstancePath + "\\saves"))
             {
                 List<string> tempWorldPaths = Directory.EnumerateDirectories(InstancePath + "\\saves").ToList();
@@ -153,20 +168,19 @@ namespace DataImplementation
                         worldPath.ComputerPaths = Directory.EnumerateDirectories(dir + "\\computercraft\\computer").ToList();
                         List<string> toKeep = new List<string>();
                         toKeep = worldPath.ComputerPaths.ToList();
-                        foreach(var dir2 in worldPath.ComputerPaths)
+                        foreach (var dir2 in worldPath.ComputerPaths)
                         {
-                            if (File.Exists(dir2 + "\\aeInterface.lua") &&  File.Exists(dir2 + "\\extractTasks.lua") && File.Exists(dir2+ "\\JsonFileHelper.lua") && File.Exists(dir2+ "\\main.lua") && File.Exists(dir2 + "\\monitorWriter.lua")&& File.Exists(dir2+ "\\wrapPeripherals.lua"))
+                            if (File.Exists(dir2 + "\\aeInterface.lua") && File.Exists(dir2 + "\\extractTasks.lua") && File.Exists(dir2 + "\\JsonFileHelper.lua") && File.Exists(dir2 + "\\main.lua") && File.Exists(dir2 + "\\monitorWriter.lua") && File.Exists(dir2 + "\\wrapPeripherals.lua"))
                             {
                                 worldPath.ColonyPaths.Add(dir2);
                                 toKeep.Remove(dir2);
                             }
                         }
-                        worldPath.ComputerPaths = toKeep;                        
+                        worldPath.ComputerPaths = toKeep;
                     }
                     WorldPaths.Add(worldPath);
                 }
             }
-            GetRecipes();
         }
 
         async private void GetRecipes()
@@ -175,6 +189,7 @@ namespace DataImplementation
             {
                 if (!Directory.Exists(tempPathString + modPath.Split('\\').Last()))
                     await Task.Run(() => { ZipFile.ExtractToDirectory(modPath, tempPathString + modPath.Split('\\').Last()); });
+
 
             }
             //TODO find and extract recipes
