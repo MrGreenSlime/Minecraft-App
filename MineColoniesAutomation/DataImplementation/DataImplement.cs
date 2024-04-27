@@ -145,7 +145,7 @@ namespace DataImplementation
                             if (!colonyReserve.ContainsKey(colonyItem.name)) colonyReserve.Add(colonyItem.name, 0);
                             if (colonyItem.amount - colonyReserve[request.item.name] <= 0) continue;
 
-                            if (request.needed >= colonyItem.amount - colonyReserve[request.item.name])
+                            if (request.needed > colonyItem.amount - colonyReserve[request.item.name])
                             {
                                 colonyReserve[request.item.name] += colonyItem.amount;
                                 already_have += colonyItem.amount;
@@ -166,7 +166,7 @@ namespace DataImplementation
                             if (!playerReserve.ContainsKey(playerItem.name)) playerReserve.Add(playerItem.name, 0);
                             if (playerItem.amount - playerReserve[request.item.name] <= 0) continue;
 
-                            if (request.needed - already_have >= playerItem.amount - playerReserve[request.item.name])
+                            if (request.needed - already_have > playerItem.amount - playerReserve[request.item.name])
                             {
                                 playerReserve[request.item.name] += playerItem.amount;
                                 already_have += playerItem.amount;
@@ -185,7 +185,7 @@ namespace DataImplementation
                         StorageItem patternItem = colonie.items.patterns.FirstOrDefault(x => x.name.Equals(request.item.name));
                         if (patternItem != null)
                         {
-
+                            commands.Add(new Commands { Amount = request.needed - already_have, Item = request.item.name, NeedsCrafting = true });
                         }
                     }
 
@@ -207,6 +207,7 @@ namespace DataImplementation
 
             }
         }
+
 
         public void setColonie()
         {
@@ -242,6 +243,16 @@ namespace DataImplementation
                 }
                 newWorld = setStorage(item, newWorld);
                 worlds.Add(newWorld);
+
+                //foreach (Colonie item1 in newWorld.colonies)
+                //{
+                //    List<SpecifiedRequest> requestList = new List<SpecifiedRequest>();
+                //    foreach (BuilderRequests item2 in item1.BuilderRequests)
+                //    {
+                //        requestList.AddRange(item2.Requests);
+                //    }
+                //    writeCommands(requestList, item1.Requests, colonyPath + "\\commands.json", item1);
+                //}
             }
 
         }
@@ -298,7 +309,9 @@ namespace DataImplementation
             foreach (SpecifiedRequest item in requests)
             {
                 if (!item.status.Equals("NOT_NEEDED,  HAVE_ENOUGH, IN_DELIVERY, NEED_MORE, DONT_HAVE "))
+                if (!item.status.Equals("NOT_NEEDED"))
                 {
+                    // ,  HAVE_ENOUGH, IN_DELIVERY, NEED_MORE, DONT_HAVE 
                     long already_have = 0;
                     if (colonie.items == null)
                     {
@@ -346,6 +359,7 @@ namespace DataImplementation
                         if (patternItem != null)
                         {
 
+                            commands.Add(new Commands { Amount = item.needed - already_have, Item = item.item.name, NeedsCrafting = true });
                         }
                     }
 

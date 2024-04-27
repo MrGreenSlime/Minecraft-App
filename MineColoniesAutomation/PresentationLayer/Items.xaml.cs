@@ -24,14 +24,14 @@ namespace PresentationLayer
         private readonly SynchronizationContext synchronizationContext;
         private CancellationTokenSource cancellationTokenSource;
         public LogicInterface.LogicInterface Logic { get; set; }
-        
+
         public Items(LogicInterface.LogicInterface logic)
         {
             synchronizationContext = SynchronizationContext.Current!;
             cancellationTokenSource = new CancellationTokenSource();
             InitializeComponent();
             Logic = logic;
-            
+
             foreach (World item in Logic.World)
             {
                 foreach (Colonie item2 in item.colonies)
@@ -64,9 +64,9 @@ namespace PresentationLayer
                     }, null);
                     Thread.Sleep(10000);
                 }
-                
+
             });
-            
+
         }
 
         private void ColonySelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
