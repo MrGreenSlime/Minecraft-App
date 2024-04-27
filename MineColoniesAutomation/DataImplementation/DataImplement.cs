@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DataImplementation
 {
@@ -19,7 +20,6 @@ namespace DataImplementation
         public List<WorldPath> WorldPaths { get; set; }
         public List<string> ModPaths { get; set; }
         private string tempPathString = Path.GetTempPath() + "\\MinecoloniesAutomation\\";
-        public WorldPath SelectedWorldPath { get; set; }
 
         public DataImplement()
         {
@@ -29,11 +29,9 @@ namespace DataImplementation
             {
                 item.colonies = new List<Colonie>();
             }
-            //world.colonies = new List<Colonie>();
             WorldPaths = new List<WorldPath>();
             ModPaths = new List<string>();
-            //setColonie();
-            //setStorage();
+            CheckStorage();
         }
 
         public void loopColonies()
@@ -122,8 +120,22 @@ namespace DataImplementation
 
         public void WriteCommands(string path, Colonie? colonie)
         {
+            if (colonie == null) return;
             List<SpecifiedRequest> requestList = new List<SpecifiedRequest>();
-            colonie.BuilderRequests.ForEach(x => requestList.AddRange(x.Requests));
+            bool autocompleet = true;
+            List<string> autocompleetList = new List<string>();
+            if (autocompleet)
+            {
+                colonie.BuilderRequests.ForEach(x => requestList.AddRange(x.Requests));
+            }
+            else
+            {
+                foreach (BuilderRequests builderRequest in colonie.BuilderRequests)
+                {
+                    requestList.AddRange(builderRequest.Requests.Where(x => autocompleetList.Contains(x.item.fingerPrint)));
+                }
+            }
+
 
             List<Commands> commands = new List<Commands>();
             Dictionary<string, long> colonyReserve = new Dictionary<string, long>();
@@ -188,8 +200,6 @@ namespace DataImplementation
                             commands.Add(new Commands { Amount = request.needed - already_have, Item = request.item.name, NeedsCrafting = true });
                         }
                     }
-
-                    //commands.Add(new Commands { Amount = request.needed, Item = request.item.name, NeedsCrafting = false });
                 }
 
             }
@@ -208,182 +218,12 @@ namespace DataImplementation
             }
         }
 
-
-        public void setColonie()
-        {
-            worlds.Clear();
-            foreach (WorldPath item in WorldPaths)
-            {
-                World newWorld = new World();
-                newWorld.colonies = new List<Colonie>();
-                //string path = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/requests.json" ;
-                foreach (string colonyPath in item.ColonyPaths)
-                {
-                    string jsonString = File.ReadAllText(colonyPath + "\\requests.json");
-                    jsonString = jsonString.Replace("\"tags\":{}", "\"tags\":[]");
-                    jsonString = jsonString.Replace("\"tags\": {}", "\"tags\":[]");
-                    jsonString = jsonString.Replace("\"Requests\":{}", "\"Requests\":[]");
-                    jsonString = jsonString.Replace("\"Requests\": {}", "\"Requests\":[]");
-                    try
-                    {
-                        List<Colonie> colonies = System.Text.Json.JsonSerializer.Deserialize<List<Colonie>>(jsonString);
-                        newWorld.colonies.AddRange(colonies);
-                        List<SpecifiedRequest> requestList = new List<SpecifiedRequest>();
-                        foreach (BuilderRequests item1 in colonies[0].BuilderRequests)
-                        {
-                            requestList.AddRange(item1.Requests);
-                        }
-                        //colonies[0].items.items;
-                        writeCommands(requestList, colonies[0].Requests, colonyPath + "\\commands.json", colonies[0]);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                }
-                newWorld = setStorage(item, newWorld);
-                worlds.Add(newWorld);
-
-                //foreach (Colonie item1 in newWorld.colonies)
-                //{
-                //    List<SpecifiedRequest> requestList = new List<SpecifiedRequest>();
-                //    foreach (BuilderRequests item2 in item1.BuilderRequests)
-                //    {
-                //        requestList.AddRange(item2.Requests);
-                //    }
-                //    writeCommands(requestList, item1.Requests, colonyPath + "\\commands.json", item1);
-                //}
-            }
-
-        }
-        public World setStorage(WorldPath path, World newWorld)
-        {
-            foreach (string colonyPath in SelectedWorldPath.ColonyPaths)
-            {
-                //string path = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/aeData.json";
-                string jsonString = File.ReadAllText(colonyPath + "\\aeData.json");
-                jsonString = jsonString.Replace("\"tags\":{}", "\"tags\":[]");
-                jsonString = jsonString.Replace("\"tags\": {}", "\"tags\":[]");
-                jsonString = jsonString.Replace("\"colonySide\":{}", "\"colonySide\":[]");
-                jsonString = jsonString.Replace("\"playerSide\":{}", "\"playerSide\":[]");
-                jsonString = jsonString.Replace("\"patterns\":{}", "\"patterns\":[]");
-                try
-                {
-                    List<ItemsInStorage> Storage = System.Text.Json.JsonSerializer.Deserialize<List<ItemsInStorage>>(jsonString);
-                    for (int i = 0; i < Storage.Count; i++)
-                    {
-                        for (int j = 0; j < newWorld.colonies.Count; j++)
-                        {
-                            if (Storage[i].colony.Equals(newWorld.colonies[j].Name))
-                            {
-                                newWorld.colonies[j].items = Storage[i];
-                                if (Storage[i].items.colonySide == null)
-                                {
-                                    newWorld.colonies[j].items.items.colonySide = new List<StorageItem>();
-                                }
-                                if (Storage[i].items.playerSide == null)
-                                {
-                                    newWorld.colonies[j].items.items.playerSide = new List<StorageItem>();
-                                }
-                                if (Storage[i].patterns == null)
-                                {
-                                    newWorld.colonies[j].items.patterns = new List<StorageItem>();
-                                }
-
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            }
-            return newWorld;
-        }
-        public void writeCommands(List<SpecifiedRequest> requests, List<Requests> regularRequests, string path, Colonie colonie)
-        {
-            List<Commands> commands = new List<Commands>();
-            Dictionary<string, long> colonyReserve = new Dictionary<string, long>();
-            Dictionary<string, long> playerReserve = new Dictionary<string, long>();
-            foreach (SpecifiedRequest item in requests)
-            {
-                if (!item.status.Equals("NOT_NEEDED,  HAVE_ENOUGH, IN_DELIVERY, NEED_MORE, DONT_HAVE "))
-                if (!item.status.Equals("NOT_NEEDED"))
-                {
-                    // ,  HAVE_ENOUGH, IN_DELIVERY, NEED_MORE, DONT_HAVE 
-                    long already_have = 0;
-                    if (colonie.items == null)
-                    {
-                        break;
-                    }
-                    if (colonie.items.items.colonySide != null)
-                    {
-                        StorageItem colonyItem = colonie.items.items.colonySide.FirstOrDefault(x => x.name.Equals(item.item.name));
-                        if (colonyItem != null)
-                        {
-                            if (item.needed >= colonyItem.amount - colonyReserve[item.item.name])
-                            {
-                                colonyReserve[item.item.name] += colonyItem.amount;
-                                already_have += colonyItem.amount;
-                            }
-                            else
-                            {
-                                colonyReserve[item.item.name] += item.needed;
-                                continue;
-                            }
-
-                        }
-                    }
-                    if (colonie.items.items.playerSide != null)
-                    {
-                        StorageItem playerItem = colonie.items.items.playerSide.FirstOrDefault(x => x.name.Equals(item.item.name));
-                        if (playerItem != null)
-                        {
-                            if (item.needed - already_have >= playerItem.amount - playerReserve[item.item.name])
-                            {
-                                playerReserve[item.item.name] += playerItem.amount;
-                                already_have += playerItem.amount;
-                                commands.Add(new Commands { Amount = playerItem.amount, Item = item.item.name, NeedsCrafting = false });
-                            }
-                            else
-                            {
-                                playerReserve[item.item.name] += item.needed - already_have;
-                                continue;
-                            }
-                        }
-                    }
-                    if (colonie.items.patterns != null)
-                    {
-                        StorageItem patternItem = colonie.items.patterns.FirstOrDefault(x => x.name.Equals(item.item.name));
-                        if (patternItem != null)
-                        {
-
-                            commands.Add(new Commands { Amount = item.needed - already_have, Item = item.item.name, NeedsCrafting = true });
-                        }
-                    }
-
-                    commands.Add(new Commands { Amount = item.needed, Item = item.item.name, NeedsCrafting = false });
-                }
-
-            }
-            foreach (Requests request in regularRequests)
-            {
-                commands.Add(new Commands { Amount = 1, Item = request.items[0].name, NeedsCrafting = false });
-            }
-            try
-            {
-                string data = JsonConvert.SerializeObject(commands);
-                File.WriteAllText(path, data);
-            }
-            catch
-            {
-
-            }
-        }
         public void setInstance(string v)
         {
+            string pathData = JsonConvert.SerializeObject(v);
+            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/PathStorage.json", pathData);
             InstancePath = v;
+
             //Check if correct mods are installed
 
             GetModPaths();
@@ -414,6 +254,7 @@ namespace DataImplementation
 
         private void GetWorldPaths()
         {
+            WorldPaths = new List<WorldPath>();
             if (Path.Exists(InstancePath + "\\saves"))
             {
                 List<string> tempWorldPaths = Directory.EnumerateDirectories(InstancePath + "\\saves").ToList();
@@ -473,13 +314,31 @@ namespace DataImplementation
         {
             Directory.Delete(tempPathString, true);
         }
-        public void setWorldPath(WorldPath path)
+        public void start()
         {
-            if (WorldPaths.Contains(path))
-            {
-                SelectedWorldPath = path;
-            }
             loopColonies();
+        }
+        public void CheckStorage()
+        {
+            string tempPath = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/PathStorage.json";
+            try
+            {
+                if (File.Exists(tempPath))
+                {
+                    string jsonString = File.ReadAllText(tempPath);
+                    InstancePath = System.Text.Json.JsonSerializer.Deserialize<string>(jsonString);
+                    GetModPaths();
+
+
+                    GetWorldPaths();
+
+                    GetRecipes();
+                }
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
         }
     }
 }

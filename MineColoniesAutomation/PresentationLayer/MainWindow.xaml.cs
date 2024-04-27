@@ -22,7 +22,13 @@ namespace PresentationLayer
             DataInterface.DataInterface Data = new DataImplementation.DataImplement();
             Logic = new LogicImplementation.LogicImplementation(Data);
             InitializeComponent();
-            Logic.setInstance(ShowFolderBrowserDialog());
+            if (true)
+            {
+                Logic.setInstance(ShowFolderBrowserDialog());
+            } else
+            {
+                Logic.setInstance(null);
+            }
             Logic.setColonie();
             Logic.setPaths();
             foreach (WorldPath pa in Logic.paths)
@@ -68,10 +74,23 @@ namespace PresentationLayer
         {
             if (worldSelection.SelectedIndex == -1)
                 return;
-            Logic.setPath((WorldPath)worldSelection.SelectedItem);
+            Logic.start();
             Items window = new Items(Logic);
             Close();
             window.Show();
+        }
+
+        private void startButton_Click(object sender, RoutedEventArgs e)
+        {
+            Logic.start();
+            Items window = new Items(Logic);
+            Close();
+            window.Show();
+        }
+
+        private void Reload_Click(object sender, RoutedEventArgs e)
+        {
+            Logic.setInstance(ShowFolderBrowserDialog());
         }
     }
 }

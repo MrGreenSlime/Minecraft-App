@@ -12,11 +12,12 @@ namespace DataInterface
         public List<World> worlds { get; set; }
 
         public void Close();
+        public string InstancePath { get; set; }
         public List<WorldPath> WorldPaths { get; set; }
-        public void setColonie();
+        //public void setColonie();
         public void setInstance(string v);
-        public World setStorage(WorldPath path, World newWorld);
-        public void setWorldPath(WorldPath path);
+        //public World setStorage(WorldPath path, World newWorld);
+        public void start();
         public void loopColonies();
     }
 }

@@ -14,11 +14,15 @@ namespace LogicImplementation
         public List<World> World { get; set; }
         public List<WorldPath> paths { get; set; }
         public bool instanceSelected { get; set; }
-
+        
         public LogicImplementation(DataInterface.DataInterface data)
         {
             Data = data;
             World = Data.worlds;
+            if (Data.InstancePath != null)
+            {
+                instanceSelected = true;
+            }
         }
 
 
@@ -42,9 +46,9 @@ namespace LogicImplementation
         {
             Data.Close();
         }
-        public void setPath(WorldPath path)
+        public void start()
         {
-            Data.setWorldPath(path);
+            Data.start();
         }
         public void setPaths()
         {
