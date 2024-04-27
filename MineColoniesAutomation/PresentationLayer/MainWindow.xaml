@@ -7,9 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="219" Width="343">
     <Grid>
-        <ComboBox HorizontalAlignment="Center" Name="worldSelection" Height="33" VerticalAlignment="Center" Width="154" SelectionChanged="worldSelection_SelectionChanged"/>
-        <Label Content="Select world" HorizontalAlignment="Left" Height="39" Margin="95,41,0,0" VerticalAlignment="Top" Width="109"/>
-        <Button Content="Start" Name="startButton" HorizontalAlignment="Center" Height="39" Margin="0,132,0,0" VerticalAlignment="Top" Width="154" Click="startButton_Click"/>
+        <Button Content="Start" Name="startButton" HorizontalAlignment="Center" Height="39" VerticalAlignment="Center" Width="154" Click="startButton_Click"/>
         <Button Content="↻" Name="Reload" HorizontalAlignment="Left" Height="28" Margin="302,10,0,0" VerticalAlignment="Top" Width="31" Click="Reload_Click"/>
     </Grid>
 </Window>

@@ -70,16 +70,6 @@ namespace PresentationLayer
             return "";
         }
 
-        private void worldSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (worldSelection.SelectedIndex == -1)
-                return;
-            Logic.start();
-            Items window = new Items(Logic);
-            Close();
-            window.Show();
-        }
-
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
             Logic.start();
