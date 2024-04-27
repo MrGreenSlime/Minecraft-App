@@ -9,7 +9,7 @@ namespace DataInterface
 {
     public interface DataInterface
     {
-        public List<World> world { get; set; }
+        public List<World> worlds { get; set; }
 
         public void Close();
         public List<WorldPath> WorldPaths { get; set; }
@@ -17,5 +17,6 @@ namespace DataInterface
         public void setInstance(string v);
         public World setStorage(WorldPath path, World newWorld);
         public void setWorldPath(WorldPath path);
+        public void loopColonies();
     }
 }

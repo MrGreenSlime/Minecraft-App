@@ -18,14 +18,14 @@ namespace LogicImplementation
         public LogicImplementation(DataInterface.DataInterface data)
         {
             Data = data;
-            World = Data.world;
+            World = Data.worlds;
         }
 
 
         public void setColonie()
         {
-            Data.setColonie();
-            World = Data.world;
+            Data.loopColonies();
+            World = Data.worlds;
         }
         //public void setStorage()
         //{
