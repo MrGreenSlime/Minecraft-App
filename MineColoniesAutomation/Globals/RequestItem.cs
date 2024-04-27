@@ -19,5 +19,16 @@ namespace Globals
         {
             return count + " " + displayName.Replace("[", "").Replace("]", "");
         }
+        public override bool Equals(object? obj)
+        {
+            if (obj.GetType() == typeof(RequestItem))
+            {
+                RequestItem item = (RequestItem)obj;
+                item.name.Equals(name);
+                return true;
+            }
+            return false;
+            //return base.Equals(obj);
+        }
     }
 }
