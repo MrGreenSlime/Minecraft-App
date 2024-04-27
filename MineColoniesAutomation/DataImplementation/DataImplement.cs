@@ -185,7 +185,7 @@ namespace DataImplementation
                         StorageItem patternItem = colonie.items.patterns.FirstOrDefault(x => x.name.Equals(request.item.name));
                         if (patternItem != null)
                         {
-
+                            commands.Add(new Commands { Amount = request.needed - already_have, Item = request.item.name, NeedsCrafting = true });
                         }
                     }
 
@@ -253,7 +253,6 @@ namespace DataImplementation
                 //    }
                 //    writeCommands(requestList, item1.Requests, colonyPath + "\\commands.json", item1);
                 //}
-                world.Add(newWorld);
             }
 
         }
