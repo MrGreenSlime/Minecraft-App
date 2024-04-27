@@ -9,7 +9,7 @@ namespace Globals
     public class Commands
     {
         public string Item {  get; set; }
-        public int Amount { get; set; }
+        public long Amount { get; set; }
         public bool NeedsCrafting { get; set; }
     }
 }

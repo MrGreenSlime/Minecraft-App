@@ -1,4 +1,5 @@
 ﻿using Globals;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,13 @@ namespace PresentationLayer
     public partial class Items : Window
     {
         private readonly SynchronizationContext synchronizationContext;
+        private CancellationTokenSource cancellationTokenSource;
         public LogicInterface.LogicInterface Logic { get; set; }
         
         public Items(LogicInterface.LogicInterface logic)
         {
             synchronizationContext = SynchronizationContext.Current!;
+            cancellationTokenSource = new CancellationTokenSource();
             InitializeComponent();
             Logic = logic;
             
@@ -36,9 +39,10 @@ namespace PresentationLayer
                     ColonySelection.Items.Add(item2);
                 }
             }
+            var token = cancellationTokenSource.Token;
             Task task = Task.Run(() =>
             {
-                while (true)
+                while (!token.IsCancellationRequested)
                 {
                     Logic.setColonie();
                     int storage = -1;
@@ -108,6 +112,7 @@ namespace PresentationLayer
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
+            cancellationTokenSource.Cancel();
             MainWindow window = new MainWindow(Logic);
             Close();
             window.Show();

@@ -60,7 +60,8 @@ namespace DataImplementation
                         {
                             requestList.AddRange(item1.Requests);
                         }
-                        writeCommands(requestList, colonies[0].Requests, colonyPath + "\\commands.json");
+                        //colonies[0].items.items;
+                        writeCommands(requestList, colonies[0].Requests, colonyPath + "\\commands.json", colonies[0]);
                     }
                     catch (Exception ex)
                     {
@@ -80,6 +81,7 @@ namespace DataImplementation
                 string jsonString = File.ReadAllText(colonyPath + "\\aeData.json");
                 jsonString = jsonString.Replace("\"tags\":{}", "\"tags\":[]");
                 jsonString = jsonString.Replace("\"tags\": {}", "\"tags\":[]");
+                jsonString = jsonString.Replace("\"colonySide\":{}", "\"colonySide\":[]");
                 try
                 {
                     List<ItemsInStorage> Storage = System.Text.Json.JsonSerializer.Deserialize<List<ItemsInStorage>>(jsonString);
@@ -114,12 +116,67 @@ namespace DataImplementation
             }
             return newWorld;
         }
-        public void writeCommands(List<SpecifiedRequest> requests, List<Requests> regularRequests, string path)
+        public void writeCommands(List<SpecifiedRequest> requests, List<Requests> regularRequests, string path, Colonie colonie)
         {
             List<Commands> commands = new List<Commands>();
+            Dictionary<string, long> colonyReserve = new Dictionary<string, long>();
+            Dictionary<string, long> playerReserve = new Dictionary<string, long>();
             foreach (SpecifiedRequest item in requests)
             {
-                commands.Add(new Commands { Amount = item.needed, Item = item.item.name, NeedsCrafting = false });
+                if (!item.status.Equals("NOT_NEEDED,  HAVE_ENOUGH, IN_DELIVERY, NEED_MORE, DONT_HAVE ") )
+                {
+                    long already_have = 0;
+                    if (colonie.items == null)
+                    {
+                        break;
+                    }
+                    if (colonie.items.items.colonySide != null)
+                    {
+                        StorageItem colonyItem = colonie.items.items.colonySide.FirstOrDefault(x => x.name.Equals(item.item.name));
+                        if (colonyItem != null)
+                        {
+                            if (item.needed >= colonyItem.amount - colonyReserve[item.item.name])
+                            {
+                                colonyReserve[item.item.name] += colonyItem.amount;
+                                already_have += colonyItem.amount;
+                            } else
+                            {
+                                colonyReserve[item.item.name] += item.needed;
+                                continue;
+                            }
+                        
+                        }
+                    }
+                    if (colonie.items.items.playerSide != null)
+                    {
+                        StorageItem playerItem = colonie.items.items.playerSide.FirstOrDefault(x => x.name.Equals(item.item.name));
+                        if (playerItem != null)
+                        {
+                            if (item.needed - already_have >= playerItem.amount - playerReserve[item.item.name])
+                            {
+                                playerReserve[item.item.name] += playerItem.amount;
+                                already_have += playerItem.amount;
+                                commands.Add(new Commands { Amount = playerItem.amount, Item = item.item.name, NeedsCrafting = false });
+                            }
+                            else
+                            {
+                                playerReserve[item.item.name] += item.needed - already_have;
+                                continue;
+                            }
+                        }
+                    }
+                    if (colonie.items.patterns != null)
+                    {
+                        StorageItem patternItem = colonie.items.patterns.FirstOrDefault(x => x.name.Equals(item.item.name));
+                        if (patternItem != null)
+                        {
+                        
+                        }
+                    }
+                    
+                    commands.Add(new Commands { Amount = item.needed, Item = item.item.name, NeedsCrafting = false });
+                }
+                
             }
             foreach (Requests request in regularRequests)
             {
