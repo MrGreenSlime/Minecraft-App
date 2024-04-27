@@ -57,7 +57,9 @@ local function ProcessCommands(peripherals, monitorWriter, commands)
         else
             MoveItemToColony(peripherals, monitorWriter, command)
         end
+        table.remove(commands, index)
     end
+    return commands
 end
 
 -- This returns the public functions so other scripts can use them

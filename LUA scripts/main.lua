@@ -31,7 +31,8 @@ while true do
 
     -- Read in the commands and execute them
     local commands = jsonHelper.ReadJson("commands.json")
-    aeInterface.ProcessCommands(peripherals, monitorWriter, commands)
+    commands = aeInterface.ProcessCommands(peripherals, monitorWriter, commands)
+    jsonHelper.WriteJson("commands.json", commands)
 
     -- Sleep for the given sleeptime
     os.sleep(peripherals.GetSleepTime())
