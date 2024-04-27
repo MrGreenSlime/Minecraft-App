@@ -30,11 +30,13 @@ local function MoveItemToColony(peripherals, monitorWriter, command)
     -- Check if item exists in me system
     local response = playerSide.getItem(item)
     --pretty.pretty_print(response)
-    if type(response) == "table" and response.amount > 0 then
-        -- If item exists and has atleast 1 in the me system, export that item to the colonyside interface
-        response.count = command["Amount"]
-        playerSide.exportItemToPeripheral(response, peripheral.getName(peripherals.GetColonyMeBridgeInventory()))
-        monitorWriter.WriteLine("Exported " .. response.name .. " to colony", peripherals.GetMonitor())
+    if type(response) == "table" then
+        if response.amount ~= nil and response.amount > 0 then
+            -- If item exists and has atleast 1 in the me system, export that item to the colonyside interface
+            response.count = command["Amount"]
+            playerSide.exportItemToPeripheral(response, peripheral.getName(peripherals.GetColonyMeBridgeInventory()))
+            monitorWriter.WriteLine("Exported " .. response.name .. " to colony", peripherals.GetMonitor())
+        end
     end
 end
 

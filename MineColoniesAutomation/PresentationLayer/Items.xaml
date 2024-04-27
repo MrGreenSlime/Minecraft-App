@@ -20,7 +20,7 @@
         <ListBox HorizontalAlignment="Left" Name="regularTasks" Height="125" Margin="414,487,0,0" VerticalAlignment="Top" Width="367" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="regularTasks_SelectionChanged" GotFocus="regularTasks_GotFocus" Background="Black" BorderBrush="White" Foreground="White" BorderThickness="2,2,2,2"/>
         <Label Content="builder tasks" HorizontalAlignment="Left" Height="34" Margin="27,448,0,0" VerticalAlignment="Top" Width="123" Foreground="White"/>
         <Label Content="regular tasks" HorizontalAlignment="Left" Height="34" Margin="414,448,0,0" VerticalAlignment="Top" Width="123" Foreground="White"/>
-        <ListBox HorizontalAlignment="Left" Name="itemsOfRequest" Height="455" Margin="822,157,0,0" VerticalAlignment="Top" Width="228" d:ItemsSource="{d:SampleData ItemCount=5}" Background="Black" BorderBrush="White" Foreground="White" BorderThickness="2,2,2,2"/>
-        <Label Content="items" Name="itemLabel" HorizontalAlignment="Left" Height="34" Margin="822,108,0,0" VerticalAlignment="Top" Width="164" Foreground="White"/>
+        <ListBox HorizontalAlignment="Left" Name="itemsOfRequest" Height="125" Margin="27,862,0,0" VerticalAlignment="Top" Width="754" d:ItemsSource="{d:SampleData ItemCount=5}" Background="Black" BorderBrush="White" Foreground="White" BorderThickness="2,2,2,2"/>
+        <Label Content="items" Name="itemLabel" HorizontalAlignment="Left" Height="34" Margin="27,828,0,0" VerticalAlignment="Top" Width="164" Foreground="White"/>
     </Grid>
 </Window>
