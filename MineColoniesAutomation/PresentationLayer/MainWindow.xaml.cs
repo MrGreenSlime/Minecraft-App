@@ -31,10 +31,6 @@ namespace PresentationLayer
             }
             Logic.setColonie();
             Logic.setPaths();
-            foreach (WorldPath pa in Logic.paths)
-            {
-                worldSelection.Items.Add(pa);
-            }
         }
         public MainWindow(LogicInterface.LogicInterface logic)
         {
@@ -44,10 +40,6 @@ namespace PresentationLayer
             //Logic.setColonie();
             //Logic.setStorage();
             Logic.setPaths();
-            foreach (WorldPath pa in Logic.paths)
-            {
-                worldSelection.Items.Add(pa);
-            }
         }
 
         private string ShowFolderBrowserDialog()
