@@ -143,7 +143,7 @@ namespace DataImplementation
                         if (colonyItem != null)
                         {
                             if (!colonyReserve.ContainsKey(colonyItem.name)) colonyReserve.Add(colonyItem.name, 0);
-                            if (colonyItem.amount - colonyReserve[request.item.name] > 0) continue;
+                            if (colonyItem.amount - colonyReserve[request.item.name] <= 0) continue;
 
                             if (request.needed >= colonyItem.amount - colonyReserve[request.item.name])
                             {
@@ -164,7 +164,7 @@ namespace DataImplementation
                         if (playerItem != null)
                         {
                             if (!playerReserve.ContainsKey(playerItem.name)) playerReserve.Add(playerItem.name, 0);
-                            if (playerItem.amount - playerReserve[request.item.name] > 0) continue;
+                            if (playerItem.amount - playerReserve[request.item.name] <= 0) continue;
 
                             if (request.needed - already_have >= playerItem.amount - playerReserve[request.item.name])
                             {
