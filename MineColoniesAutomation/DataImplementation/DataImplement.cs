@@ -80,6 +80,9 @@ namespace DataImplementation
                 string jsonString = File.ReadAllText(colonyPath + "\\aeData.json");
                 jsonString = jsonString.Replace("\"tags\":{}", "\"tags\":[]");
                 jsonString = jsonString.Replace("\"tags\": {}", "\"tags\":[]");
+                jsonString = jsonString.Replace("\"colonySide\":{}", "\"colonySide\":[]");
+                jsonString = jsonString.Replace("\"playerSide\":{}", "\"playerSide\":[]");
+                jsonString = jsonString.Replace("\"patterns\":{}", "\"patterns\":[]");
                 try
                 {
                     List<ItemsInStorage> Storage = System.Text.Json.JsonSerializer.Deserialize<List<ItemsInStorage>>(jsonString);
@@ -196,14 +199,31 @@ namespace DataImplementation
 
         async private void GetRecipes()
         {
+            List<string> tempPaths = new List<string>();
             foreach (string modPath in ModPaths)
             {
+                tempPaths.Add(tempPathString + modPath.Split('\\').Last());
                 if (!Directory.Exists(tempPathString + modPath.Split('\\').Last()))
                     await Task.Run(() => { ZipFile.ExtractToDirectory(modPath, tempPathString + modPath.Split('\\').Last()); });
-
-
             }
+
             //TODO find and extract recipes
+            foreach (string tempPath in tempPaths)
+            {
+                if (Directory.Exists(tempPath + "\\data"))
+                {
+                    foreach (string dir in Directory.EnumerateDirectories(tempPath + "\\data"))
+                    {
+                        List<string> dataDirs = Directory.EnumerateDirectories(dir).ToList();
+                        List<string> recipeDirs = dataDirs.Where(x => x.Contains("recipe")).ToList();
+                        List<string> recipeFiles = new List<string>();
+                        foreach (string recipeDir in recipeDirs)
+                        {
+                            recipeFiles.AddRange(Directory.EnumerateFiles(recipeDir, "*", SearchOption.AllDirectories));
+                        }
+                    }
+                }
+            }
         }
 
         public void Close()
