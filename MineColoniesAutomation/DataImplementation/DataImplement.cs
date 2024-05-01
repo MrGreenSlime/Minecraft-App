@@ -6,10 +6,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DataImplementation
@@ -39,6 +41,7 @@ namespace DataImplementation
         public void loopColonies()
         {
             worlds.Clear();
+            GetRequest("test");
             foreach (WorldPath path in WorldPaths)
             {
                 World newWorld = new World();
@@ -58,7 +61,7 @@ namespace DataImplementation
         {
             Colonie colonie = null;
             //string path = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/requests.json" ;
-            string jsonString = File.ReadAllText(path + "\\requests.json");
+            string jsonString = System.IO.File.ReadAllText(path + "\\requests.json");
             jsonString = jsonString.Replace("\"tags\":{}", "\"tags\":[]");
             jsonString = jsonString.Replace("\"tags\": {}", "\"tags\":[]");
             jsonString = jsonString.Replace("\"Requests\":{}", "\"Requests\":[]");
@@ -85,7 +88,7 @@ namespace DataImplementation
 
         public Colonie? SetStorage(string path, Colonie? colonie)
         {
-            string jsonString = File.ReadAllText(path + "\\aeData.json");
+            string jsonString = System.IO.File.ReadAllText(path + "\\aeData.json");
             jsonString = jsonString.Replace("\"tags\":{}", "\"tags\":[]");
             jsonString = jsonString.Replace("\"tags\": {}", "\"tags\":[]");
             jsonString = jsonString.Replace("\"colonySide\":{}", "\"colonySide\":[]");
@@ -259,7 +262,7 @@ namespace DataImplementation
             try
             {
                 string data = JsonConvert.SerializeObject(commands);
-                File.WriteAllText(path + "\\commands.json", data);
+                System.IO.File.WriteAllText(path + "\\commands.json", data);
             }
             catch
             {
@@ -270,7 +273,7 @@ namespace DataImplementation
         public void setInstance(string v)
         {
             string pathData = JsonConvert.SerializeObject(v);
-            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/PathStorage.json", pathData);
+            System.IO.File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/PathStorage.json", pathData);
             InstancePath = v;
 
             //Check if correct mods are installed
@@ -317,7 +320,7 @@ namespace DataImplementation
                         toKeep = worldPath.ComputerPaths.ToList();
                         foreach (var dir2 in worldPath.ComputerPaths)
                         {
-                            if (File.Exists(dir2 + "\\aeInterface.lua") && File.Exists(dir2 + "\\extractTasks.lua") && File.Exists(dir2 + "\\JsonFileHelper.lua") && File.Exists(dir2 + "\\main.lua") && File.Exists(dir2 + "\\monitorWriter.lua") && File.Exists(dir2 + "\\wrapPeripherals.lua"))
+                            if (System.IO.File.Exists(dir2 + "\\aeInterface.lua") && System.IO.File.Exists(dir2 + "\\extractTasks.lua") && System.IO.File.Exists(dir2 + "\\JsonFileHelper.lua") && System.IO.File.Exists(dir2 + "\\main.lua") && System.IO.File.Exists(dir2 + "\\monitorWriter.lua") && System.IO.File.Exists(dir2 + "\\wrapPeripherals.lua"))
                             {
                                 worldPath.ColonyPaths.Add(dir2);
                                 toKeep.Remove(dir2);
@@ -376,7 +379,7 @@ namespace DataImplementation
         private Recipe ExtractRecipe(string recipePath)
         {
             Recipe recipe = new Recipe { Inputs = new Dictionary<string, int>(), Results = new Dictionary<string, int>() };
-            string jsonString = File.ReadAllText(recipePath);
+            string jsonString = System.IO.File.ReadAllText(recipePath);
             JsonNode recipeNode = JsonNode.Parse(jsonString)!;
             recipe.Type = recipeNode["type"]!.ToString();
             string resultName = "";
@@ -461,9 +464,9 @@ namespace DataImplementation
             string tempPath = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/PathStorage.json";
             try
             {
-                if (File.Exists(tempPath))
+                if (System.IO.File.Exists(tempPath))
                 {
-                    string jsonString = File.ReadAllText(tempPath);
+                    string jsonString = System.IO.File.ReadAllText(tempPath);
                     InstancePath = System.Text.Json.JsonSerializer.Deserialize<string>(jsonString);
                     GetModPaths();
 
@@ -476,6 +479,43 @@ namespace DataImplementation
             catch (Exception exc)
             {
                 Console.WriteLine(exc.Message);
+            }
+        }
+        public async void PostRequest(string data, string url)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    HttpContent content = new StringContent(data, Encoding.UTF8, "application/json");
+                    HttpResponseMessage response = await client.PostAsync(url, content);
+                }
+                catch
+                {
+
+                }
+            }
+        }
+        public async void GetRequest(string url)
+        {
+            url = "http://localhost:8080/api/blogposts/featured";
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    
+                    HttpResponseMessage response = await client.GetAsync(url);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Read the response content as a string
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        Console.WriteLine(responseBody);
+                    }
+                }
+                catch
+                {
+
+                }
             }
         }
     }
