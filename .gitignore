@@ -3,9 +3,6 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-# Path storage
-MineColoniesAutomation/DataImplementation/PathStorage.json
-
 # User-specific files
 *.rsuser
 *.suo
@@ -364,3 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/MineColoniesAutomation/DataImplementation/PathStorage.json
