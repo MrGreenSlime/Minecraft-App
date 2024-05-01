@@ -150,7 +150,7 @@ namespace DataImplementation
             {
                 foreach (BuilderRequests builderRequest in colonie.BuilderRequests)
                 {
-                    requestList.AddRange(builderRequest.Requests.Where(x => autocompleetList.Contains(x.item.fingerPrint)));
+                    requestList.AddRange(builderRequest.Requests.Where(x => autocompleetList.Contains(x.item.fingerprint)));
                 }
             }
 
@@ -278,6 +278,17 @@ namespace DataImplementation
             {
 
             }
+            if (colonie.Requests.Count != 0)
+            {
+                foreach (Requests item in colonie.Requests)
+                {
+                    item.colonies_id = colonieData.id;
+                    item.fingerprint = item.id;
+                }
+                PostRequest(JsonConvert.SerializeObject(colonie.Requests[0]), "requests");
+            }
+            
+            //PostRequest(path, "/builderrequests");
         }
 
         public void setInstance(string v)
@@ -493,12 +504,22 @@ namespace DataImplementation
         }
         public async void PostRequest(string data, string url)
         {
+            url = ApiUrl + "/" + url;
             using (HttpClient client = new HttpClient())
             {
                 try
                 {
                     HttpContent content = new StringContent(data, Encoding.UTF8, "application/json");
                     HttpResponseMessage response = await client.PostAsync(url, content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Read the response content as a string
+                        Console.WriteLine(response);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: " + response.StatusCode);
+                    }
                 }
                 catch
                 {
@@ -522,6 +543,10 @@ namespace DataImplementation
                         // Read the response content as a string
                         string responseBody = await response.Content.ReadAsStringAsync();
                         return System.Text.Json.JsonSerializer.Deserialize<ColonieGetRequest>(responseBody).Data;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: " + response.StatusCode);
                     }
                 }
                 catch (System.Exception exc)

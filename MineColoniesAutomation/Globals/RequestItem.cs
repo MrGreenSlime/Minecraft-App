@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Globals
@@ -10,7 +11,7 @@ namespace Globals
     {
         public int count { get; set; }
         public string displayName { get; set; }
-        public string fingerPrint { get; set; }
+        public string fingerprint { get; set; }
         public int maxStackSize { get; set; }
         public string name { get; set; }
         public Dictionary<string, object> nbt { get; set; }

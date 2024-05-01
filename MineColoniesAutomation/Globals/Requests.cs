@@ -8,6 +8,8 @@ namespace Globals
 {
     public class Requests
     {
+        public int colonies_id { get; set; }
+        public string fingerprint { get; set; }
         public int count { get; set; }
         public string name { get; set; }
         public string desc { get; set; }
