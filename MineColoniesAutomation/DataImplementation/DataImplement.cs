@@ -18,6 +18,7 @@ namespace DataImplementation
 {
     public class DataImplement : DataInterface.DataInterface
     {
+        public readonly string ApiUrl = "http://localhost:8080/api";
         public List<World> worlds { get; set; }
         public string InstancePath { get; set; }
         public List<WorldPath> WorldPaths { get; set; }
@@ -41,7 +42,6 @@ namespace DataImplementation
         public void loopColonies()
         {
             worlds.Clear();
-            GetRequest("test");
             foreach (WorldPath path in WorldPaths)
             {
                 World newWorld = new World();
@@ -50,7 +50,7 @@ namespace DataImplementation
                 {
                     Colonie? colonie = SetColonie(coloniePath);
                     colonie = SetStorage(coloniePath, colonie);
-                    WriteCommands(coloniePath, colonie);
+                    WriteCommands(coloniePath, colonie, path.WorldPathString);
                     newWorld.colonies.Add(colonie);
                 }
                 worlds.Add(newWorld);
@@ -125,13 +125,22 @@ namespace DataImplementation
             return colonie;
         }
 
-        public void WriteCommands(string path, Colonie? colonie)
+        public async void WriteCommands(string path, Colonie? colonie, string worldPath)
         {
+
             if (colonie == null) return;
+            DataGetColonieRequest colonieData = await GetRequest("/worlds/" + worldPath + "/colonies/" + colonie.Name);
             List<SpecifiedRequest> requestList = new List<SpecifiedRequest>();
             bool autocompleet = true;
             bool armorCompleet = false;
             bool toolCompleet = false;
+            if (colonieData != null)
+            {
+                autocompleet = colonieData.autocomplete;
+                armorCompleet = colonieData.autoArmor;
+                toolCompleet = colonieData.autoTools;
+            }
+            
             List<string> autocompleetList = new List<string>();
             if (autocompleet)
             {
@@ -238,6 +247,7 @@ namespace DataImplementation
                     }
                     if (armorCompleet == true)
                     {
+                        string naam = request.items[0].name;
                         if (request.items.Where(x => x.tags.Contains("minecraft:item/forge:armors")).Count() > 0)
                         {
                             StorageItem reqItem = colonie.items.items.playerSide.FirstOrDefault(x => x.name.Equals(request.items[0].name));
@@ -496,9 +506,11 @@ namespace DataImplementation
                 }
             }
         }
-        public async void GetRequest(string url)
+        public async Task<DataGetColonieRequest> GetRequest(string url)
         {
-            url = "http://localhost:8080/api/blogposts/featured";
+            url = ApiUrl + url.Replace("\\", "_");
+            url = "http://localhost:8080/api/worlds/AdminsWorld/colonies/SteamBotBro's Colony";
+            
             using (HttpClient client = new HttpClient())
             {
                 try
@@ -509,14 +521,15 @@ namespace DataImplementation
                     {
                         // Read the response content as a string
                         string responseBody = await response.Content.ReadAsStringAsync();
-                        Console.WriteLine(responseBody);
+                        return System.Text.Json.JsonSerializer.Deserialize<ColonieGetRequest>(responseBody).Data;
                     }
                 }
-                catch
+                catch (System.Exception exc)
                 {
-
+                    Console.WriteLine(exc);
                 }
             }
+            return new DataGetColonieRequest();
         }
     }
 }
