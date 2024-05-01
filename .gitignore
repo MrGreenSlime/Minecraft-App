@@ -4,7 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # Path storage
-PathStorage.json
+DataImplementation/PathStorage.json
 
 # User-specific files
 *.rsuser
