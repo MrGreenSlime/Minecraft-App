@@ -61,6 +61,7 @@ namespace DataImplementation
             jsonString = jsonString.Replace("\"tags\": {}", "\"tags\":[]");
             jsonString = jsonString.Replace("\"Requests\":{}", "\"Requests\":[]");
             jsonString = jsonString.Replace("\"Requests\": {}", "\"Requests\":[]");
+            jsonString = jsonString.Replace("\"BuilderRequests\":{}", "\"BuilderRequests\":[]");
             try
             {
                 colonie = System.Text.Json.JsonSerializer.Deserialize<List<Colonie>>(jsonString)![0];
@@ -88,6 +89,7 @@ namespace DataImplementation
             jsonString = jsonString.Replace("\"colonySide\":{}", "\"colonySide\":[]");
             jsonString = jsonString.Replace("\"playerSide\":{}", "\"playerSide\":[]");
             jsonString = jsonString.Replace("\"patterns\":{}", "\"patterns\":[]");
+
             try
             {
                 if (colonie == null) throw new ArgumentException("colonie Does not exist");
@@ -123,6 +125,8 @@ namespace DataImplementation
             if (colonie == null) return;
             List<SpecifiedRequest> requestList = new List<SpecifiedRequest>();
             bool autocompleet = true;
+            bool armorCompleet = false;
+            bool toolCompleet = false;
             List<string> autocompleetList = new List<string>();
             if (autocompleet)
             {
@@ -203,10 +207,53 @@ namespace DataImplementation
                 }
 
             }
-            //foreach (Requests request in colonie.Requests)
-            //{
-            //    commands.Add(new Commands { Amount = 1, Item = request.items[0].name, NeedsCrafting = false });
-            //}
+            if (toolCompleet == true || armorCompleet == true)
+            {
+                foreach (Requests request in colonie.Requests)
+                {
+                    if (toolCompleet == true)
+                    {
+                        if (request.items.Where(x => x.tags.Contains("minecraft:item/forge:tools")).Count() > 0)
+                        {
+                            StorageItem reqItem = colonie.items.items.playerSide.FirstOrDefault(x => x.name.Equals(request.items[0].name));
+                            if (reqItem != null)
+                            {
+                                commands.Add(new Commands { Amount = 1, Item = request.items[0].name, NeedsCrafting = false });
+                            }
+                            else
+                            {
+                                StorageItem patternItem = colonie.items.patterns.FirstOrDefault(x => x.name.Equals(request.items[0].name));
+                                if (patternItem != null)
+                                {
+                                    commands.Add(new Commands { Amount = 1, Item = request.items[0].name, NeedsCrafting = true });
+                                }
+                            }
+
+                        }
+                    }
+                    if (armorCompleet == true)
+                    {
+                        if (request.items.Where(x => x.tags.Contains("minecraft:item/forge:armors")).Count() > 0)
+                        {
+                            StorageItem reqItem = colonie.items.items.playerSide.FirstOrDefault(x => x.name.Equals(request.items[0].name));
+                            if (reqItem != null)
+                            {
+                                commands.Add(new Commands { Amount = 1, Item = request.items[0].name, NeedsCrafting = false });
+                            } else
+                            {
+                                StorageItem patternItem = colonie.items.patterns.FirstOrDefault(x => x.name.Equals(request.items[0].name));
+                                if (patternItem != null )
+                                {
+                                    commands.Add(new Commands { Amount = 1, Item = request.items[0].name, NeedsCrafting = true });
+                                }
+                            }
+                            
+                        }
+                    }
+                    //commands.Add(new Commands { Amount = 1, Item = request.items[0].name, NeedsCrafting = false });
+                }
+            }
+
             try
             {
                 string data = JsonConvert.SerializeObject(commands);
