@@ -285,7 +285,7 @@ namespace DataImplementation
                     item.colonies_id = colonieData.id;
                     item.fingerprint = item.id;
                 }
-                PostRequest(JsonConvert.SerializeObject(colonie.Requests[0]), "requests");
+                PostRequest(JsonConvert.SerializeObject(colonie.Requests), "requests");
             }
             
             //PostRequest(path, "/builderrequests");
