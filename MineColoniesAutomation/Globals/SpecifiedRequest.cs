@@ -10,7 +10,7 @@ namespace Globals
     {
         public int available { get; set; }
         public int delivering { get; set; }
-        public string displayname { get; set; }
+        public string displayName { get; set; }
         public RequestItem item {  get; set; } 
         public int needed { get; set; }
         public string status { get; set; }

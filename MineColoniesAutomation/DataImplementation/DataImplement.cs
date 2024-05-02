@@ -39,7 +39,7 @@ namespace DataImplementation
             CheckStorage();
         }
 
-        public void loopColonies()
+        public async void loopColonies()
         {
             worlds.Clear();
             foreach (WorldPath path in WorldPaths)
@@ -49,8 +49,9 @@ namespace DataImplementation
                 foreach (string coloniePath in path.ColonyPaths)
                 {
                     Colonie? colonie = SetColonie(coloniePath);
+                    DataGetColonieRequest request = await GetRequest("/worlds/" + path.WorldPathString + "/colonies/" + colonie.Name);
                     colonie = SetStorage(coloniePath, colonie);
-                    WriteCommands(coloniePath, colonie, path.WorldPathString);
+                    WriteCommands(coloniePath, colonie, request);
                     newWorld.colonies.Add(colonie);
                 }
                 worlds.Add(newWorld);
@@ -125,11 +126,11 @@ namespace DataImplementation
             return colonie;
         }
 
-        public async void WriteCommands(string path, Colonie? colonie, string worldPath)
+        public void WriteCommands(string path, Colonie? colonie, DataGetColonieRequest colonieData)
         {
 
             if (colonie == null) return;
-            DataGetColonieRequest colonieData = await GetRequest("/worlds/" + worldPath + "/colonies/" + colonie.Name);
+            //DataGetColonieRequest colonieData = await GetRequest("/worlds/" + worldPath + "/colonies/" + colonie.Name);
             List<SpecifiedRequest> requestList = new List<SpecifiedRequest>();
             bool autocompleet = true;
             bool armorCompleet = false;
@@ -279,6 +280,14 @@ namespace DataImplementation
             {
 
             }
+            if (colonie.BuilderRequests.Count != 0)
+            {
+                foreach (BuilderRequests item in colonie.BuilderRequests)
+                {
+                    item.colonies_id = colonieData.id;
+                }
+                PostRequest(JsonConvert.SerializeObject(colonie.BuilderRequests),"builderrequests");
+            }
             if (colonie.Requests.Count != 0)
             {
                 foreach (Requests item in colonie.Requests)
@@ -286,6 +295,7 @@ namespace DataImplementation
                     item.colonies_id = colonieData.id;
                     item.fingerprint = item.id;
                 }
+                 
                 PostRequest(JsonConvert.SerializeObject(colonie.Requests), "requests");
             }
             

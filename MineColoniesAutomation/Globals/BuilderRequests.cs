@@ -9,6 +9,7 @@ namespace Globals
 {
     public class BuilderRequests
     {
+        public int colonies_id { get; set; }
         public Location location { get; set; }
         public string name { get; set; }
         public List<SpecifiedRequest> Requests { get; set; }
