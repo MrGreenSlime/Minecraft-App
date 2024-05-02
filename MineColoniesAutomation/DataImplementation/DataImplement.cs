@@ -148,9 +148,10 @@ namespace DataImplementation
             }
             else
             {
-                foreach (BuilderRequests builderRequest in colonie.BuilderRequests)
+                List<BuilderRequests> builderRequests = colonie.BuilderRequests.Where(x => autocompleetList.Contains(x.name)).ToList();
+                foreach (BuilderRequests builderRequest in builderRequests)
                 {
-                    requestList.AddRange(builderRequest.Requests.Where(x => autocompleetList.Contains(x.item.fingerprint)));
+                    requestList.AddRange(builderRequest.Requests);
                 }
             }
 
