@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Net;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
@@ -44,12 +45,31 @@ namespace DataImplementation
             worlds.Clear();
             foreach (WorldPath path in WorldPaths)
             {
+                string returnData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-"));
+                if (returnData == null)
+                {
+                    await PostRequest("{\"name\":\"" + path.WorldPathString.Replace("\\", "-") + "\"}", "/worlds");
+                    returnData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-"));
+                }
+                if (returnData == null)
+                    continue;
+                int worldId = System.Text.Json.JsonSerializer.Deserialize<WorldGetRequest>(returnData).Data.id;
                 World newWorld = new World();
                 newWorld.colonies = new List<Colonie>();
                 foreach (string coloniePath in path.ColonyPaths)
                 {
+                    
                     Colonie? colonie = SetColonie(coloniePath);
-                    DataGetColonieRequest request = await GetRequest("/worlds/" + path.WorldPathString + "/colonies/" + colonie.Name);
+                    string returnColonieData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-") + "/colonies/" + colonie.Name);
+                    if (returnColonieData == null)
+                    {
+                        await PostRequest("{\"name\":\"" + colonie.Name + "\",\"world_id\":\""+ worldId +"\"}", "/colonies");
+                        returnColonieData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-") + "/colonies/" + colonie.Name);
+                    }
+                    if (returnColonieData == null)
+                        continue;
+                    DataGetColonieRequest request = System.Text.Json.JsonSerializer.Deserialize<ColonieGetRequest>(returnColonieData).Data;
+                    //DataGetColonieRequest request = await GetRequest("/worlds/" + path.WorldPathString + "/colonies/" + colonie.Name);
                     colonie = SetStorage(coloniePath, colonie);
                     WriteCommands(coloniePath, colonie, request);
                     newWorld.colonies.Add(colonie);
@@ -286,7 +306,7 @@ namespace DataImplementation
                 {
                     item.colonies_id = colonieData.id;
                 }
-                PostRequest(JsonConvert.SerializeObject(colonie.BuilderRequests),"builderrequests");
+                PostRequest(JsonConvert.SerializeObject(colonie.BuilderRequests),"/builderrequests");
             }
             if (colonie.Requests.Count != 0)
             {
@@ -296,7 +316,7 @@ namespace DataImplementation
                     item.fingerprint = item.id;
                 }
                  
-                PostRequest(JsonConvert.SerializeObject(colonie.Requests), "requests");
+                PostRequest(JsonConvert.SerializeObject(colonie.Requests), "/requests");
             }
             
             //PostRequest(path, "/builderrequests");
@@ -513,9 +533,9 @@ namespace DataImplementation
                 Console.WriteLine(exc.Message);
             }
         }
-        public async void PostRequest(string data, string url)
+        public async Task<bool> PostRequest(string data, string url)
         {
-            url = ApiUrl + "/" + url;
+            url = ApiUrl + url;
             using (HttpClient client = new HttpClient())
             {
                 try
@@ -526,22 +546,24 @@ namespace DataImplementation
                     {
                         // Read the response content as a string
                         Console.WriteLine(response);
+                        return true;
                     }
                     else
                     {
                         Console.WriteLine("Error: " + response.StatusCode);
+                        return false;
                     }
                 }
                 catch
                 {
-
+                    return false;
                 }
             }
         }
-        public async Task<DataGetColonieRequest> GetRequest(string url)
+        public async Task<string> GetRequest(string url)
         {
-            url = ApiUrl + url.Replace("\\", "_");
-            url = "http://localhost:8080/api/worlds/AdminsWorld/colonies/SteamBotBro's Colony";
+            url = ApiUrl + url;
+            //url = "http://localhost:8080/api/worlds/AdminsWorld/colonies/SteamBotBro's Colony";
             
             using (HttpClient client = new HttpClient())
             {
@@ -552,8 +574,9 @@ namespace DataImplementation
                     if (response.IsSuccessStatusCode)
                     {
                         // Read the response content as a string
-                        string responseBody = await response.Content.ReadAsStringAsync();
-                        return System.Text.Json.JsonSerializer.Deserialize<ColonieGetRequest>(responseBody).Data;
+                        return await response.Content.ReadAsStringAsync();
+                        //string responseBody = await response.Content.ReadAsStringAsync();
+                        //return System.Text.Json.JsonSerializer.Deserialize<ColonieGetRequest>(responseBody).Data;
                     }
                     else
                     {
@@ -565,7 +588,7 @@ namespace DataImplementation
                     Console.WriteLine(exc);
                 }
             }
-            return new DataGetColonieRequest();
+            return null;
         }
     }
 }
