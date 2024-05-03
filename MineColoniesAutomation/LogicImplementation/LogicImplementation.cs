@@ -26,9 +26,9 @@ namespace LogicImplementation
         }
 
 
-        public void setColonie()
+        public async Task setColonie()
         {
-            Data.loopColonies();
+            await Data.loopColonies();
             World = Data.worlds;
         }
         //public void setStorage()

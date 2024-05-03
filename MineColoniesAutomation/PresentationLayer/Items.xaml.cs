@@ -40,11 +40,11 @@ namespace PresentationLayer
                 }
             }
             var token = cancellationTokenSource.Token;
-            Task task = Task.Run(() =>
+            Task task = Task.Run(async () =>
             {
                 while (!token.IsCancellationRequested)
                 {
-                    Logic.setColonie();
+                    await Logic.setColonie();
                     int storage = -1;
                     synchronizationContext.Post((c) => storage = ColonySelection.SelectedIndex, null);
                     synchronizationContext.Post((c) => ColonySelection.Items.Clear(), null);
@@ -174,6 +174,11 @@ namespace PresentationLayer
             {
                 itemsOfRequest.Items.Add(item);
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            cancellationTokenSource.Cancel();
         }
     }
 }

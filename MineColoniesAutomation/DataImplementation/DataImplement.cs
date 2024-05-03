@@ -40,7 +40,7 @@ namespace DataImplementation
             CheckStorage();
         }
 
-        public async void loopColonies()
+        public async Task loopColonies()
         {
             worlds.Clear();
             foreach (WorldPath path in WorldPaths)

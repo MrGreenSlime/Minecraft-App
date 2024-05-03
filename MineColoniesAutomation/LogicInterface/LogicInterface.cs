@@ -13,7 +13,7 @@ namespace LogicInterface
         public bool instanceSelected { get; set; }
         void Close();
         public List<WorldPath> paths { get; set; }
-        public void setColonie();
+        public Task setColonie();
         void setInstance(string v);
         //public void setStorage();
         public void start();

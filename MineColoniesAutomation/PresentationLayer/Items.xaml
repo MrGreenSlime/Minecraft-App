@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Title="Items" Height="689" Width="1104" Background="Black" Foreground="White">
+        Title="Items" Height="689" Width="1104" Background="Black" Foreground="White" Closing="Window_Closing">
 
     <Grid Margin="0,0,0,-6">
         <ComboBox HorizontalAlignment="Left" Background="Black" Foreground="Black" Name="ColonySelection" Height="38" Margin="34,37,0,0" VerticalAlignment="Top" Width="208" SelectionChanged="ColonySelection_SelectionChanged" BorderBrush="Red"/>

@@ -18,6 +18,6 @@ namespace DataInterface
         public void setInstance(string v);
         //public World setStorage(WorldPath path, World newWorld);
         public void start();
-        public void loopColonies();
+        public Task loopColonies();
     }
 }
