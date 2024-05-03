@@ -6,6 +6,7 @@ local function ExtractTasks(peripherals, monitorWriter)
     local requestData = {}
     -- Add the colony name in the data
     requestData["Name"] = peripherals.GetColonyIntegrator().getColonyName()
+    requestData["fingerprint"] = peripherals.GetColonyIntegrator().getColonyID()
     -- Add all requests into the data
     requestData["Requests"] = peripherals.GetColonyIntegrator().getRequests()
     -- Remove all requests that are comming from Builders from the requests table
