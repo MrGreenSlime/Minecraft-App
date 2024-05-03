@@ -132,24 +132,24 @@ namespace DataImplementation
             if (colonie == null) return;
             //DataGetColonieRequest colonieData = await GetRequest("/worlds/" + worldPath + "/colonies/" + colonie.Name);
             List<SpecifiedRequest> requestList = new List<SpecifiedRequest>();
-            bool autocompleet = true;
-            bool armorCompleet = false;
-            bool toolCompleet = false;
+            bool autocomplete = true;
+            bool armorComplete = false;
+            bool toolComplete = false;
             if (colonieData != null)
             {
-                autocompleet = colonieData.autocomplete;
-                armorCompleet = colonieData.autoArmor;
-                toolCompleet = colonieData.autoTools;
+                autocomplete = colonieData.autocomplete;
+                armorComplete = colonieData.autoArmor;
+                toolComplete = colonieData.autoTools;
             }
             
-            List<string> autocompleetList = new List<string>();
-            if (autocompleet)
+            List<string> autocompleteList = new List<string>();
+            if (autocomplete)
             {
                 colonie.BuilderRequests.ForEach(x => requestList.AddRange(x.Requests));
             }
             else
             {
-                List<BuilderRequests> builderRequests = colonie.BuilderRequests.Where(x => autocompleetList.Contains(x.name)).ToList();
+                List<BuilderRequests> builderRequests = colonie.BuilderRequests.Where(x => autocompleteList.Contains(x.name)).ToList();
                 foreach (BuilderRequests builderRequest in builderRequests)
                 {
                     requestList.AddRange(builderRequest.Requests);
@@ -223,11 +223,11 @@ namespace DataImplementation
                 }
 
             }
-            if (toolCompleet == true || armorCompleet == true)
+            if (toolComplete == true || armorComplete == true)
             {
                 foreach (Requests request in colonie.Requests)
                 {
-                    if (toolCompleet == true)
+                    if (toolComplete == true)
                     {
                         if (request.items.Where(x => x.tags.Contains("minecraft:item/forge:tools")).Count() > 0)
                         {
@@ -247,7 +247,7 @@ namespace DataImplementation
 
                         }
                     }
-                    if (armorCompleet == true)
+                    if (armorComplete == true)
                     {
                         string naam = request.items[0].name;
                         if (request.items.Where(x => x.tags.Contains("minecraft:item/forge:armors")).Count() > 0)
