@@ -31,10 +31,10 @@ namespace DataImplementation
         {
             Directory.CreateDirectory(tempPathString);
             worlds = new List<World>();
-            foreach (World item in worlds)
-            {
-                item.colonies = new List<Colonie>();
-            }
+            //foreach (World item in worlds)
+            //{
+            //    item.colonies = new List<Colonie>();
+            //}
             WorldPaths = new List<WorldPath>();
             ModPaths = new List<string>();
             CheckStorage();
@@ -72,6 +72,24 @@ namespace DataImplementation
                     //DataGetColonieRequest request = await GetRequest("/worlds/" + path.WorldPathString + "/colonies/" + colonie.Name);
                     colonie = SetStorage(coloniePath, colonie);
                     WriteCommands(coloniePath, colonie, request);
+                    if (colonie.BuilderRequests.Count != 0)
+                    {
+                        foreach (BuilderRequests item in colonie.BuilderRequests)
+                        {
+                            item.colonies_id = request.id;
+                        }
+                        PostRequest(JsonConvert.SerializeObject(colonie.BuilderRequests), "/builderrequests");
+                    }
+                    if (colonie.Requests.Count != 0)
+                    {
+                        foreach (Requests item in colonie.Requests)
+                        {
+                            item.colonies_id = request.id;
+                            item.fingerprint = item.id;
+                        }
+
+                        PostRequest(JsonConvert.SerializeObject(colonie.Requests), "/requests");
+                    }
                     newWorld.colonies.Add(colonie);
                 }
                 worlds.Add(newWorld);
@@ -300,24 +318,6 @@ namespace DataImplementation
             {
 
             }
-            if (colonie.BuilderRequests.Count != 0)
-            {
-                foreach (BuilderRequests item in colonie.BuilderRequests)
-                {
-                    item.colonies_id = colonieData.id;
-                }
-                PostRequest(JsonConvert.SerializeObject(colonie.BuilderRequests),"/builderrequests");
-            }
-            if (colonie.Requests.Count != 0)
-            {
-                foreach (Requests item in colonie.Requests)
-                {
-                    item.colonies_id = colonieData.id;
-                    item.fingerprint = item.id;
-                }
-                 
-                PostRequest(JsonConvert.SerializeObject(colonie.Requests), "/requests");
-            }
             
             //PostRequest(path, "/builderrequests");
         }
@@ -437,7 +437,9 @@ namespace DataImplementation
             string resultName = "";
             int resultCount = 0;
             JsonNode? ingredientName = null;
-            switch (recipe.Type)
+            try
+            {
+switch (recipe.Type)
             {
                 case "recipe":
                     if (recipeNode["result"] == null) break;
@@ -499,6 +501,12 @@ namespace DataImplementation
                     if (!recipe.Inputs.ContainsKey(ingredientName!.ToString())) recipe.Inputs.Add(ingredientName!.ToString() , 1);
                     recipe.Results.Add(recipeNode["result"]!.ToString(), ((int)recipeNode["count"]!));
                     break;
+            }
+            
+            }
+            catch(Exception exc)
+            {
+                Console.WriteLine(exc.ToString());
             }
             return recipe;
         }

@@ -31,19 +31,12 @@ namespace PresentationLayer
             cancellationTokenSource = new CancellationTokenSource();
             InitializeComponent();
             Logic = logic;
-
-            foreach (World item in Logic.World)
-            {
-                foreach (Colonie item2 in item.colonies)
-                {
-                    ColonySelection.Items.Add(item2);
-                }
-            }
             var token = cancellationTokenSource.Token;
             Task task = Task.Run(async () =>
             {
                 while (!token.IsCancellationRequested)
                 {
+                    Thread.Sleep(200);
                     await Logic.setColonie();
                     int storage = -1;
                     synchronizationContext.Post((c) => storage = ColonySelection.SelectedIndex, null);
@@ -62,7 +55,7 @@ namespace PresentationLayer
                             ColonySelection.SelectedIndex = storage;
                         }
                     }, null);
-                    Thread.Sleep(10000);
+                    Thread.Sleep(9800);
                 }
 
             });

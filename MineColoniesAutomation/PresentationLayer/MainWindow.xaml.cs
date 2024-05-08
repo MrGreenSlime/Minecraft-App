@@ -64,7 +64,7 @@ namespace PresentationLayer
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
-            Logic.start();
+            //Logic.start();
             Items window = new Items(Logic);
             Close();
             window.Show();
