@@ -19,7 +19,8 @@ namespace DataImplementation
 {
     public class DataImplement : DataInterface.DataInterface
     {
-        public readonly string ApiUrl = "http://localhost:8080/api";
+        //public readonly string ApiUrl = "http://localhost:8080/api";
+        public readonly string ApiUrl = "https://minecraftapi.thibeprovost.ikdoeict.be/api";
         public List<World> worlds { get; set; }
         public string InstancePath { get; set; }
         public List<WorldPath> WorldPaths { get; set; }
@@ -90,6 +91,10 @@ namespace DataImplementation
                         foreach (BuilderRequests item in colonie.BuilderRequests)
                         {
                             item.colonies_id = request.id;
+                            if (item.name == null)
+                            {
+                                item.name = "not applicable";
+                            }
                         }
                         PostRequest(JsonConvert.SerializeObject(colonie.BuilderRequests), "/builderrequests");
                     }
