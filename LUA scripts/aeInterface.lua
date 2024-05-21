@@ -51,13 +51,17 @@ end
 
 -- This function loops over all commands and makes them happen
 local function ProcessCommands(peripherals, monitorWriter, commands)
+    local toRemove = {}
     for index, command in ipairs(commands) do
         if command["NeedsCrafting"] then
             CraftItem(peripherals, monitorWriter, command)
         else
             MoveItemToColony(peripherals, monitorWriter, command)
         end
-        table.remove(commands, index)
+        table.insert(toRemove, index)
+    end
+    for i, commandToRemove in pairs(toRemove) do
+        table.remove(commands, commandToRemove)
     end
     return commands
 end

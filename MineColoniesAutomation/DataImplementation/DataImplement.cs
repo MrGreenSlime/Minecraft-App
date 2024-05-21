@@ -355,6 +355,40 @@ namespace DataImplementation
             GetRecipes();
         }
 
+        private void GetMinecraftJarPath()
+        {
+            if (IsFTBLayout())
+            {
+                string jsonText = System.IO.File.ReadAllText(InstancePath + "\\instance.json");
+                JsonNode? instanceNode = JsonNode.Parse(jsonText);
+                string jarName = instanceNode!["modLoader"]!.ToString();
+                ModPaths.Add(Directory.GetParent(InstancePath)!.Parent!.ToString()+"\\bin\\versions\\"+jarName+"\\"+jarName+".jar");
+            }
+            else if (isCurseForgeLayout())
+            {
+                string jsonText = System.IO.File.ReadAllText(InstancePath + "\\minecraftinstance.json");
+                JsonNode? instanceNode = JsonNode.Parse(jsonText);
+                string jarName = instanceNode!["baseModLoader"]!["name"]!.ToString();
+                ModPaths.Add(Directory.GetParent(InstancePath)!.Parent!.ToString() + "\\Install\\versions\\" + jarName + "\\" + jarName + ".jar");
+            }
+        }
+
+        private bool IsFTBLayout()
+        {
+            if (!Directory.Exists(InstancePath)) return false;
+            string possibleFtbPath = Directory.GetParent(InstancePath)!.Parent!.FullName;
+            if (Directory.Exists(possibleFtbPath+"/bin") && Directory.Exists(possibleFtbPath+"/instances") && Directory.Exists(possibleFtbPath+"/logs") && Directory.Exists(possibleFtbPath+"/storage")) return true;
+            return false;
+        }
+
+        private bool isCurseForgeLayout()
+        {
+            if (!Directory.Exists(InstancePath)) return false;
+            string possibleCurseForgePath = Directory.GetParent(InstancePath)!.Parent!.FullName;
+            if (Directory.Exists(possibleCurseForgePath + "/Downloads") && Directory.Exists(possibleCurseForgePath + "/Export") && Directory.Exists(possibleCurseForgePath + "/Install") && Directory.Exists(possibleCurseForgePath + "/Instances")) return true;
+            return false;
+        }
+
         private void GetModPaths()
         {
             if (Path.Exists(InstancePath + "\\mods"))
@@ -370,6 +404,7 @@ namespace DataImplementation
                 if (mod.Count() == 0) throw new Exception("Instance does not have minecolonies installed");
             }
             else throw new ArgumentException("Instance does not have a mod folder");
+            GetMinecraftJarPath();
         }
 
         private void GetWorldPaths()
@@ -545,7 +580,6 @@ switch (recipe.Type)
                     string jsonString = System.IO.File.ReadAllText(tempPath);
                     InstancePath = System.Text.Json.JsonSerializer.Deserialize<string>(jsonString);
                     GetModPaths();
-
 
                     GetWorldPaths();
 

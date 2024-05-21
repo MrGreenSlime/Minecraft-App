@@ -30,7 +30,6 @@ while true do
     jsonHelper.WriteJson("aeData.json", colonyAeData)
 
     -- Read in the commands and execute them
-    -- TODO Remove executed commands
     local commands = jsonHelper.ReadJson("commands.json")
     commands = aeInterface.ProcessCommands(peripherals, monitorWriter, commands)
     jsonHelper.WriteJson("commands.json", commands)
