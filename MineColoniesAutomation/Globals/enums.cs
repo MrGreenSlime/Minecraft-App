@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Globals
 {
-    public class NBT
+    public enum ItemType
     {
-        public int damage {  get; set; }
+        player, colonie, pattern
     }
 }

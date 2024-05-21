@@ -43,6 +43,7 @@ namespace DataImplementation
         public async Task loopColonies()
         {
             worlds.Clear();
+            List<PostItems> postItems = new List<PostItems>();
             foreach (WorldPath path in WorldPaths)
             {
                 string returnData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-"));
@@ -71,6 +72,18 @@ namespace DataImplementation
                     DataGetColonieRequest request = System.Text.Json.JsonSerializer.Deserialize<ColonieGetRequest>(returnColonieData).Data;
                     //DataGetColonieRequest request = await GetRequest("/worlds/" + path.WorldPathString + "/colonies/" + colonie.Name);
                     colonie = SetStorage(coloniePath, colonie);
+                    foreach (StorageItem item in colonie.items.patterns)
+                    {
+                        postItems.Add(new PostItems { name = item.name, displayName = item.displayName, amount = item.amount, fingerprint = item.fingerprint, isCraftable = item.isCraftable, type = ItemType.pattern, colonie_id = request.id });
+                    }
+                    foreach (StorageItem item in colonie.items.items.colonySide)
+                    {
+                        postItems.Add(new PostItems { name = item.name, displayName = item.displayName, amount = item.amount, fingerprint = item.fingerprint, isCraftable = item.isCraftable, type = ItemType.colonie, colonie_id = request.id });
+                    }
+                    foreach (StorageItem item in colonie.items.items.playerSide)
+                    {
+                        postItems.Add(new PostItems { name = item.name, displayName = item.displayName, amount = item.amount, fingerprint = item.fingerprint, isCraftable = item.isCraftable, type = ItemType.player, colonie_id = request.id });
+                    }
                     WriteCommands(coloniePath, colonie, request);
                     if (colonie.BuilderRequests.Count != 0)
                     {
@@ -94,6 +107,8 @@ namespace DataImplementation
                 }
                 worlds.Add(newWorld);
             }
+            string poststring = JsonConvert.SerializeObject(postItems);
+            PostRequest(JsonConvert.SerializeObject(postItems), "/storage_items");
         }
 
         public Colonie? SetColonie(string path)
@@ -181,13 +196,14 @@ namespace DataImplementation
             }
             
             List<string> autocompleteList = new List<string>();
+            List<string> nameList = colonieData.builderRequests.Where(x => x.autocomplete == true).Select(x => x.name).ToList();
             if (autocomplete)
             {
                 colonie.BuilderRequests.ForEach(x => requestList.AddRange(x.Requests));
             }
             else
             {
-                List<BuilderRequests> builderRequests = colonie.BuilderRequests.Where(x => autocompleteList.Contains(x.name)).ToList();
+                List<BuilderRequests> builderRequests = colonie.BuilderRequests.Where(x => nameList.Contains(x.name)).ToList();
                 foreach (BuilderRequests builderRequest in builderRequests)
                 {
                     requestList.AddRange(builderRequest.Requests);
