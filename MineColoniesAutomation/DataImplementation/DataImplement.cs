@@ -60,12 +60,12 @@ namespace DataImplementation
                 newWorld.colonies = new List<Colonie>();
                 foreach (string coloniePath in path.ColonyPaths)
                 {
-                    
+
                     Colonie? colonie = SetColonie(coloniePath);
                     string returnColonieData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-") + "/colonies/" + colonie.Name);
                     if (returnColonieData == null)
                     {
-                        await PostRequest("{\"name\":\"" + colonie.Name + "\",\"world_id\":\""+ worldId +"\"}", "/colonies");
+                        await PostRequest("{\"name\":\"" + colonie.Name + "\",\"world_id\":\"" + worldId + "\"}", "/colonies");
                         returnColonieData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-") + "/colonies/" + colonie.Name);
                     }
                     if (returnColonieData == null)
@@ -199,7 +199,7 @@ namespace DataImplementation
                 armorComplete = colonieData.autoArmor;
                 toolComplete = colonieData.autoTools;
             }
-            
+
             List<string> autocompleteList = new List<string>();
             List<string> nameList = colonieData.builderRequests.Where(x => x.autocomplete == true).Select(x => x.name).ToList();
             if (autocomplete)
@@ -315,15 +315,16 @@ namespace DataImplementation
                             if (reqItem != null)
                             {
                                 commands.Add(new Commands { Amount = 1, Item = request.items[0].name, NeedsCrafting = false });
-                            } else
+                            }
+                            else
                             {
                                 StorageItem patternItem = colonie.items.patterns.FirstOrDefault(x => x.name.Equals(request.items[0].name));
-                                if (patternItem != null )
+                                if (patternItem != null)
                                 {
                                     commands.Add(new Commands { Amount = 1, Item = request.items[0].name, NeedsCrafting = true });
                                 }
                             }
-                            
+
                         }
                     }
                     //commands.Add(new Commands { Amount = 1, Item = request.items[0].name, NeedsCrafting = false });
@@ -339,7 +340,7 @@ namespace DataImplementation
             {
 
             }
-            
+
             //PostRequest(path, "/builderrequests");
         }
 
@@ -367,7 +368,7 @@ namespace DataImplementation
                 string jsonText = System.IO.File.ReadAllText(InstancePath + "\\instance.json");
                 JsonNode? instanceNode = JsonNode.Parse(jsonText);
                 string jarName = instanceNode!["modLoader"]!.ToString();
-                ModPaths.Add(Directory.GetParent(InstancePath)!.Parent!.ToString()+"\\bin\\versions\\"+jarName+"\\"+jarName+".jar");
+                ModPaths.Add(Directory.GetParent(InstancePath)!.Parent!.ToString() + "\\bin\\versions\\" + jarName + "\\" + jarName + ".jar");
             }
             else if (isCurseForgeLayout())
             {
@@ -382,7 +383,7 @@ namespace DataImplementation
         {
             if (!Directory.Exists(InstancePath)) return false;
             string possibleFtbPath = Directory.GetParent(InstancePath)!.Parent!.FullName;
-            if (Directory.Exists(possibleFtbPath+"/bin") && Directory.Exists(possibleFtbPath+"/instances") && Directory.Exists(possibleFtbPath+"/logs") && Directory.Exists(possibleFtbPath+"/storage")) return true;
+            if (Directory.Exists(possibleFtbPath + "/bin") && Directory.Exists(possibleFtbPath + "/instances") && Directory.Exists(possibleFtbPath + "/logs") && Directory.Exists(possibleFtbPath + "/storage")) return true;
             return false;
         }
 
@@ -477,11 +478,13 @@ namespace DataImplementation
                 try
                 {
                     Recipes.Add(ExtractRecipe(recipeFile));
-                } catch
+                }
+                catch
                 {
 
                 }
             }
+
         }
 
         private Recipe ExtractRecipe(string recipePath)
@@ -495,72 +498,73 @@ namespace DataImplementation
             JsonNode? ingredientName = null;
             try
             {
-switch (recipe.Type)
-            {
-                case "recipe":
-                    if (recipeNode["result"] == null) break;
-                    resultName = recipeNode["result"]!.ToString();
-                    resultCount = ((int?)recipeNode["count"]) ?? 1;
-                    recipe.Results.Add(resultName, resultCount);
-                    var inputs = recipeNode["inputs"]!.AsArray();
-                    var inputItemsString = 
-                    recipe.Inputs = inputs.Select(x => {
-                        string name = x!["item"]!.ToString();
-                        int realCount = 1;
-                        var count = x!["count"];
-                        if (count != null)
+                switch (recipe.Type)
+                {
+                    case "recipe":
+                        if (recipeNode["result"] == null) break;
+                        resultName = recipeNode["result"]!.ToString();
+                        resultCount = ((int?)recipeNode["count"]) ?? 1;
+                        recipe.Results.Add(resultName, resultCount);
+                        var inputs = recipeNode["inputs"]!.AsArray();
+                        var inputItemsString =
+                        recipe.Inputs = inputs.Select(x =>
                         {
-                            realCount = ((int)count);
-                        }
+                            string name = x!["item"]!.ToString();
+                            int realCount = 1;
+                            var count = x!["count"];
+                            if (count != null)
+                            {
+                                realCount = ((int)count);
+                            }
 
-                        return new KeyValuePair<string, int>(name, realCount);
+                            return new KeyValuePair<string, int>(name, realCount);
 
-                    }).ToDictionary();
-                    break;
-                case "minecraft:crafting_shaped":
-                    var result = recipeNode["result"]!;
-                    resultName = result["item"]!.ToString();
-                    resultCount = ((int?)result["count"]) ?? 1;
-                    recipe.Results.Add(resultName, resultCount);
-                    var pattern = recipeNode["pattern"]!.AsArray();
-                    Dictionary<char, int> keys = new Dictionary<char, int>();
-                    foreach (var item in pattern)
-                    {
-                        string patternLine = item!.ToString();
-                        foreach (char key in patternLine)
+                        }).ToDictionary();
+                        break;
+                    case "minecraft:crafting_shaped":
+                        var result = recipeNode["result"]!;
+                        resultName = result["item"]!.ToString();
+                        resultCount = ((int?)result["count"]) ?? 1;
+                        recipe.Results.Add(resultName, resultCount);
+                        var pattern = recipeNode["pattern"]!.AsArray();
+                        Dictionary<char, int> keys = new Dictionary<char, int>();
+                        foreach (var item in pattern)
                         {
-                            if (!keys.ContainsKey(key)) keys.Add(key, 1);
-                            else keys[key] += 1;
+                            string patternLine = item!.ToString();
+                            foreach (char key in patternLine)
+                            {
+                                if (!keys.ContainsKey(key)) keys.Add(key, 1);
+                                else keys[key] += 1;
+                            }
                         }
-                    }
-                    var keyDefs = recipeNode["key"]!;
-                    foreach (var key in keys)
-                    {
-                        if (Char.IsWhiteSpace(key.Key)) continue;
-                        var itemName = keyDefs[key.Key.ToString()]!["item"];
-                        if (itemName == null) itemName = keyDefs[key.Key.ToString()]!["tag"];
-                        if (!recipe.Inputs.ContainsKey(itemName!.ToString())) recipe.Inputs.Add(itemName!.ToString(), key.Value);
-                    }
-                    break;
-                case "minecraft:smelting":
-                case "minecraft:blasting":
-                case "minecraft:campfire_cooking":
-                case "minecraft:smoking":
-                    ingredientName = recipeNode["ingredient"]!["item"];
-                    if (ingredientName == null) ingredientName = recipeNode["ingredient"]!["tag"];
-                    if (!recipe.Inputs.ContainsKey(ingredientName!.ToString())) recipe.Inputs.Add(ingredientName!.ToString(), 1);
-                    recipe.Results.Add(recipeNode["result"]!.ToString(), 1);
-                    break;
-                case "minecraft:stonecutting":
-                    ingredientName = recipeNode["ingredient"]!["item"];
-                    if (ingredientName == null) ingredientName = recipeNode["ingredient"]!["tag"];
-                    if (!recipe.Inputs.ContainsKey(ingredientName!.ToString())) recipe.Inputs.Add(ingredientName!.ToString() , 1);
-                    recipe.Results.Add(recipeNode["result"]!.ToString(), ((int)recipeNode["count"]!));
-                    break;
+                        var keyDefs = recipeNode["key"]!;
+                        foreach (var key in keys)
+                        {
+                            if (Char.IsWhiteSpace(key.Key)) continue;
+                            var itemName = keyDefs[key.Key.ToString()]!["item"];
+                            if (itemName == null) itemName = keyDefs[key.Key.ToString()]!["tag"];
+                            if (!recipe.Inputs.ContainsKey(itemName!.ToString())) recipe.Inputs.Add(itemName!.ToString(), key.Value);
+                        }
+                        break;
+                    case "minecraft:smelting":
+                    case "minecraft:blasting":
+                    case "minecraft:campfire_cooking":
+                    case "minecraft:smoking":
+                        ingredientName = recipeNode["ingredient"]!["item"];
+                        if (ingredientName == null) ingredientName = recipeNode["ingredient"]!["tag"];
+                        if (!recipe.Inputs.ContainsKey(ingredientName!.ToString())) recipe.Inputs.Add(ingredientName!.ToString(), 1);
+                        recipe.Results.Add(recipeNode["result"]!.ToString(), 1);
+                        break;
+                    case "minecraft:stonecutting":
+                        ingredientName = recipeNode["ingredient"]!["item"];
+                        if (ingredientName == null) ingredientName = recipeNode["ingredient"]!["tag"];
+                        if (!recipe.Inputs.ContainsKey(ingredientName!.ToString())) recipe.Inputs.Add(ingredientName!.ToString(), 1);
+                        recipe.Results.Add(recipeNode["result"]!.ToString(), ((int)recipeNode["count"]!));
+                        break;
+                }
+
             }
-            
-            }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 Console.WriteLine(exc.ToString());
             }
@@ -627,12 +631,12 @@ switch (recipe.Type)
         {
             url = ApiUrl + url;
             //url = "http://localhost:8080/api/worlds/AdminsWorld/colonies/SteamBotBro's Colony";
-            
+
             using (HttpClient client = new HttpClient())
             {
                 try
                 {
-                    
+
                     HttpResponseMessage response = await client.GetAsync(url);
                     if (response.IsSuccessStatusCode)
                     {
