@@ -678,6 +678,7 @@ namespace DataImplementation
                 try
                 {
                     HttpContent content = new StringContent(data, Encoding.UTF8, "application/json");
+                    content.Headers.Add("Accept", "application/json");
                     HttpResponseMessage response = await client.PostAsync(url, content);
                     if (response.IsSuccessStatusCode)
                     {
@@ -706,7 +707,7 @@ namespace DataImplementation
             {
                 try
                 {
-
+                    client.DefaultRequestHeaders.Add("Accept", "application/json");
                     HttpResponseMessage response = await client.GetAsync(url);
                     if (response.IsSuccessStatusCode)
                     {
