@@ -5,9 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="219" Width="343">
+        Title="MainWindow" Height="322" Width="343">
     <Grid>
-        <Button Content="Start" Name="startButton" HorizontalAlignment="Center" Height="39" VerticalAlignment="Center" Width="154" Click="startButton_Click"/>
+        <Button Content="Start" Name="startButton" HorizontalAlignment="Center" Height="39" VerticalAlignment="Top" Width="154" Click="startButton_Click" Margin="0,225,0,0"/>
         <Button Content="↻" Name="Reload" HorizontalAlignment="Left" Height="28" Margin="302,10,0,0" VerticalAlignment="Top" Width="31" Click="Reload_Click"/>
+        <Button Content="login" Name="login" HorizontalAlignment="Center" Height="28" Margin="0,144,0,0" VerticalAlignment="Top" Width="154" Click="login_Click"/>
+        <TextBox HorizontalAlignment="Center" Name="emailtextbox" Height="34" Margin="0,39,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="156"/>
+        <TextBox HorizontalAlignment="Center" Name="passwordtextbox" Height="34" Margin="0,94,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="156"/>
+        <Label Content="login" HorizontalAlignment="Left" Height="29" Margin="10,6,0,0" VerticalAlignment="Top" Width="74"/>
+        <Label Content="email" HorizontalAlignment="Left" Height="26" Margin="89,13,0,0" VerticalAlignment="Top" Width="74"/>
+        <Label Content="password" HorizontalAlignment="Left" Height="26" Margin="89,68,0,0" VerticalAlignment="Top" Width="74" RenderTransformOrigin="0.51,0.238"/>
+        <Button Content="register" Name="register" HorizontalAlignment="Center" Height="28" Margin="0,183,0,0" VerticalAlignment="Top" Width="154" Click="register_Click"/>
     </Grid>
 </Window>

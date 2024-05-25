@@ -18,5 +18,7 @@ namespace LogicInterface
         //public void setStorage();
         public void start();
         public void setPaths();
+        public bool IsLoggedIn();
+        public Task Loggin(string email, string password);
     }
 }

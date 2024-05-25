@@ -27,9 +27,12 @@ namespace DataImplementation
         public List<string> ModPaths { get; set; }
         private string tempPathString = Path.GetTempPath() + "\\MinecoloniesAutomation\\";
         public List<Recipe> Recipes { get; set; }
+        public bool LoggedIn { get; set; }
+        private string Token {  get; set; }
 
         public DataImplement()
         {
+            LoggedIn = false;
             Directory.CreateDirectory(tempPathString);
             worlds = new List<World>();
             //foreach (World item in worlds)
@@ -43,6 +46,7 @@ namespace DataImplementation
 
         public async Task loopColonies()
         {
+            await refresh();
             worlds.Clear();
             List<PostItems> postItems = new List<PostItems>();
             foreach (WorldPath path in WorldPaths)
@@ -62,11 +66,11 @@ namespace DataImplementation
                 {
 
                     Colonie? colonie = SetColonie(coloniePath);
-                    string returnColonieData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-") + "/colonies/" + colonie.Name);
+                    string returnColonieData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-") + "/colonies/" + colonie.fingerprint.ToString());
                     if (returnColonieData == null)
                     {
-                        await PostRequest("{\"name\":\"" + colonie.Name + "\",\"world_id\":\"" + worldId + "\"}", "/colonies");
-                        returnColonieData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-") + "/colonies/" + colonie.Name);
+                        await PostRequest("{\"name\":\"" + colonie.Name + "\",\"world_id\":" + worldId + ",\"fingerprint\":" + colonie.fingerprint + "}", "/colonies");
+                        returnColonieData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-") + "/colonies/" + colonie.fingerprint.ToString());
                     }
                     if (returnColonieData == null)
                         continue;
@@ -607,7 +611,10 @@ namespace DataImplementation
             {
                 try
                 {
+                    client.DefaultRequestHeaders.Add("Authorization", "bearer " + Token);
+                    client.DefaultRequestHeaders.Add("Accept", "application/json");
                     HttpContent content = new StringContent(data, Encoding.UTF8, "application/json");
+                    //content.Headers.Add("Accept", "application/json");
                     HttpResponseMessage response = await client.PostAsync(url, content);
                     if (response.IsSuccessStatusCode)
                     {
@@ -636,7 +643,8 @@ namespace DataImplementation
             {
                 try
                 {
-
+                    client.DefaultRequestHeaders.Add("Authorization", "bearer " + Token);
+                    client.DefaultRequestHeaders.Add("Accept", "application/json");
                     HttpResponseMessage response = await client.GetAsync(url);
                     if (response.IsSuccessStatusCode)
                     {
@@ -656,6 +664,69 @@ namespace DataImplementation
                 }
             }
             return null;
+        }
+        public async Task Login(string username, string password)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    var payload = new { email = username, password = password };
+                    string jsonString = System.Text.Json.JsonSerializer.Serialize(payload);
+                    HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+                    //content.Headers.Add("Accept", "application/json");
+                    HttpResponseMessage response = await client.PostAsync(ApiUrl + "/login", content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Read the response content as a string
+                        Console.WriteLine(response);
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        JsonNode node = JsonNode.Parse(responseBody);
+                        string token = node["token"].ToString();
+                        LoggedIn = true;
+                        Token = token;
+                    } else
+                    {
+                        Token = "";
+                        LoggedIn = false;
+                    }
+                }
+                catch(System.Exception exc)
+                {
+                    Console.WriteLine(exc.Message);
+                }
+            }
+        }
+        public async Task refresh()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    HttpContent content = new StringContent("{}", Encoding.UTF8, "application/json");
+                    client.DefaultRequestHeaders.Add("Authorization", "bearer " + Token);
+                    client.DefaultRequestHeaders.Add("Accept", "application/json");
+                    HttpResponseMessage response = await client.PostAsync(ApiUrl + "/refresh", null);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Read the response content as a string
+                        Console.WriteLine(response);
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        JsonNode node = JsonNode.Parse(responseBody);
+                        string token = node["token"].ToString();
+                        Token = token;
+                    }
+                    else
+                    {
+                        Token = "";
+                        LoggedIn = false;
+                    }
+                }
+                catch (System.Exception exc)
+                {
+                    Console.WriteLine(exc.Message);
+                }
+            }
         }
     }
 }

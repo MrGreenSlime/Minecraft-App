@@ -1,6 +1,7 @@
 ﻿using Globals;
 using Ookii.Dialogs.Wpf;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -73,6 +74,26 @@ namespace PresentationLayer
         private void Reload_Click(object sender, RoutedEventArgs e)
         {
             Logic.setInstance(ShowFolderBrowserDialog());
+        }
+
+        private async void login_Click(object sender, RoutedEventArgs e)
+        {
+            await Logic.Loggin(emailtextbox.Text, passwordtextbox.Text);
+            if (Logic.IsLoggedIn())
+            {
+                login.Content = "switch account";
+                startButton.IsEnabled = true;
+            } else
+            {
+                login.Content = "login";
+                startButton.IsEnabled= false;
+            }
+            
+        }
+
+        private void register_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo("https://j-plot.lucavandenweghe.ikdoeict.be/") { UseShellExecute = true });
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Globals
     public class Colonie
     {
         public string Name { get; set; }
-        public string fingerprint { get; set; }
+        public long fingerprint { get; set; }
         public List<BuilderRequests> BuilderRequests { get; set; }
         public List<Requests> Requests { get; set; }
         public ItemsInStorage items { get; set; }
