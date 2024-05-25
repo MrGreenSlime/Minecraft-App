@@ -7,15 +7,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="322" Width="362" Closing="Window_Closing">
     <Grid>
-        <Button Content="Start" Name="startButton" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="154" Click="startButton_Click" Margin="17,225,0,0"/>
-        <Button Content="↻" Name="Reload" HorizontalAlignment="Left" Height="28" Margin="302,10,0,0" VerticalAlignment="Top" Width="31" Click="Reload_Click"/>
+        <TextBox HorizontalAlignment="Center" Name="emailtextbox" Height="34" Margin="0,39,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="156"/>
+        <PasswordBox HorizontalAlignment="Center" Name="passwordtextbox" Height="34" Margin="0,92,0,0" VerticalAlignment="Top" Width="156" RenderTransformOrigin="0.496,0.498"/>
         <Button Content="login" Name="login" HorizontalAlignment="Center" Height="28" Margin="0,144,0,0" VerticalAlignment="Top" Width="154" Click="login_Click"/>
-        <TextBox HorizontalAlignment="Center" Name="emailtextbox" Height="34" Margin="0,39,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="156"/>
+        <Button Content="register" Name="register" HorizontalAlignment="Center" Height="28" Margin="0,183,0,0" VerticalAlignment="Top" Width="154" Click="register_Click"/>
+        <Button Content="↻" Name="Reload" HorizontalAlignment="Left" Height="28" Margin="302,10,0,0" VerticalAlignment="Top" Width="31" Click="Reload_Click"/>
+        <Button Content="Start" Name="startButton" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="154" Click="startButton_Click" Margin="17,225,0,0"/>
+        <Button Content="Stop" Name="stopButton" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="154" Margin="191,225,0,0" Click="stopButton_Click"/>
         <Label Content="login" HorizontalAlignment="Left" Height="29" Margin="10,6,0,0" VerticalAlignment="Top" Width="74"/>
         <Label Content="email" HorizontalAlignment="Left" Height="26" Margin="103,13,0,0" VerticalAlignment="Top" Width="74"/>
         <Label Content="password" HorizontalAlignment="Left" Height="26" Margin="103,68,0,0" VerticalAlignment="Top" Width="74" RenderTransformOrigin="0.51,0.238"/>
-        <Button Content="register" Name="register" HorizontalAlignment="Center" Height="28" Margin="0,183,0,0" VerticalAlignment="Top" Width="154" Click="register_Click"/>
-        <Button Content="Stop" Name="stopButton" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="154" Margin="191,225,0,0" Click="stopButton_Click"/>
-        <PasswordBox HorizontalAlignment="Center" Name="passwordtextbox" Height="34" Margin="0,92,0,0" VerticalAlignment="Top" Width="156" RenderTransformOrigin="0.496,0.498"/>
+        
+        
+        
     </Grid>
 </Window>
