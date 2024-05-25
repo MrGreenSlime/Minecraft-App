@@ -30,10 +30,12 @@ namespace DataImplementation
         public List<Recipe> Recipes { get; set; }
         public bool LoggedIn { get; set; }
         private string Token {  get; set; }
+        private bool SendRecipe { get; set; }
 
         public DataImplement()
         {
             LoggedIn = false;
+            SendRecipe = false;
             Directory.CreateDirectory(tempPathString);
             worlds = new List<World>();
             //foreach (World item in worlds)
@@ -119,6 +121,13 @@ namespace DataImplementation
             }
             string poststring = JsonConvert.SerializeObject(postItems);
             PostRequest(JsonConvert.SerializeObject(postItems), "/storage_items");
+            if (SendRecipe)
+            {
+                var payload = new { world_names = WorldPaths.Select(x => x.WorldPathString.Replace("\\", "-")).ToList() , recipes = Recipes };
+                string json = JsonConvert.SerializeObject(payload);
+                PostRequest("", "/recipes");
+                SendRecipe = false;
+            }
         }
 
         public Colonie? SetColonie(string path)
@@ -489,6 +498,7 @@ namespace DataImplementation
 
                 }
             }
+            SendRecipe = true;
 
         }
 
