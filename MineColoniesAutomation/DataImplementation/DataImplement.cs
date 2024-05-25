@@ -30,6 +30,7 @@ namespace DataImplementation
         public List<Recipe> Recipes { get; set; }
         public bool LoggedIn { get; set; }
         private string Token {  get; set; }
+        private bool SentRecipes = false;
 
         public DataImplement()
         {
@@ -604,9 +605,9 @@ namespace DataImplementation
 
             //Extract different keys from pattern
             Dictionary<char, int> keys = new Dictionary<char, int>();
-            foreach (var item in pattern)
+            foreach (var patternLineJson in pattern)
             {
-                string patternLine = item!.ToString();
+                string patternLine = patternLineJson!.ToString();
                 foreach (char key in patternLine)
                 {
                     if (!keys.ContainsKey(key)) keys.Add(key, 1);
@@ -616,6 +617,7 @@ namespace DataImplementation
 
             // Extract Key Defenitions
             var keyDefs = recipeNode["key"]!;
+
 
             // Loop over keys to extract the defenition into RecipeItem
             foreach (var key in keys)
@@ -640,6 +642,7 @@ namespace DataImplementation
                     item.Items.Add(itemName!.ToString());
                     //if (!recipe.Inputs.ContainsKey(itemName!.ToString())) recipe.Inputs.Add(itemName!.ToString(), key.Value);
                 }
+                recipe.Inputs.Add(item);
             }
 
             return recipe;
