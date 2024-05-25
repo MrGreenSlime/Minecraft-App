@@ -1,0 +1,9 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="MinecoloniesIntegration" Manufacturer="J-Plot" Version="1.0.0.0" UpgradeCode="24cbcea0-86e3-4210-9dcc-42298bb216f3">
+    <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
+
+    <Feature Id="Main">
+      <ComponentGroupRef Id="AppComponents" />
+    </Feature>
+  </Package>
+</Wix>
