@@ -1,0 +1,26 @@
+﻿<Window x:Class="PresentationLayer.InstallNewColonieWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationLayer"
+        mc:Ignorable="d"
+        Title="InstallNewColonieWindow" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.25*"/>
+        </Grid.RowDefinitions>
+        <ComboBox HorizontalAlignment="Left" Background="Black" Foreground="Black" Name="WorldSelection" Height="38" Margin="30 0" VerticalAlignment="Center" Width="300" SelectionChanged="WorldSelection_SelectionChanged" BorderBrush="Red"/>
+        <ListBox Grid.Row="1" Grid.RowSpan="3" Name="ComputerList" Margin="5"/>
+        <Button Name="InstallButton" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" Content="Install needed files" Click="InstallButton_Click"/>
+        <Label Grid.Row="2" Grid.Column="1" Name="ErrorLbl" Foreground="Red"/>
+        <Button Content="back" Name="Back" HorizontalAlignment="Left" Height="42" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Width="137" Click="Back_Click"/>
+    </Grid>
+</Window>

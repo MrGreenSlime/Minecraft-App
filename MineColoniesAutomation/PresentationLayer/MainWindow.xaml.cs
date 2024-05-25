@@ -104,5 +104,12 @@ namespace PresentationLayer
         {
             Logic.stop();
         }
+
+        private void ColonieInstall_Click(object sender, RoutedEventArgs e)
+        {
+            InstallNewColonieWindow window = new InstallNewColonieWindow(Logic);
+            Close();
+            window.Show();
+        }
     }
 }

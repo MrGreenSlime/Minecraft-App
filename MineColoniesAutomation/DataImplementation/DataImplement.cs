@@ -29,7 +29,7 @@ namespace DataImplementation
         private string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Minecolonies";
         public List<Recipe> Recipes { get; set; }
         public bool LoggedIn { get; set; }
-        private string Token {  get; set; }
+        private string Token { get; set; }
         private bool SendRecipe { get; set; }
 
         public DataImplement()
@@ -335,7 +335,7 @@ namespace DataImplementation
                 string data = JsonConvert.SerializeObject(commands);
                 System.IO.File.WriteAllText(path + "\\commands.json", data);
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 Console.WriteLine(exc.Message);
             }
@@ -410,7 +410,7 @@ namespace DataImplementation
             GetMinecraftJarPath();
         }
 
-        private void GetWorldPaths()
+        public void GetWorldPaths()
         {
             WorldPaths = new List<WorldPath>();
             if (Path.Exists(InstancePath + "\\saves"))
@@ -571,7 +571,7 @@ namespace DataImplementation
                         var jsonRecipes = recipeNode["recipes"]!.AsArray();
                         foreach (var jsonRecipe in jsonRecipes)
                         {
-                            recipes.AddRange(ExtractRecipe(jsonRecipe!["recipe"]));   
+                            recipes.AddRange(ExtractRecipe(jsonRecipe!["recipe"]));
                         }
                         break;
                 }
@@ -737,13 +737,14 @@ namespace DataImplementation
                         string token = node["token"].ToString();
                         LoggedIn = true;
                         Token = token;
-                    } else
+                    }
+                    else
                     {
                         Token = "";
                         LoggedIn = false;
                     }
                 }
-                catch(System.Exception exc)
+                catch (System.Exception exc)
                 {
                     Console.WriteLine(exc.Message);
                 }
@@ -773,6 +774,16 @@ namespace DataImplementation
                     Console.WriteLine(exc.Message);
                 }
             }
+        }
+
+        public void InstallLuaFile(string selectedPath)
+        {
+            System.IO.File.WriteAllText(selectedPath + "/aeInterface.lua", Properties.Resources.aeInterface.ToString());
+            System.IO.File.WriteAllText(selectedPath + "/extractTasks.lua", Properties.Resources.extractTasks.ToString());
+            System.IO.File.WriteAllText(selectedPath + "/JsonFileHelper.lua", Properties.Resources.JsonFileHelper.ToString());
+            System.IO.File.WriteAllText(selectedPath + "/main.lua", Properties.Resources.main.ToString());
+            System.IO.File.WriteAllText(selectedPath + "/monitorWriter.lua", Properties.Resources.monitorWriter.ToString());
+            System.IO.File.WriteAllText(selectedPath + "/wrapPeripherals.lua", Properties.Resources.wrapPeripherals.ToString());
         }
     }
 }

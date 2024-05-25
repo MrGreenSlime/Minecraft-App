@@ -20,5 +20,6 @@ namespace LogicInterface
         public void setPaths();
         public bool IsLoggedIn();
         public Task Login(string email, string password);
+        void InstallLuaFiles(string selectedPath);
     }
 }

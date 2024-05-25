@@ -15,6 +15,7 @@
         <Button Content="↻" Name="Reload" HorizontalAlignment="Left" Height="28" Margin="427,10,0,0" VerticalAlignment="Top" Width="31" Click="Reload_Click"/>
         <Button Content="Start" Name="startButton" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="132" Click="startButton_Click" Margin="116,268,0,0"/>
         <Button Content="Stop" Name="stopButton" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="132" Margin="256,268,0,0" Click="stopButton_Click"/>
+        <Button Content="Install new colonie" Name="ColonieInstall" HorizontalAlignment="Center" Height="39" VerticalAlignment="Top" Width="132" Margin="0,322,0,0" Click="ColonieInstall_Click"/>
         <Label Content="login" HorizontalAlignment="Left" Height="29" Margin="10,6,0,0" VerticalAlignment="Top" Width="74"/>
         <Label Content="email" HorizontalAlignment="Left" Height="26" Margin="114,38,0,0" VerticalAlignment="Top" Width="74"/>
         <Label Content="password" HorizontalAlignment="Left" Height="26" Margin="114,110,0,0" VerticalAlignment="Top" Width="74" RenderTransformOrigin="0.51,0.238"/>
