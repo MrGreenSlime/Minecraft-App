@@ -25,6 +25,7 @@ namespace PresentationLayer
             Logic = logic;
             cancellationTokenSource = new CancellationTokenSource();
             InitializeComponent();
+            this.Icon = new BitmapImage(new Uri("pack://application:,,,/logotest.png"));
             startButton.IsEnabled = false;
             stopButton.IsEnabled = false;
             if (!Logic.instanceSelected) Logic.setInstance(ShowFolderBrowserDialog());
@@ -62,10 +63,12 @@ namespace PresentationLayer
             if (Logic.IsLoggedIn())
             {
                 login.Content = "switch account";
+                loginError.Content = "";
                 startButton.IsEnabled = true;
             } else
             {
                 login.Content = "login";
+                loginError.Content = "Invalid credentials";
                 startButton.IsEnabled= false;
             }
             
