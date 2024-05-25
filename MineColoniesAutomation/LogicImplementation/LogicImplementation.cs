@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace LogicImplementation
@@ -11,12 +12,14 @@ namespace LogicImplementation
     public class LogicImplementation : LogicInterface.LogicInterface
     {
         public DataInterface.DataInterface Data;
+        private CancellationTokenSource cancellationTokenSource;
         public List<World> World { get; set; }
         public List<WorldPath> paths { get; set; }
         public bool instanceSelected { get; set; }
         
         public LogicImplementation(DataInterface.DataInterface data)
         {
+            cancellationTokenSource = new CancellationTokenSource();
             Data = data;
             World = Data.worlds;
             if (Data.InstancePath != null)
@@ -31,11 +34,6 @@ namespace LogicImplementation
             await Data.loopColonies();
             World = Data.worlds;
         }
-        //public void setStorage()
-        //{
-        //    Data.setStorage();
-        //    World = Data.world;
-        //}
 
         public void setInstance(string v)
         {
@@ -48,7 +46,21 @@ namespace LogicImplementation
         }
         public void start()
         {
-            Data.start();
+            var token = cancellationTokenSource.Token;
+            Task task = Task.Run(async () =>
+            {
+                while (!token.IsCancellationRequested)
+                {
+                    await setColonie();
+                    Thread.Sleep(10000);
+                }
+
+            });
+        }
+        public void stop()
+        {
+            cancellationTokenSource.Cancel();
+            cancellationTokenSource = new CancellationTokenSource();
         }
         public void setPaths()
         {
@@ -58,7 +70,7 @@ namespace LogicImplementation
         {
             return Data.LoggedIn;
         }
-        public async Task Loggin(string email,  string password)
+        public async Task Login(string email,  string password)
         {
             await Data.Login(email, password);
         }

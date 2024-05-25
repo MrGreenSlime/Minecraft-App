@@ -15,10 +15,10 @@ namespace LogicInterface
         public List<WorldPath> paths { get; set; }
         public Task setColonie();
         void setInstance(string v);
-        //public void setStorage();
         public void start();
+        public void stop();
         public void setPaths();
         public bool IsLoggedIn();
-        public Task Loggin(string email, string password);
+        public Task Login(string email, string password);
     }
 }

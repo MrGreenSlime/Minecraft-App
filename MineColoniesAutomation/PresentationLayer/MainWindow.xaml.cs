@@ -3,6 +3,7 @@ using Ookii.Dialogs.Wpf;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -18,28 +19,15 @@ namespace PresentationLayer
     public partial class MainWindow : Window
     {
         public LogicInterface.LogicInterface Logic {  get; set; }
-        public MainWindow()
-        {
-            DataInterface.DataInterface Data = new DataImplementation.DataImplement();
-            Logic = new LogicImplementation.LogicImplementation(Data);
-            InitializeComponent();
-            if (true)
-            {
-                Logic.setInstance(ShowFolderBrowserDialog());
-            } else
-            {
-                Logic.setInstance(null);
-            }
-            Logic.setColonie();
-            Logic.setPaths();
-        }
+        private CancellationTokenSource cancellationTokenSource;
         public MainWindow(LogicInterface.LogicInterface logic)
         {
             Logic = logic;
+            cancellationTokenSource = new CancellationTokenSource();
             InitializeComponent();
+            startButton.IsEnabled = false;
+            stopButton.IsEnabled = false;
             if (!Logic.instanceSelected) Logic.setInstance(ShowFolderBrowserDialog());
-            //Logic.setColonie();
-            //Logic.setStorage();
             Logic.setPaths();
         }
 
@@ -56,19 +44,10 @@ namespace PresentationLayer
 
             if (dialog.ShowDialog(this) ?? false)
             {
-                //MessageBox.Show(this, $"The selected folder was: {Environment.NewLine}{dialog.SelectedPath}", "Sample folder browser dialog");
                 Logic.instanceSelected = true;
                 return dialog.SelectedPath;
             }
             return "";
-        }
-
-        private void startButton_Click(object sender, RoutedEventArgs e)
-        {
-            //Logic.start();
-            Items window = new Items(Logic);
-            Close();
-            window.Show();
         }
 
         private void Reload_Click(object sender, RoutedEventArgs e)
@@ -78,7 +57,8 @@ namespace PresentationLayer
 
         private async void login_Click(object sender, RoutedEventArgs e)
         {
-            await Logic.Loggin(emailtextbox.Text, passwordtextbox.Text);
+            await Logic.Login(emailtextbox.Text, passwordtextbox.Password);
+            passwordtextbox.Password = "";
             if (Logic.IsLoggedIn())
             {
                 login.Content = "switch account";
@@ -94,6 +74,32 @@ namespace PresentationLayer
         private void register_Click(object sender, RoutedEventArgs e)
         {
             Process.Start(new ProcessStartInfo("https://j-plot.lucavandenweghe.ikdoeict.be/") { UseShellExecute = true });
+        }
+
+        private void stopButton_Click(object sender, RoutedEventArgs e)
+        {
+            Logic.stop();
+            startButton.IsEnabled = true;
+            stopButton.IsEnabled = false;
+            login.IsEnabled = true;
+            Reload.IsEnabled = true;
+        }
+        private void startButton_Click(object sender, RoutedEventArgs e)
+        {
+            startButton.IsEnabled = false;
+            stopButton.IsEnabled = true;
+            login.IsEnabled = false;
+            Reload.IsEnabled = false;
+            Logic.start();
+            //Items window = new Items(Logic);
+            //Close();
+            //window.Show();
+        }
+        
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            Logic.stop();
         }
     }
 }

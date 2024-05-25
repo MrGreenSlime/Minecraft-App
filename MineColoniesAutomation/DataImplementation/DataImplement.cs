@@ -39,10 +39,6 @@ namespace DataImplementation
             SendRecipe = false;
             Directory.CreateDirectory(tempPathString);
             worlds = new List<World>();
-            //foreach (World item in worlds)
-            //{
-            //    item.colonies = new List<Colonie>();
-            //}
             WorldPaths = new List<WorldPath>();
             ModPaths = new List<string>();
             CheckStorage();
@@ -79,7 +75,6 @@ namespace DataImplementation
                     if (returnColonieData == null)
                         continue;
                     DataGetColonieRequest request = System.Text.Json.JsonSerializer.Deserialize<ColonieGetRequest>(returnColonieData).Data;
-                    //DataGetColonieRequest request = await GetRequest("/worlds/" + path.WorldPathString + "/colonies/" + colonie.Name);
                     colonie = SetStorage(coloniePath, colonie);
                     foreach (StorageItem item in colonie.items.patterns)
                     {
@@ -122,19 +117,18 @@ namespace DataImplementation
             }
             string poststring = JsonConvert.SerializeObject(postItems);
             PostRequest(JsonConvert.SerializeObject(postItems), "/storage_items");
-            if (SendRecipe)
-            {
-                var payload = new { world_names = WorldPaths.Select(x => x.WorldPathString.Replace("\\", "-")).ToList() , recipes = Recipes };
-                string json = JsonConvert.SerializeObject(payload);
-                PostRequest("", "/recipes");
-                SendRecipe = false;
-            }
+            //if (SendRecipe)
+            //{
+            //    var payload = new { world_names = WorldPaths.Select(x => x.WorldPathString.Replace("\\", "-")).ToList() , recipes = Recipes };
+            //    string json = JsonConvert.SerializeObject(payload);
+            //    PostRequest(json, "/recipes");
+            //    SendRecipe = false;
+            //}
         }
 
         public Colonie? SetColonie(string path)
         {
             Colonie colonie = null;
-            //string path = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/requests.json" ;
             string jsonString = System.IO.File.ReadAllText(path + "\\requests.json");
             jsonString = jsonString.Replace("\"tags\":{}", "\"tags\":[]");
             jsonString = jsonString.Replace("\"tags\": {}", "\"tags\":[]");
@@ -144,14 +138,6 @@ namespace DataImplementation
             try
             {
                 colonie = System.Text.Json.JsonSerializer.Deserialize<List<Colonie>>(jsonString)![0];
-                //List<SpecifiedRequest> requestList = new List<SpecifiedRequest>();
-                //foreach (BuilderRequests item1 in colonie.BuilderRequests)
-                //{
-                //    requestList.AddRange(item1.Requests);
-                //}
-                //colonies[0].items.items;
-                //writeCommands(requestList, colonie.Requests, path + "\\commands.json", colonie);
-
             }
             catch (Exception ex)
             {
@@ -203,7 +189,6 @@ namespace DataImplementation
         {
 
             if (colonie == null) return;
-            //DataGetColonieRequest colonieData = await GetRequest("/worlds/" + worldPath + "/colonies/" + colonie.Name);
             List<SpecifiedRequest> requestList = new List<SpecifiedRequest>();
             bool autocomplete = true;
             bool armorComplete = false;
@@ -342,7 +327,6 @@ namespace DataImplementation
 
                         }
                     }
-                    //commands.Add(new Commands { Amount = 1, Item = request.items[0].name, NeedsCrafting = false });
                 }
             }
 
@@ -351,12 +335,10 @@ namespace DataImplementation
                 string data = JsonConvert.SerializeObject(commands);
                 System.IO.File.WriteAllText(path + "\\commands.json", data);
             }
-            catch
+            catch(Exception exc)
             {
-
+                Console.WriteLine(exc.Message);
             }
-
-            //PostRequest(path, "/builderrequests");
         }
 
         public void setInstance(string v)
@@ -468,7 +450,7 @@ namespace DataImplementation
                     await Task.Run(() => { ZipFile.ExtractToDirectory(modPath, tempPathString + modPath.Split('\\').Last()); });
             }
 
-            //TODO find and extract recipes
+            // find and extract recipes
             foreach (string tempPath in tempPaths)
             {
                 if (Directory.Exists(tempPath + "\\data"))
@@ -649,7 +631,6 @@ namespace DataImplementation
                     var itemName = keyDefs[key.Key.ToString()]!["item"];
                     if (itemName == null) itemName = keyDefs[key.Key.ToString()]!["tag"];
                     item.Items.Add(itemName!.ToString());
-                    //if (!recipe.Inputs.ContainsKey(itemName!.ToString())) recipe.Inputs.Add(itemName!.ToString(), key.Value);
                 }
                 recipe.Inputs.Add(item);
             }
@@ -667,8 +648,6 @@ namespace DataImplementation
         }
         public void CheckStorage()
         {
-            // string tempPath = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/PathStorage.json";
-            //string tempPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string tempPath = appDataPath + "/PathStorage.json";
             try
             {
@@ -698,12 +677,9 @@ namespace DataImplementation
                     client.DefaultRequestHeaders.Add("Authorization", "bearer " + Token);
                     client.DefaultRequestHeaders.Add("Accept", "application/json");
                     HttpContent content = new StringContent(data, Encoding.UTF8, "application/json");
-                    //content.Headers.Add("Accept", "application/json");
                     HttpResponseMessage response = await client.PostAsync(url, content);
                     if (response.IsSuccessStatusCode)
                     {
-                        // Read the response content as a string
-                        Console.WriteLine(response);
                         return true;
                     }
                     else
@@ -721,8 +697,6 @@ namespace DataImplementation
         public async Task<string> GetRequest(string url)
         {
             url = ApiUrl + url;
-            //url = "http://localhost:8080/api/worlds/AdminsWorld/colonies/SteamBotBro's Colony";
-
             using (HttpClient client = new HttpClient())
             {
                 try
@@ -732,10 +706,7 @@ namespace DataImplementation
                     HttpResponseMessage response = await client.GetAsync(url);
                     if (response.IsSuccessStatusCode)
                     {
-                        // Read the response content as a string
                         return await response.Content.ReadAsStringAsync();
-                        //string responseBody = await response.Content.ReadAsStringAsync();
-                        //return System.Text.Json.JsonSerializer.Deserialize<ColonieGetRequest>(responseBody).Data;
                     }
                     else
                     {
@@ -758,12 +729,9 @@ namespace DataImplementation
                     var payload = new { email = username, password = password };
                     string jsonString = System.Text.Json.JsonSerializer.Serialize(payload);
                     HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-                    //content.Headers.Add("Accept", "application/json");
                     HttpResponseMessage response = await client.PostAsync(ApiUrl + "/login", content);
                     if (response.IsSuccessStatusCode)
                     {
-                        // Read the response content as a string
-                        Console.WriteLine(response);
                         string responseBody = await response.Content.ReadAsStringAsync();
                         JsonNode node = JsonNode.Parse(responseBody);
                         string token = node["token"].ToString();
@@ -794,19 +762,13 @@ namespace DataImplementation
                     if (response.IsSuccessStatusCode)
                     {
                         // Read the response content as a string
-                        Console.WriteLine(response);
                         string responseBody = await response.Content.ReadAsStringAsync();
                         JsonNode node = JsonNode.Parse(responseBody);
                         string token = node["token"].ToString();
                         Token = token;
                     }
-                    else
-                    {
-                        Token = "";
-                        LoggedIn = false;
-                    }
                 }
-                catch (System.Exception exc)
+                catch (Exception exc)
                 {
                     Console.WriteLine(exc.Message);
                 }

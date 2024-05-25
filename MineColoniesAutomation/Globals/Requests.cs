@@ -21,7 +21,6 @@ namespace Globals
         public override string ToString()
         {
             return name + " for " + target;
-            return name + '|' + desc + '|' + count + "| for " + target;
         }
     }
 }

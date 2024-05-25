@@ -29,7 +29,6 @@ namespace Globals
                 return true;
             }
             return false;
-            //return base.Equals(obj);
         }
     }
 }
