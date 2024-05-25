@@ -34,6 +34,7 @@ namespace DataImplementation
 
         public DataImplement()
         {
+            if (!Directory.Exists(appDataPath)) Directory.CreateDirectory(appDataPath);
             LoggedIn = false;
             SendRecipe = false;
             Directory.CreateDirectory(tempPathString);
@@ -361,7 +362,7 @@ namespace DataImplementation
         public void setInstance(string v)
         {
             string pathData = JsonConvert.SerializeObject(v);
-            System.IO.File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/PathStorage.json", pathData);
+            System.IO.File.WriteAllText(appDataPath + "/PathStorage.json", pathData);
             InstancePath = v;
 
             //Check if correct mods are installed
@@ -613,9 +614,9 @@ namespace DataImplementation
 
             //Extract different keys from pattern
             Dictionary<char, int> keys = new Dictionary<char, int>();
-            foreach (var item in pattern)
+            foreach (var patternLineJson in pattern)
             {
-                string patternLine = item!.ToString();
+                string patternLine = patternLineJson!.ToString();
                 foreach (char key in patternLine)
                 {
                     if (!keys.ContainsKey(key)) keys.Add(key, 1);
@@ -625,6 +626,7 @@ namespace DataImplementation
 
             // Extract Key Defenitions
             var keyDefs = recipeNode["key"]!;
+
 
             // Loop over keys to extract the defenition into RecipeItem
             foreach (var key in keys)
@@ -649,6 +651,7 @@ namespace DataImplementation
                     item.Items.Add(itemName!.ToString());
                     //if (!recipe.Inputs.ContainsKey(itemName!.ToString())) recipe.Inputs.Add(itemName!.ToString(), key.Value);
                 }
+                recipe.Inputs.Add(item);
             }
 
             return recipe;
@@ -665,7 +668,8 @@ namespace DataImplementation
         public void CheckStorage()
         {
             // string tempPath = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/PathStorage.json";
-            string tempPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            //string tempPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string tempPath = appDataPath + "/PathStorage.json";
             try
             {
                 if (System.IO.File.Exists(tempPath))
