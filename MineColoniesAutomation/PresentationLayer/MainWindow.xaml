@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="322" Width="362" Closing="Window_Closing">
+        Icon="logotest.png"
+        Title="MineColonies automation" Height="322" Width="362" Closing="Window_Closing">
     <Grid>
         <TextBox HorizontalAlignment="Center" Name="emailtextbox" Height="34" Margin="0,39,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="156"/>
         <PasswordBox HorizontalAlignment="Center" Name="passwordtextbox" Height="34" Margin="0,92,0,0" VerticalAlignment="Top" Width="156" RenderTransformOrigin="0.496,0.498"/>
