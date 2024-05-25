@@ -26,6 +26,7 @@ namespace DataImplementation
         public List<WorldPath> WorldPaths { get; set; }
         public List<string> ModPaths { get; set; }
         private string tempPathString = Path.GetTempPath() + "\\MinecoloniesAutomation\\";
+        private string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Minecolonies";
         public List<Recipe> Recipes { get; set; }
         public bool LoggedIn { get; set; }
         private string Token {  get; set; }
@@ -481,7 +482,7 @@ namespace DataImplementation
             {
                 try
                 {
-                    Recipes.Add(ExtractRecipe(recipeFile));
+                    Recipes.AddRange(ExtractRecipe(recipeFile));
                 }
                 catch
                 {
@@ -491,11 +492,18 @@ namespace DataImplementation
 
         }
 
-        private Recipe ExtractRecipe(string recipePath)
+        private List<Recipe> ExtractRecipe(string recipePath)
         {
-            Recipe recipe = new Recipe { Inputs = new Dictionary<string, int>(), Results = new Dictionary<string, int>() };
             string jsonString = System.IO.File.ReadAllText(recipePath);
             JsonNode recipeNode = JsonNode.Parse(jsonString)!;
+            return ExtractRecipe(recipeNode);
+        }
+
+        private List<Recipe> ExtractRecipe(JsonNode? recipeNode)
+        {
+            if (recipeNode == null) return new List<Recipe> { };
+            List<Recipe> recipes = new List<Recipe>();
+            Recipe recipe = new Recipe { Inputs = new List<RecipeItem>(), Results = new List<RecipeItem>() };
             recipe.Type = recipeNode["type"]!.ToString();
             string resultName = "";
             int resultCount = 0;
@@ -505,10 +513,13 @@ namespace DataImplementation
                 switch (recipe.Type)
                 {
                     case "recipe":
+                        // Extract Result
                         if (recipeNode["result"] == null) break;
                         resultName = recipeNode["result"]!.ToString();
                         resultCount = ((int?)recipeNode["count"]) ?? 1;
-                        recipe.Results.Add(resultName, resultCount);
+                        recipe.Results.Add(new RecipeItem { Amount = resultCount, Items = new List<string> { resultName } });
+
+                        // Extract Inputs
                         var inputs = recipeNode["inputs"]!.AsArray();
                         var inputItemsString =
                         recipe.Inputs = inputs.Select(x =>
@@ -521,49 +532,54 @@ namespace DataImplementation
                                 realCount = ((int)count);
                             }
 
-                            return new KeyValuePair<string, int>(name, realCount);
+                            return new RecipeItem { Items = new List<string> { name }, Amount = realCount };
 
-                        }).ToDictionary();
+                        }).ToList();
+                        recipes.Add(recipe);
                         break;
                     case "minecraft:crafting_shaped":
-                        var result = recipeNode["result"]!;
-                        resultName = result["item"]!.ToString();
-                        resultCount = ((int?)result["count"]) ?? 1;
-                        recipe.Results.Add(resultName, resultCount);
-                        var pattern = recipeNode["pattern"]!.AsArray();
-                        Dictionary<char, int> keys = new Dictionary<char, int>();
-                        foreach (var item in pattern)
-                        {
-                            string patternLine = item!.ToString();
-                            foreach (char key in patternLine)
-                            {
-                                if (!keys.ContainsKey(key)) keys.Add(key, 1);
-                                else keys[key] += 1;
-                            }
-                        }
-                        var keyDefs = recipeNode["key"]!;
-                        foreach (var key in keys)
-                        {
-                            if (Char.IsWhiteSpace(key.Key)) continue;
-                            var itemName = keyDefs[key.Key.ToString()]!["item"];
-                            if (itemName == null) itemName = keyDefs[key.Key.ToString()]!["tag"];
-                            if (!recipe.Inputs.ContainsKey(itemName!.ToString())) recipe.Inputs.Add(itemName!.ToString(), key.Value);
-                        }
+                        recipe = ExtractShapedRecipe(recipeNode, recipe);
+                        recipes.Add(recipe);
                         break;
                     case "minecraft:smelting":
                     case "minecraft:blasting":
                     case "minecraft:campfire_cooking":
                     case "minecraft:smoking":
-                        ingredientName = recipeNode["ingredient"]!["item"];
-                        if (ingredientName == null) ingredientName = recipeNode["ingredient"]!["tag"];
-                        if (!recipe.Inputs.ContainsKey(ingredientName!.ToString())) recipe.Inputs.Add(ingredientName!.ToString(), 1);
-                        recipe.Results.Add(recipeNode["result"]!.ToString(), 1);
+                        var potIngredients = recipeNode["ingredient"];
+                        RecipeItem inputToAdd = new RecipeItem();
+                        if (potIngredients is JsonArray)
+                        {
+                            foreach (var item in potIngredients.AsArray())
+                            {
+                                ingredientName = item!["item"];
+                                if (ingredientName == null) ingredientName = item["tag"];
+                                inputToAdd.Items.Add(ingredientName!.ToString());
+                            }
+                        }
+                        else
+                        {
+                            ingredientName = recipeNode["ingredient"]!["item"];
+                            if (ingredientName == null) ingredientName = recipeNode["ingredient"]!["tag"];
+                            inputToAdd = new RecipeItem { Items = new List<string> { ingredientName!.ToString() }, Amount = 1 };
+                        }
+                        if (!recipe.Inputs.Contains(inputToAdd)) recipe.Inputs.Add(inputToAdd);
+                        recipe.Results.Add(new RecipeItem { Items = new List<string> { recipeNode["result"]!.ToString() }, Amount = 1 });
+                        recipes.Add(recipe);
                         break;
                     case "minecraft:stonecutting":
                         ingredientName = recipeNode["ingredient"]!["item"];
                         if (ingredientName == null) ingredientName = recipeNode["ingredient"]!["tag"];
-                        if (!recipe.Inputs.ContainsKey(ingredientName!.ToString())) recipe.Inputs.Add(ingredientName!.ToString(), 1);
-                        recipe.Results.Add(recipeNode["result"]!.ToString(), ((int)recipeNode["count"]!));
+                        RecipeItem input2Add = new RecipeItem { Items = new List<string> { ingredientName!.ToString() }, Amount = 1 };
+                        if (!recipe.Inputs.Contains(input2Add)) recipe.Inputs.Add(input2Add);
+                        recipe.Results.Add(new RecipeItem { Items = new List<string> { recipeNode["result"]!.ToString() }, Amount = ((int)recipeNode["count"]!) });
+                        recipes.Add(recipe);
+                        break;
+                    case "forge:conditional":
+                        var jsonRecipes = recipeNode["recipes"]!.AsArray();
+                        foreach (var jsonRecipe in jsonRecipes)
+                        {
+                            recipes.AddRange(ExtractRecipe(jsonRecipe!["recipe"]));   
+                        }
                         break;
                 }
 
@@ -572,6 +588,59 @@ namespace DataImplementation
             {
                 Console.WriteLine(exc.ToString());
             }
+            return recipes;
+        }
+
+        public Recipe ExtractShapedRecipe(JsonNode recipeNode, Recipe recipe)
+        {
+            var result = recipeNode["result"]!;
+            string resultName = result["item"]!.ToString();
+            int resultCount = ((int?)result["count"]) ?? 1;
+            recipe.Results.Add(new RecipeItem { Items = new List<string> { resultName }, Amount = resultCount });
+
+            // Extract Pattern
+            var pattern = recipeNode["pattern"]!.AsArray();
+
+            //Extract different keys from pattern
+            Dictionary<char, int> keys = new Dictionary<char, int>();
+            foreach (var item in pattern)
+            {
+                string patternLine = item!.ToString();
+                foreach (char key in patternLine)
+                {
+                    if (!keys.ContainsKey(key)) keys.Add(key, 1);
+                    else keys[key] += 1;
+                }
+            }
+
+            // Extract Key Defenitions
+            var keyDefs = recipeNode["key"]!;
+
+            // Loop over keys to extract the defenition into RecipeItem
+            foreach (var key in keys)
+            {
+                if (Char.IsWhiteSpace(key.Key)) continue;
+
+                RecipeItem item = new RecipeItem();
+                item.Amount = key.Value;
+
+                //Check if key accepts multiple items
+                if (keyDefs[key.Key.ToString()] is JsonArray)
+                {
+                    foreach (var possibleItem in keyDefs[key.Key.ToString()]!.AsArray())
+                    {
+                        item.Items.Add(possibleItem!["item"]!.ToString());
+                    }
+                }
+                else
+                {
+                    var itemName = keyDefs[key.Key.ToString()]!["item"];
+                    if (itemName == null) itemName = keyDefs[key.Key.ToString()]!["tag"];
+                    item.Items.Add(itemName!.ToString());
+                    //if (!recipe.Inputs.ContainsKey(itemName!.ToString())) recipe.Inputs.Add(itemName!.ToString(), key.Value);
+                }
+            }
+
             return recipe;
         }
 
@@ -585,7 +654,8 @@ namespace DataImplementation
         }
         public void CheckStorage()
         {
-            string tempPath = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/PathStorage.json";
+            // string tempPath = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/PathStorage.json";
+            string tempPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             try
             {
                 if (System.IO.File.Exists(tempPath))

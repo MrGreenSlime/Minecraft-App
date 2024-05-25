@@ -8,8 +8,8 @@ namespace Globals
 {
     public class Recipe
     {
-        public Dictionary<string, int> Results { get; set; }
-        public Dictionary<string, int> Inputs { get; set; }
+        public List<RecipeItem> Results { get; set; }
+        public List<RecipeItem> Inputs { get; set; }
         public string Type { get; set; }
     }
 }
