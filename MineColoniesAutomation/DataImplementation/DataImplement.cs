@@ -33,6 +33,7 @@ namespace DataImplementation
 
         public DataImplement()
         {
+            if (!Directory.Exists(appDataPath)) Directory.CreateDirectory(appDataPath);
             LoggedIn = false;
             Directory.CreateDirectory(tempPathString);
             worlds = new List<World>();
@@ -352,7 +353,7 @@ namespace DataImplementation
         public void setInstance(string v)
         {
             string pathData = JsonConvert.SerializeObject(v);
-            System.IO.File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/PathStorage.json", pathData);
+            System.IO.File.WriteAllText(appDataPath + "/PathStorage.json", pathData);
             InstancePath = v;
 
             //Check if correct mods are installed
@@ -655,7 +656,8 @@ namespace DataImplementation
         public void CheckStorage()
         {
             // string tempPath = AppDomain.CurrentDomain.BaseDirectory + "../../../../DataImplementation/PathStorage.json";
-            string tempPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            //string tempPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string tempPath = appDataPath + "/PathStorage.json";
             try
             {
                 if (System.IO.File.Exists(tempPath))
