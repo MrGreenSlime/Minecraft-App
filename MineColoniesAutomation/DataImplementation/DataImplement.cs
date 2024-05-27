@@ -49,6 +49,7 @@ namespace DataImplementation
             await refresh();
             worlds.Clear();
             List<PostItems> postItems = new List<PostItems>();
+            List<int> worldsPostIds = new List<int>();
             foreach (WorldPath path in WorldPaths)
             {
                 string returnData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-"));
@@ -60,6 +61,7 @@ namespace DataImplementation
                 if (returnData == null)
                     continue;
                 int worldId = System.Text.Json.JsonSerializer.Deserialize<WorldGetRequest>(returnData).Data.id;
+                worldsPostIds.Add(worldId);
                 World newWorld = new World();
                 newWorld.colonies = new List<Colonie>();
                 foreach (string coloniePath in path.ColonyPaths)
@@ -119,7 +121,7 @@ namespace DataImplementation
             PostRequest(JsonConvert.SerializeObject(postItems), "/storage_items");
             //if (SendRecipe)
             //{
-            //    var payload = new { world_names = WorldPaths.Select(x => x.WorldPathString.Replace("\\", "-")).ToList() , recipes = Recipes };
+            //    var payload = new { worlds = worldsPostIds , recipes = Recipes };
             //    string json = JsonConvert.SerializeObject(payload);
             //    PostRequest(json, "/recipes");
             //    SendRecipe = false;
@@ -219,9 +221,10 @@ namespace DataImplementation
             List<Commands> commands = new List<Commands>();
             Dictionary<string, long> colonyReserve = new Dictionary<string, long>();
             Dictionary<string, long> playerReserve = new Dictionary<string, long>();
+            List<string> Status = ["NOT_NEEDED", "HAVE_ENOUGH", "IN_DELIVERY", "NEED_MORE", "DONT_HAVE"];
             foreach (SpecifiedRequest request in requestList)
             {
-                if (!request.status.Equals("NOT_NEEDED,  HAVE_ENOUGH, IN_DELIVERY, NEED_MORE, DONT_HAVE "))
+                if (!Status.Contains(request.status))
                 {
                     long already_have = 0;
                     if (colonie.items == null)
