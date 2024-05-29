@@ -66,8 +66,9 @@ namespace LogicImplementation
         {
             paths = Data.WorldPaths;
         }
-        public bool IsLoggedIn()
+        public async Task<bool> IsLoggedIn()
         {
+            await Data.refresh();
             return Data.LoggedIn;
         }
         public async Task Login(string email, string password)
@@ -81,5 +82,6 @@ namespace LogicImplementation
             Data.GetWorldPaths();
             setPaths();
         }
+
     }
 }

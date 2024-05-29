@@ -17,6 +17,7 @@ namespace DataInterface
         public void setInstance(string v);
         public void start();
         public Task loopColonies();
+        public Task refresh();
         public Task Login(string username, string password);
         void InstallLuaFile(string selectedPath);
         public void GetWorldPaths();

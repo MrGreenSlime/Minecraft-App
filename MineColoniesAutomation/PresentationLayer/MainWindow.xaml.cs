@@ -59,7 +59,7 @@ namespace PresentationLayer
         {
             await Logic.Login(emailtextbox.Text, passwordtextbox.Password);
             passwordtextbox.Password = "";
-            if (Logic.IsLoggedIn())
+            if (await Logic.IsLoggedIn())
             {
                 login.Content = "switch account";
                 loginError.Content = "";
@@ -86,13 +86,21 @@ namespace PresentationLayer
             login.IsEnabled = true;
             Reload.IsEnabled = true;
         }
-        private void startButton_Click(object sender, RoutedEventArgs e)
+        private async void startButton_Click(object sender, RoutedEventArgs e)
         {
+            if (await Logic.IsLoggedIn())
+            {
+                
+                stopButton.IsEnabled = true;
+                login.IsEnabled = false;
+                Reload.IsEnabled = false;
+                Logic.start();
+            } else
+            {
+                login.Content = "login";
+                loginError.Content = "refresh token has been expired, login again";
+            }
             startButton.IsEnabled = false;
-            stopButton.IsEnabled = true;
-            login.IsEnabled = false;
-            Reload.IsEnabled = false;
-            Logic.start();
             //Items window = new Items(Logic);
             //Close();
             //window.Show();

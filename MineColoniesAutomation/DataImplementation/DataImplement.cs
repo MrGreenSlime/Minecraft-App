@@ -20,7 +20,7 @@ namespace DataImplementation
     public class DataImplement : DataInterface.DataInterface
     {
         //public readonly string ApiUrl = "http://localhost:8080/api";
-        public readonly string ApiUrl = "https://minecraftapi.thibeprovost.ikdoeict.be/api";
+        public readonly string ApiUrl = "http://78.23.6.113:8080/api";
         public List<World> worlds { get; set; }
         public string InstancePath { get; set; }
         public List<WorldPath> WorldPaths { get; set; }
@@ -68,11 +68,12 @@ namespace DataImplementation
                 {
 
                     Colonie? colonie = SetColonie(coloniePath);
-                    string returnColonieData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-") + "/colonies/" + colonie.fingerprint.ToString());
+                    List<string> pathParse = coloniePath.Split('\\').ToList();
+                    string returnColonieData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-") + "/colonies/" + pathParse.Last());
                     if (returnColonieData == null)
                     {
-                        await PostRequest("{\"name\":\"" + colonie.Name + "\",\"world_id\":" + worldId + ",\"fingerprint\":" + colonie.fingerprint + "}", "/colonies");
-                        returnColonieData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-") + "/colonies/" + colonie.fingerprint.ToString());
+                        await PostRequest("{\"name\":\"" + colonie.Name + "\",\"world_id\":" + worldId + ",\"fingerprint\":" + Convert.ToInt16(pathParse.Last()) + "}", "/colonies");
+                        returnColonieData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-") + "/colonies/" + pathParse.Last());
                     }
                     if (returnColonieData == null)
                         continue;
@@ -677,6 +678,10 @@ namespace DataImplementation
             {
                 try
                 {
+                    if (url == ApiUrl + "/colonies")
+                    {
+                        Console.Write("oke");
+                    }
                     client.DefaultRequestHeaders.Add("Authorization", "bearer " + Token);
                     client.DefaultRequestHeaders.Add("Accept", "application/json");
                     HttpContent content = new StringContent(data, Encoding.UTF8, "application/json");
@@ -729,6 +734,7 @@ namespace DataImplementation
             {
                 try
                 {
+                    client.DefaultRequestHeaders.Add("Accept", "application/json");
                     var payload = new { email = username, password = password };
                     string jsonString = System.Text.Json.JsonSerializer.Serialize(payload);
                     HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
@@ -770,6 +776,9 @@ namespace DataImplementation
                         JsonNode node = JsonNode.Parse(responseBody);
                         string token = node["token"].ToString();
                         Token = token;
+                    } else
+                    {
+                        LoggedIn = false;
                     }
                 }
                 catch (Exception exc)
