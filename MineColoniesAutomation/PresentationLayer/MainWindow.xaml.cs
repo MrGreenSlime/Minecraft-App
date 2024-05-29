@@ -52,7 +52,9 @@ namespace PresentationLayer
 
         private void Reload_Click(object sender, RoutedEventArgs e)
         {
+            Reload.IsEnabled = false;
             Logic.setInstance(ShowFolderBrowserDialog());
+            Reload.IsEnabled = true;
         }
 
         private async void login_Click(object sender, RoutedEventArgs e)
