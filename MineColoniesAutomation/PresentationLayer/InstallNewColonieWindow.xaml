@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Icon="logotest.png"
+        Icon="favicon.ico"
         Title="InstallNewColonieWindow" Height="450" Width="800">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>

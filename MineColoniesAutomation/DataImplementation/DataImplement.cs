@@ -119,13 +119,13 @@ namespace DataImplementation
             }
             string poststring = JsonConvert.SerializeObject(postItems);
             PostRequest(JsonConvert.SerializeObject(postItems), "/storage_items");
-            //if (SendRecipe)
-            //{
-            //    var payload = new { worlds = worldsPostIds , recipes = Recipes };
-            //    string json = JsonConvert.SerializeObject(payload);
-            //    PostRequest(json, "/recipes");
-            //    SendRecipe = false;
-            //}
+            if (SendRecipe)
+            {
+                var payload = new { worlds = worldsPostIds, recipes = Recipes };
+                string json = JsonConvert.SerializeObject(payload);
+                PostRequest(json, "/recipes");
+                SendRecipe = false;
+            }
         }
 
         public Colonie? SetColonie(string path)

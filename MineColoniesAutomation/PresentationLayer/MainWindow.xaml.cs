@@ -25,7 +25,6 @@ namespace PresentationLayer
             Logic = logic;
             cancellationTokenSource = new CancellationTokenSource();
             InitializeComponent();
-            this.Icon = new BitmapImage(new Uri("pack://application:,,,/logotest.png"));
             startButton.IsEnabled = false;
             stopButton.IsEnabled = false;
             if (!Logic.instanceSelected) Logic.setInstance(ShowFolderBrowserDialog());

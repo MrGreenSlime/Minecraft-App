@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Icon="logotest.png"
+        Icon="favicon.ico"
         Title="MineColonies automation" Height="413" Width="503" Closing="Window_Closing">
     <Grid>
         <TextBox HorizontalAlignment="Left" Name="emailtextbox" Height="34" Margin="118,64,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="272"/>
