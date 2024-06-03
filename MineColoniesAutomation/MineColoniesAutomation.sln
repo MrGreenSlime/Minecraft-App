@@ -17,6 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Globals", "Globals\Globals.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{241AD47C-96EB-4B91-9817-E7B85E2039C9}"
 	ProjectSection(SolutionItems) = preProject
+		PresentationLayer\favicon.ico = PresentationLayer\favicon.ico
 		PresentationLayer\logotest.png = PresentationLayer\logotest.png
 	EndProjectSection
 EndProject

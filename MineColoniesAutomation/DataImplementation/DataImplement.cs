@@ -20,7 +20,7 @@ namespace DataImplementation
     public class DataImplement : DataInterface.DataInterface
     {
         //public readonly string ApiUrl = "http://localhost:8080/api";
-        public readonly string ApiUrl = "https://minecraftapi.thibeprovost.ikdoeict.be/api";
+        public readonly string ApiUrl = "http://78.23.6.113:8080/api";
         public List<World> worlds { get; set; }
         public string InstancePath { get; set; }
         public List<WorldPath> WorldPaths { get; set; }
@@ -29,7 +29,7 @@ namespace DataImplementation
         private string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Minecolonies";
         public List<Recipe> Recipes { get; set; }
         public bool LoggedIn { get; set; }
-        private string Token {  get; set; }
+        private string Token { get; set; }
         private bool SendRecipe { get; set; }
 
         public DataImplement()
@@ -49,6 +49,7 @@ namespace DataImplementation
             await refresh();
             worlds.Clear();
             List<PostItems> postItems = new List<PostItems>();
+            List<int> worldsPostIds = new List<int>();
             foreach (WorldPath path in WorldPaths)
             {
                 string returnData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-"));
@@ -60,17 +61,19 @@ namespace DataImplementation
                 if (returnData == null)
                     continue;
                 int worldId = System.Text.Json.JsonSerializer.Deserialize<WorldGetRequest>(returnData).Data.id;
+                worldsPostIds.Add(worldId);
                 World newWorld = new World();
                 newWorld.colonies = new List<Colonie>();
                 foreach (string coloniePath in path.ColonyPaths)
                 {
 
                     Colonie? colonie = SetColonie(coloniePath);
-                    string returnColonieData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-") + "/colonies/" + colonie.fingerprint.ToString());
+                    List<string> pathParse = coloniePath.Split('\\').ToList();
+                    string returnColonieData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-") + "/colonies/" + pathParse.Last());
                     if (returnColonieData == null)
                     {
-                        await PostRequest("{\"name\":\"" + colonie.Name + "\",\"world_id\":" + worldId + ",\"fingerprint\":" + colonie.fingerprint + "}", "/colonies");
-                        returnColonieData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-") + "/colonies/" + colonie.fingerprint.ToString());
+                        await PostRequest("{\"name\":\"" + colonie.Name + "\",\"world_id\":" + worldId + ",\"fingerprint\":" + Convert.ToInt16(pathParse.Last()) + "}", "/colonies");
+                        returnColonieData = await GetRequest("/worlds/" + path.WorldPathString.Replace("\\", "-") + "/colonies/" + pathParse.Last());
                     }
                     if (returnColonieData == null)
                         continue;
@@ -117,13 +120,13 @@ namespace DataImplementation
             }
             string poststring = JsonConvert.SerializeObject(postItems);
             PostRequest(JsonConvert.SerializeObject(postItems), "/storage_items");
-            //if (SendRecipe)
-            //{
-            //    var payload = new { world_names = WorldPaths.Select(x => x.WorldPathString.Replace("\\", "-")).ToList() , recipes = Recipes };
-            //    string json = JsonConvert.SerializeObject(payload);
-            //    PostRequest(json, "/recipes");
-            //    SendRecipe = false;
-            //}
+            if (SendRecipe)
+            {
+                var payload = new { worlds = worldsPostIds, recipes = Recipes };
+                string json = JsonConvert.SerializeObject(payload);
+                PostRequest(json, "/recipes");
+                SendRecipe = false;
+            }
         }
 
         public Colonie? SetColonie(string path)
@@ -219,9 +222,10 @@ namespace DataImplementation
             List<Commands> commands = new List<Commands>();
             Dictionary<string, long> colonyReserve = new Dictionary<string, long>();
             Dictionary<string, long> playerReserve = new Dictionary<string, long>();
+            List<string> Status = ["NOT_NEEDED", "HAVE_ENOUGH", "IN_DELIVERY", "NEED_MORE", "DONT_HAVE"];
             foreach (SpecifiedRequest request in requestList)
             {
-                if (!request.status.Equals("NOT_NEEDED,  HAVE_ENOUGH, IN_DELIVERY, NEED_MORE, DONT_HAVE "))
+                if (!Status.Contains(request.status))
                 {
                     long already_have = 0;
                     if (colonie.items == null)
@@ -335,7 +339,7 @@ namespace DataImplementation
                 string data = JsonConvert.SerializeObject(commands);
                 System.IO.File.WriteAllText(path + "\\commands.json", data);
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 Console.WriteLine(exc.Message);
             }
@@ -410,7 +414,7 @@ namespace DataImplementation
             GetMinecraftJarPath();
         }
 
-        private void GetWorldPaths()
+        public void GetWorldPaths()
         {
             WorldPaths = new List<WorldPath>();
             if (Path.Exists(InstancePath + "\\saves"))
@@ -571,7 +575,7 @@ namespace DataImplementation
                         var jsonRecipes = recipeNode["recipes"]!.AsArray();
                         foreach (var jsonRecipe in jsonRecipes)
                         {
-                            recipes.AddRange(ExtractRecipe(jsonRecipe!["recipe"]));   
+                            recipes.AddRange(ExtractRecipe(jsonRecipe!["recipe"]));
                         }
                         break;
                 }
@@ -674,6 +678,10 @@ namespace DataImplementation
             {
                 try
                 {
+                    if (url == ApiUrl + "/colonies")
+                    {
+                        Console.Write("oke");
+                    }
                     client.DefaultRequestHeaders.Add("Authorization", "bearer " + Token);
                     client.DefaultRequestHeaders.Add("Accept", "application/json");
                     HttpContent content = new StringContent(data, Encoding.UTF8, "application/json");
@@ -726,6 +734,7 @@ namespace DataImplementation
             {
                 try
                 {
+                    client.DefaultRequestHeaders.Add("Accept", "application/json");
                     var payload = new { email = username, password = password };
                     string jsonString = System.Text.Json.JsonSerializer.Serialize(payload);
                     HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
@@ -737,13 +746,14 @@ namespace DataImplementation
                         string token = node["token"].ToString();
                         LoggedIn = true;
                         Token = token;
-                    } else
+                    }
+                    else
                     {
                         Token = "";
                         LoggedIn = false;
                     }
                 }
-                catch(System.Exception exc)
+                catch (System.Exception exc)
                 {
                     Console.WriteLine(exc.Message);
                 }
@@ -766,6 +776,9 @@ namespace DataImplementation
                         JsonNode node = JsonNode.Parse(responseBody);
                         string token = node["token"].ToString();
                         Token = token;
+                    } else
+                    {
+                        LoggedIn = false;
                     }
                 }
                 catch (Exception exc)
@@ -773,6 +786,16 @@ namespace DataImplementation
                     Console.WriteLine(exc.Message);
                 }
             }
+        }
+
+        public void InstallLuaFile(string selectedPath)
+        {
+            System.IO.File.WriteAllText(selectedPath + "/aeInterface.lua", Properties.Resources.aeInterface.ToString());
+            System.IO.File.WriteAllText(selectedPath + "/extractTasks.lua", Properties.Resources.extractTasks.ToString());
+            System.IO.File.WriteAllText(selectedPath + "/JsonFileHelper.lua", Properties.Resources.JsonFileHelper.ToString());
+            System.IO.File.WriteAllText(selectedPath + "/main.lua", Properties.Resources.main.ToString());
+            System.IO.File.WriteAllText(selectedPath + "/monitorWriter.lua", Properties.Resources.monitorWriter.ToString());
+            System.IO.File.WriteAllText(selectedPath + "/wrapPeripherals.lua", Properties.Resources.wrapPeripherals.ToString());
         }
     }
 }

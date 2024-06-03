@@ -16,7 +16,7 @@ namespace LogicImplementation
         public List<World> World { get; set; }
         public List<WorldPath> paths { get; set; }
         public bool instanceSelected { get; set; }
-        
+
         public LogicImplementation(DataInterface.DataInterface data)
         {
             cancellationTokenSource = new CancellationTokenSource();
@@ -66,13 +66,22 @@ namespace LogicImplementation
         {
             paths = Data.WorldPaths;
         }
-        public bool IsLoggedIn()
+        public async Task<bool> IsLoggedIn()
         {
+            await Data.refresh();
             return Data.LoggedIn;
         }
-        public async Task Login(string email,  string password)
+        public async Task Login(string email, string password)
         {
             await Data.Login(email, password);
         }
+
+        public void InstallLuaFiles(string selectedPath)
+        {
+            Data.InstallLuaFile(selectedPath);
+            Data.GetWorldPaths();
+            setPaths();
+        }
+
     }
 }

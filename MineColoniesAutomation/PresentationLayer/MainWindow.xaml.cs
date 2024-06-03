@@ -25,7 +25,6 @@ namespace PresentationLayer
             Logic = logic;
             cancellationTokenSource = new CancellationTokenSource();
             InitializeComponent();
-            this.Icon = new BitmapImage(new Uri("pack://application:,,,/logotest.png"));
             startButton.IsEnabled = false;
             stopButton.IsEnabled = false;
             if (!Logic.instanceSelected) Logic.setInstance(ShowFolderBrowserDialog());
@@ -53,14 +52,16 @@ namespace PresentationLayer
 
         private void Reload_Click(object sender, RoutedEventArgs e)
         {
+            Reload.IsEnabled = false;
             Logic.setInstance(ShowFolderBrowserDialog());
+            Reload.IsEnabled = true;
         }
 
         private async void login_Click(object sender, RoutedEventArgs e)
         {
             await Logic.Login(emailtextbox.Text, passwordtextbox.Password);
             passwordtextbox.Password = "";
-            if (Logic.IsLoggedIn())
+            if (await Logic.IsLoggedIn())
             {
                 login.Content = "switch account";
                 loginError.Content = "";
@@ -87,13 +88,21 @@ namespace PresentationLayer
             login.IsEnabled = true;
             Reload.IsEnabled = true;
         }
-        private void startButton_Click(object sender, RoutedEventArgs e)
+        private async void startButton_Click(object sender, RoutedEventArgs e)
         {
+            if (await Logic.IsLoggedIn())
+            {
+                
+                stopButton.IsEnabled = true;
+                login.IsEnabled = false;
+                Reload.IsEnabled = false;
+                Logic.start();
+            } else
+            {
+                login.Content = "login";
+                loginError.Content = "refresh token has been expired, login again";
+            }
             startButton.IsEnabled = false;
-            stopButton.IsEnabled = true;
-            login.IsEnabled = false;
-            Reload.IsEnabled = false;
-            Logic.start();
             //Items window = new Items(Logic);
             //Close();
             //window.Show();
@@ -103,6 +112,13 @@ namespace PresentationLayer
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             Logic.stop();
+        }
+
+        private void ColonieInstall_Click(object sender, RoutedEventArgs e)
+        {
+            InstallNewColonieWindow window = new InstallNewColonieWindow(Logic);
+            Close();
+            window.Show();
         }
     }
 }
