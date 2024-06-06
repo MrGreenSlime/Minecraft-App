@@ -1,5 +1,8 @@
 ﻿<Project Sdk="WixToolset.Sdk/5.0.0">
   <ItemGroup>
+    <Content Include="Resources\favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="WixToolset.UI.wixext" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>

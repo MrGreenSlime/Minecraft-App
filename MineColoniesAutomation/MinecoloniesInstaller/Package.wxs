@@ -1,10 +1,14 @@
 ﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
   <Package Name="MinecoloniesIntegration" Manufacturer="J-Plot" Version="1.0.0.0" UpgradeCode="24cbcea0-86e3-4210-9dcc-42298bb216f3">
     <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
-
+    
+    <Icon Id="InstallerIcon" SourceFile="Resources\favicon.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="InstallerIcon"/>
+    
     <Feature Id="Main">
       <ComponentGroupRef Id="AppComponents" />
     </Feature>
     <ui:WixUI Id="WixUI_InstallDir" InstallDirectory="INSTALLFOLDER"/>
+
   </Package>
 </Wix>
