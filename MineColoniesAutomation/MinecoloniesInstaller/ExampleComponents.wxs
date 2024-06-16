@@ -1,0 +1,60 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Fragment>
+    <ComponentGroup Id="AppComponents" Directory="INSTALLFOLDER">
+      <Component>
+        <File Source="PresentationLayer.exe" Name="MinecoloniesIntegration.exe"/>
+      </Component>
+      <Component>
+        <File Source="DataImplementation.dll"/>
+      </Component>
+      <Component>
+        <File Source="DataImplementation.pdb"/>
+      </Component>
+      <Component>
+        <File Source="DataInterface.dll"/>
+      </Component>
+      <Component>
+        <File Source="DataInterface.pdb"/>
+      </Component>
+      <Component>
+        <File Source="Globals.dll" />
+      </Component>
+      <Component>
+        <File Source="Globals.pdb" />
+      </Component>
+      <Component>
+        <File Source="Json.Net.dll" />
+      </Component>
+      <Component>
+        <File Source="LogicImplementation.dll" />
+      </Component>
+      <Component>
+        <File Source="LogicImplementation.pdb" />
+      </Component>
+      <Component>
+        <File Source="LogicInterface.dll" />
+      </Component>
+      <Component>
+        <File Source="LogicInterface.pdb" />
+      </Component>
+      <Component>
+        <File Source="Newtonsoft.Json.dll" />
+      </Component>
+      <Component>
+        <File Source="Ookii.Dialogs.Wpf.dll" />
+      </Component>
+      <Component>
+        <File Source="PresentationLayer.deps.json" />
+      </Component>
+      <Component>
+        <File Source="PresentationLayer.dll" />
+      </Component>
+      <Component>
+        <File Source="PresentationLayer.pdb" />
+      </Component>
+      <Component>
+        <File Source="PresentationLayer.runtimeconfig.json" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>
