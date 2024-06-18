@@ -119,7 +119,7 @@ namespace DataImplementation
                 worlds.Add(newWorld);
             }
             string poststring = JsonConvert.SerializeObject(postItems);
-            PostRequest(JsonConvert.SerializeObject(postItems), "/storage_items");
+            PostRequest(poststring, "/storage_items");
             if (SendRecipe)
             {
                 var payload = new { worlds = worldsPostIds, recipes = Recipes };
@@ -222,7 +222,7 @@ namespace DataImplementation
             List<Commands> commands = new List<Commands>();
             Dictionary<string, long> colonyReserve = new Dictionary<string, long>();
             Dictionary<string, long> playerReserve = new Dictionary<string, long>();
-            List<string> Status = ["NOT_NEEDED", "HAVE_ENOUGH", "IN_DELIVERY", "NEED_MORE", "DONT_HAVE"];
+            List<string> Status = ["NOT_NEEDED", "HAVE_ENOUGH", "IN_DELIVERY"];
             foreach (SpecifiedRequest request in requestList)
             {
                 if (!Status.Contains(request.status))
