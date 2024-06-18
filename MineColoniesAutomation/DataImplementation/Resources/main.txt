@@ -30,9 +30,11 @@ while true do
     jsonHelper.WriteJson("aeData.json", colonyAeData)
 
     -- Read in the commands and execute them
-    local commands = jsonHelper.ReadJson("commands.json")
-    commands = aeInterface.ProcessCommands(peripherals, monitorWriter, commands)
-    jsonHelper.WriteJson("commands.json", commands)
+	if jsonHelper.file_exists("commands.json") then
+		local commands = jsonHelper.ReadJson("commands.json")
+		commands = aeInterface.ProcessCommands(peripherals, monitorWriter, commands)
+		jsonHelper.WriteJson("commands.json", commands)
+	end
 
     -- Sleep for the given sleeptime
     os.sleep(peripherals.GetSleepTime())
