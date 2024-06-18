@@ -20,6 +20,7 @@ namespace PresentationLayer
     {
         public LogicInterface.LogicInterface Logic {  get; set; }
         private CancellationTokenSource cancellationTokenSource;
+        private readonly string resgisterPath = "http://78.23.6.113/register";
         public MainWindow(LogicInterface.LogicInterface logic)
         {
             Logic = logic;
@@ -77,7 +78,7 @@ namespace PresentationLayer
 
         private void register_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start(new ProcessStartInfo("https://j-plot.lucavandenweghe.ikdoeict.be/") { UseShellExecute = true });
+            Process.Start(new ProcessStartInfo(resgisterPath) { UseShellExecute = true });
         }
 
         private void stopButton_Click(object sender, RoutedEventArgs e)
