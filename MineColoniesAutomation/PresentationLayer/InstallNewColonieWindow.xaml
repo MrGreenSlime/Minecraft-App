@@ -9,8 +9,8 @@
         Title="InstallNewColonieWindow" Height="450" Width="800">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="103*"/>
+            <ColumnDefinition Width="92*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.25*"/>
@@ -18,10 +18,10 @@
             <RowDefinition Height="0.25*"/>
             <RowDefinition Height="0.25*"/>
         </Grid.RowDefinitions>
-        <ComboBox HorizontalAlignment="Left" Background="Black" Foreground="Black" Name="WorldSelection" Height="38" Margin="30 0" VerticalAlignment="Center" Width="300" SelectionChanged="WorldSelection_SelectionChanged" BorderBrush="Red"/>
-        <ListBox Grid.Row="1" Grid.RowSpan="3" Name="ComputerList" Margin="5"/>
-        <Button Name="InstallButton" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" Content="Install needed files" Click="InstallButton_Click"/>
-        <Label Grid.Row="2" Grid.Column="1" Name="ErrorLbl" Foreground="Red"/>
-        <Button Content="back" Name="Back" HorizontalAlignment="Left" Height="42" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Width="137" Click="Back_Click"/>
+        <ComboBox HorizontalAlignment="Left" Background="Black" Foreground="Black" Name="WorldSelection" Height="38" VerticalAlignment="Center" Width="307" SelectionChanged="WorldSelection_SelectionChanged" BorderBrush="Red" Margin="10,0,0,0"/>
+        <ListBox Grid.Row="1" Grid.RowSpan="3" Name="ComputerList" Margin="5,5,5,5"/>
+        <Button Name="InstallButton" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Install needed files" Click="InstallButton_Click" Height="39" Width="170" Margin="0,2,0,0"/>
+        <Label Grid.Row="2" Grid.Column="1" Name="ErrorLbl" Foreground="Red" Margin="0,0,0,59" Grid.RowSpan="2"/>
+        <Button Content="back" Name="Back" HorizontalAlignment="Left" Height="42" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Width="137" Click="Back_Click" Margin="10,12,0,0"/>
     </Grid>
 </Window>

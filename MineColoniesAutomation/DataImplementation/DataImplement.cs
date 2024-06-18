@@ -678,10 +678,6 @@ namespace DataImplementation
             {
                 try
                 {
-                    if (url == ApiUrl + "/colonies")
-                    {
-                        Console.Write("oke");
-                    }
                     client.DefaultRequestHeaders.Add("Authorization", "bearer " + Token);
                     client.DefaultRequestHeaders.Add("Accept", "application/json");
                     HttpContent content = new StringContent(data, Encoding.UTF8, "application/json");
